@@ -1,0 +1,14 @@
+{
+	"nodes":[
+		{"id":"6d2f99be2bb0bbaa","type":"file","file":"99-Meta/附件存储/附件/Pasted image 20250307164627.png","x":280,"y":-237,"width":400,"height":274},
+		{"id":"71abcba8ae033cbd","type":"text","text":"人","x":-580,"y":-100,"width":124,"height":60},
+		{"id":"02879f4575041fc7","type":"text","text":"前庭系统","x":-356,"y":-100,"width":140,"height":60},
+		{"id":"a6f1f98356879acf","type":"text","text":"半规管 3对 相互垂直90°\n测角加速度","x":-411,"y":60,"width":250,"height":60},
+		{"id":"38b7acc10d4a761a","type":"text","text":"耳石","x":0,"y":-100,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"871f3a16d11c1e59","fromNode":"71abcba8ae033cbd","fromSide":"right","toNode":"02879f4575041fc7","toSide":"left"},
+		{"id":"c14f195c0f69d7ee","fromNode":"02879f4575041fc7","fromSide":"bottom","toNode":"a6f1f98356879acf","toSide":"top","label":"测旋转"},
+		{"id":"df69cd537acc0fbf","fromNode":"02879f4575041fc7","fromSide":"right","toNode":"38b7acc10d4a761a","toSide":"left","label":" 测加速度"}
+	]
+}

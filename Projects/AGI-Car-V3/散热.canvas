@@ -1,0 +1,14 @@
+{
+	"nodes":[
+		{"id":"e1401ea3eb6c27dd","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250225130601.png","x":-660,"y":-140,"width":400,"height":328},
+		{"id":"8aa6bfad74079950","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250225130606.png","x":-660,"y":280,"width":400,"height":348},
+		{"id":"a70f766ac866e9ce","type":"text","text":"接口 2.54","x":-900,"y":429,"width":152,"height":50},
+		{"id":"874ef46f228003eb","type":"text","text":"3D建模文件在\n2024.2.24_Agi-Car\\26-V3外壳\\风扇","x":-1009,"y":-39,"width":218,"height":127},
+		{"id":"4075e8b9cf1356b9","type":"text","text":"PWM调速风扇","x":-585,"y":-300,"width":250,"height":60},
+		{"id":"cbb1c33833ea6b34","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250225130631.png","x":-160,"y":-126,"width":480,"height":300}
+	],
+	"edges":[
+		{"id":"891d86c5c6609fb9","fromNode":"a70f766ac866e9ce","fromSide":"right","toNode":"8aa6bfad74079950","toSide":"left"},
+		{"id":"afcf42b2700e3190","fromNode":"874ef46f228003eb","fromSide":"right","toNode":"e1401ea3eb6c27dd","toSide":"left"}
+	]
+}

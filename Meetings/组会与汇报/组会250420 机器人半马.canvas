@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"9d340cf12554ab5e","type":"text","text":"可换电池","x":-222,"y":181,"width":250,"height":60},
+		{"id":"e80a2e10b246b61c","type":"text","text":"换机器人 +10min","x":120,"y":180,"width":250,"height":60},
+		{"id":"ca23a9e4f61eb552","type":"text","text":"20km半马 2.5h完赛","x":120,"y":40,"width":250,"height":60},
+		{"id":"2c80822a0163235a","type":"text","text":"5km排位赛","x":-220,"y":40,"width":250,"height":60},
+		{"id":"15209d465dd942d0","type":"text","text":"规则","x":-80,"y":-140,"width":250,"height":60,"color":"4"},
+		{"id":"29ed5d5678d8fec6","type":"text","text":"参赛要求 人形机器人","x":-640,"y":-140,"width":250,"height":60,"color":"4"},
+		{"id":"21f777c54f4d966d","type":"text","text":"参赛","x":600,"y":-139,"width":250,"height":59,"color":"4"},
+		{"id":"91a521796dbe5b28","type":"text","text":"机器人可以买别人的用","x":580,"y":40,"width":280,"height":60}
+	],
+	"edges":[
+		{"id":"0b83ffb330eb2895","fromNode":"2c80822a0163235a","fromSide":"right","toNode":"ca23a9e4f61eb552","toSide":"left"},
+		{"id":"1a2d3dbe0982f901","fromNode":"9d340cf12554ab5e","fromSide":"right","toNode":"e80a2e10b246b61c","toSide":"left"},
+		{"id":"7759bfc348a16ec8","fromNode":"29ed5d5678d8fec6","fromSide":"right","toNode":"15209d465dd942d0","toSide":"left"},
+		{"id":"27d743a1662734cf","fromNode":"15209d465dd942d0","fromSide":"right","toNode":"21f777c54f4d966d","toSide":"left"},
+		{"id":"b5951203dc96c264","fromNode":"21f777c54f4d966d","fromSide":"bottom","toNode":"91a521796dbe5b28","toSide":"top"},
+		{"id":"d8e8b1f4e162e000","fromNode":"15209d465dd942d0","fromSide":"bottom","toNode":"2c80822a0163235a","toSide":"top"},
+		{"id":"a055a1a937a76168","fromNode":"2c80822a0163235a","fromSide":"bottom","toNode":"9d340cf12554ab5e","toSide":"top"}
+	]
+}

@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"674b3c7e596ae3ee","type":"text","text":"不断扫描整个精神系统","x":-243,"y":-2,"width":250,"height":60},
+		{"id":"aac6078283f9b3c9","type":"text","text":"请到了陈小平","x":-322,"y":211,"width":250,"height":60},
+		{"id":"7be0d3062bc03399","type":"text","text":"“可佳”和“佳佳”智能机器人系统","x":40,"y":200,"width":250,"height":60},
+		{"id":"38b674f96a0db556","type":"text","text":"项贤明 教育 可带博士","x":-320,"y":320,"width":250,"height":60},
+		{"id":"598e2166c6159032","type":"text","text":"仪表盘，可视化展示工作记忆、长期记忆，显示整个处理过程，就能理解了","x":-680,"y":-40,"width":289,"height":120,"color":"4"},
+		{"id":"d4c0c5408e5c1d38","type":"text","text":"张新明 安徽师范大学","x":-320,"y":420,"width":250,"height":60},
+		{"id":"1f5efbf41af3802a","type":"text","text":"年会","x":-600,"y":320,"width":140,"height":60,"color":"4"},
+		{"id":"8592afdd32e7ceb5","type":"text","text":"技术问题 机器的感觉","x":-660,"y":540,"width":250,"height":60,"color":"5"},
+		{"id":"fa9f3bfcb7c10cfd","type":"text","text":"定义内部感觉网络","x":-300,"y":540,"width":250,"height":60},
+		{"id":"a1cccd02b80652aa","type":"text","text":"定义外部感觉网络","x":24,"y":539,"width":250,"height":60},
+		{"id":"f3acd8f3e4a2b774","type":"text","text":"感觉的强度和感觉的质地不是一回事","x":-300,"y":700,"width":250,"height":60},
+		{"id":"963a77deb98479ae","type":"text","text":"声音 由强度和质地构成，质地——》音色","x":-300,"y":840,"width":250,"height":60,"color":"1"},
+		{"id":"899aef2293edda57","type":"text","text":"先感受到强度，后感受到质地","x":79,"y":843,"width":250,"height":60},
+		{"id":"8ce6ddbe55b135d2","type":"text","text":"单个机器没有身体的发展和成熟的过程","x":440,"y":840,"width":250,"height":60},
+		{"id":"79ab70734b321fcf","type":"text","text":"如果坚持理论路线，接下来处理机器的感受信号时，主要先不考虑质地，先考虑强度。然后做成可拓展经验的存储结构——工作记忆和长期记忆，然后再了解不同质地","x":-320,"y":1020,"width":300,"height":260,"color":"1"},
+		{"id":"8aef6284849121b3","type":"text","text":"技术方案","x":-1060,"y":-140,"width":250,"height":60},
+		{"id":"2ef4c0d75f585d9d","type":"text","text":"python + 可视化库 / serve 浏览器","x":-1400,"y":-160,"width":250,"height":80}
+	],
+	"edges":[
+		{"id":"b527c40ebe5aad16","fromNode":"598e2166c6159032","fromSide":"right","toNode":"674b3c7e596ae3ee","toSide":"left"},
+		{"id":"381badaec2ec4ac5","fromNode":"1f5efbf41af3802a","fromSide":"right","toNode":"aac6078283f9b3c9","toSide":"left"},
+		{"id":"26b62999d704414d","fromNode":"aac6078283f9b3c9","fromSide":"right","toNode":"7be0d3062bc03399","toSide":"left"},
+		{"id":"15d1687ad0a3d293","fromNode":"1f5efbf41af3802a","fromSide":"right","toNode":"38b674f96a0db556","toSide":"left"},
+		{"id":"88f87c263d28542a","fromNode":"598e2166c6159032","fromSide":"bottom","toNode":"1f5efbf41af3802a","toSide":"top"},
+		{"id":"9faac1a11b27f5da","fromNode":"1f5efbf41af3802a","fromSide":"right","toNode":"d4c0c5408e5c1d38","toSide":"left"},
+		{"id":"9cbf34bba47ac640","fromNode":"1f5efbf41af3802a","fromSide":"bottom","toNode":"8592afdd32e7ceb5","toSide":"top"},
+		{"id":"a3f5c147d7631858","fromNode":"8592afdd32e7ceb5","fromSide":"right","toNode":"fa9f3bfcb7c10cfd","toSide":"left"},
+		{"id":"cd1229f997082037","fromNode":"a1cccd02b80652aa","fromSide":"left","toNode":"fa9f3bfcb7c10cfd","toSide":"right"},
+		{"id":"3a06469eb87b7cda","fromNode":"fa9f3bfcb7c10cfd","fromSide":"bottom","toNode":"f3acd8f3e4a2b774","toSide":"top"},
+		{"id":"d308e74c6b93f779","fromNode":"f3acd8f3e4a2b774","fromSide":"bottom","toNode":"963a77deb98479ae","toSide":"top"},
+		{"id":"baf606e1894fce7b","fromNode":"963a77deb98479ae","fromSide":"right","toNode":"899aef2293edda57","toSide":"left"},
+		{"id":"7a6d0512e05b1a54","fromNode":"899aef2293edda57","fromSide":"right","toNode":"8ce6ddbe55b135d2","toSide":"left"},
+		{"id":"42703459992659cd","fromNode":"963a77deb98479ae","fromSide":"bottom","toNode":"79ab70734b321fcf","toSide":"top"},
+		{"id":"27595af1dfe108be","fromNode":"8aef6284849121b3","fromSide":"left","toNode":"2ef4c0d75f585d9d","toSide":"right"},
+		{"id":"185b0484845f8cf7","fromNode":"598e2166c6159032","fromSide":"left","toNode":"8aef6284849121b3","toSide":"right"}
+	]
+}

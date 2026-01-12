@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"b7c9a42d179d9220","type":"text","text":"原理图设计","x":-639,"y":-122,"width":250,"height":60,"color":"4"},
+		{"id":"9aa268ae9228b053","type":"text","text":"原理学习","x":-1020,"y":-120,"width":250,"height":60,"color":"4"},
+		{"id":"c91ac83528cf653e","type":"text","text":"PCB布局","x":-240,"y":-120,"width":250,"height":60,"color":"4"},
+		{"id":"9ad2ca371a206180","type":"text","text":"PCB layout","x":140,"y":-120,"width":250,"height":60,"color":"4"},
+		{"id":"8a2682c9c98331c3","type":"text","text":"生产","x":560,"y":-120,"width":250,"height":60,"color":"4"},
+		{"id":"3eefeebf9be60e1b","type":"text","text":"同类板子设计参考","x":-1020,"y":60,"width":250,"height":60},
+		{"id":"96f6c7ee71b279c7","type":"text","text":"物料购买","x":920,"y":-120,"width":250,"height":60,"color":"4"},
+		{"id":"5636ade94f11e1bc","type":"text","text":"导出BOM","x":918,"y":50,"width":250,"height":60},
+		{"id":"44ec7ce0723ca932","type":"text","text":"阻容可找华强北配单，但是精度基本保证不了。能嘉立创就嘉立创","x":920,"y":340,"width":250,"height":140},
+		{"id":"0cbe56dfa44e1160","type":"text","text":"芯片找taobao便宜的、有质量保证的买。价格相同优先立创","x":1260,"y":360,"width":250,"height":101},
+		{"id":"7349a1ca7a59e8cf","type":"text","text":"对照立创价格与淘宝","x":920,"y":200,"width":250,"height":60},
+		{"id":"54bd63dc42f27cb9","type":"text","text":"淘宝有采购单","x":1255,"y":201,"width":250,"height":60},
+		{"id":"1259b8bd80f5c2c1","type":"text","text":"等物流、生产","x":1600,"y":-120,"width":250,"height":60,"color":"4"}
+	],
+	"edges":[
+		{"id":"449ce816c8d50d81","fromNode":"b7c9a42d179d9220","fromSide":"right","toNode":"c91ac83528cf653e","toSide":"left"},
+		{"id":"37db2a811a2f58cc","fromNode":"9aa268ae9228b053","fromSide":"right","toNode":"b7c9a42d179d9220","toSide":"left"},
+		{"id":"21c7aa3cdbdeea04","fromNode":"c91ac83528cf653e","fromSide":"right","toNode":"9ad2ca371a206180","toSide":"left"},
+		{"id":"533710e6540b999f","fromNode":"9ad2ca371a206180","fromSide":"right","toNode":"8a2682c9c98331c3","toSide":"left"},
+		{"id":"77c4783a576ca9d2","fromNode":"8a2682c9c98331c3","fromSide":"right","toNode":"96f6c7ee71b279c7","toSide":"left"},
+		{"id":"5b82e8ec0270f821","fromNode":"7349a1ca7a59e8cf","fromSide":"right","toNode":"54bd63dc42f27cb9","toSide":"left"},
+		{"id":"cd474f3aae9a8afe","fromNode":"44ec7ce0723ca932","fromSide":"right","toNode":"0cbe56dfa44e1160","toSide":"left"},
+		{"id":"b2db0fdb3b276655","fromNode":"96f6c7ee71b279c7","fromSide":"right","toNode":"1259b8bd80f5c2c1","toSide":"left"},
+		{"id":"f977cd00f40077b2","fromNode":"96f6c7ee71b279c7","fromSide":"bottom","toNode":"5636ade94f11e1bc","toSide":"top"},
+		{"id":"6f6317c2a0a0c32b","fromNode":"5636ade94f11e1bc","fromSide":"bottom","toNode":"7349a1ca7a59e8cf","toSide":"top"},
+		{"id":"4ccead98bcaef70c","fromNode":"7349a1ca7a59e8cf","fromSide":"bottom","toNode":"44ec7ce0723ca932","toSide":"top"},
+		{"id":"0ef7b0acbee3c56f","fromNode":"9aa268ae9228b053","fromSide":"bottom","toNode":"3eefeebf9be60e1b","toSide":"top"}
+	]
+}

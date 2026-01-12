@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"de6e4456aeee659b","x":-829,"y":-85,"width":149,"height":60,"type":"text","text":"查找资料"},
+		{"id":"a4b5c0382fd99a8e","x":-440,"y":-85,"width":180,"height":60,"type":"text","text":"连接开发版"},
+		{"id":"efa1e6df2cb5614d","x":-879,"y":60,"width":279,"height":120,"type":"text","text":"[SDK](https://github.com/LuckfoxTECH/luckfox-pico) 内核版本 5.10.160"}
+	],
+	"edges":[
+		{"id":"5abe9b7f2249f9cb","fromNode":"de6e4456aeee659b","fromSide":"right","toNode":"a4b5c0382fd99a8e","toSide":"left"}
+	]
+}

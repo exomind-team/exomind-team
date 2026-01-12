@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"8fddcd9fbb0b2c22","type":"text","text":"电机控制","x":-360,"y":-160,"width":179,"height":63},
+		{"id":"1e60bd28531e6f34","type":"text","text":"板载LED","x":-360,"y":-20,"width":179,"height":50},
+		{"id":"7e4026a12463e3db","type":"text","text":"姿态","x":-359,"y":100,"width":177,"height":50},
+		{"id":"8871d7ac7c632440","type":"text","text":"测距","x":-367,"y":220,"width":194,"height":50},
+		{"id":"ecf85e2a0466b139","type":"text","text":"l1 l2 c1 c2 x2 8线","x":-660,"y":-159,"width":250,"height":60},
+		{"id":"0e138ea396f15bb6","type":"text","text":"1线","x":-640,"y":-24,"width":129,"height":59},
+		{"id":"bee49d9df968c23c","type":"text","text":"i2c 2","x":-676,"y":92,"width":136,"height":58},
+		{"id":"40d1858478a2cc4e","type":"text","text":"可替换","x":30,"y":-212,"width":250,"height":60},
+		{"id":"2ecb80eaf77a94b0","type":"text","text":"PY32F403V1DT6，LQFP100","x":30,"y":-80,"width":250,"height":60},
+		{"id":"b28d11c3b7b0ecf7","x":-700,"y":480,"width":125,"height":60,"type":"text","text":"PWM"},
+		{"id":"71e09c7a57489b59","x":-410,"y":385,"width":400,"height":250,"type":"file","file":"010-实践/AGI Car/散热.canvas"}
+	],
+	"edges":[
+		{"id":"21ae84a078031141","fromNode":"ecf85e2a0466b139","fromSide":"right","toNode":"8fddcd9fbb0b2c22","toSide":"left"},
+		{"id":"c20f5eec12dbef33","fromNode":"0e138ea396f15bb6","fromSide":"right","toNode":"1e60bd28531e6f34","toSide":"left"},
+		{"id":"11b0363c6e075768","fromNode":"bee49d9df968c23c","fromSide":"right","toNode":"7e4026a12463e3db","toSide":"left"},
+		{"id":"ad9c18306c3b4c56","fromNode":"bee49d9df968c23c","fromSide":"right","toNode":"8871d7ac7c632440","toSide":"left"},
+		{"id":"d99bfca180718796","fromNode":"40d1858478a2cc4e","fromSide":"bottom","toNode":"2ecb80eaf77a94b0","toSide":"top"},
+		{"id":"428ff04c72a8830a","fromNode":"b28d11c3b7b0ecf7","fromSide":"right","toNode":"71e09c7a57489b59","toSide":"left"}
+	]
+}

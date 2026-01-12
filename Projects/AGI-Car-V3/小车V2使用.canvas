@@ -1,0 +1,42 @@
+{
+	"nodes":[
+		{"id":"70c988a944eeeb95","type":"text","text":"硬件组装","x":-606,"y":-145,"width":250,"height":60,"color":"1"},
+		{"id":"eb3935d04b088fe8","type":"text","text":"软件连接","x":-160,"y":-145,"width":250,"height":60,"color":"1"},
+		{"id":"f071b8b74a593a4c","type":"text","text":"串口读取","x":-320,"y":40,"width":250,"height":60,"color":"4"},
+		{"id":"eb6513da1789ae5c","type":"text","text":"工程读取\nhttps://gitea.hailay.site/agiteam/agi-car","x":-320,"y":200,"width":250,"height":120,"color":"4"},
+		{"id":"a9fb37eb9a7e92ca","type":"text","text":"web 数据读取","x":-15,"y":40,"width":250,"height":60},
+		{"id":"314e1b366aa8b5a3","type":"text","text":"增加UART传输数据","x":480,"y":-145,"width":250,"height":60,"color":"1"},
+		{"id":"b1c6c82934090af7","type":"text","text":"预计劳动时间\n\n1小时 找回记忆","x":-606,"y":-380,"width":286,"height":140,"color":"4"},
+		{"id":"5da45c948d7ecda5","type":"text","text":"不能读取ESP32S3内部程序","x":-317,"y":412,"width":250,"height":60,"color":"4"},
+		{"id":"ebd14d6d8a8e32c9","type":"text","text":"thonny-4.1.7","x":-731,"y":412,"width":250,"height":60},
+		{"id":"704a6af52ab736a6","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250106215440.png","x":-371,"y":640,"width":353,"height":400},
+		{"id":"bf78a5829a638bee","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250106215554.png","x":140,"y":752,"width":335,"height":148,"color":"4"},
+		{"id":"25b27d9737133743","type":"text","text":"不行","x":-1080,"y":412,"width":250,"height":60},
+		{"id":"6dabf77acd01c490","type":"text","text":"串口为USB JTAG","x":-731,"y":540,"width":250,"height":60},
+		{"id":"eb02be81ab55783e","type":"text","text":"串口为ESP CDC","x":183,"y":1010,"width":250,"height":60,"color":"4"},
+		{"id":"6b5a8a02e5b06ab4","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250106221904.png","x":35,"y":200,"width":815,"height":360},
+		{"id":"ceeb15042ae97c22","type":"text","text":"bug \n小车收到前进指令不会前进，物理层收到的数据是stop","x":480,"y":-11,"width":250,"height":163,"color":"1"},
+		{"id":"d3905fd1dd8938a8","type":"text","text":"已连接K230 UART1","x":480,"y":-280,"width":250,"height":60,"color":"4"},
+		{"id":"d6dbb0a5b3ee7e96","type":"text","text":"### VScode IDE开发配置\n\n1. VScode新配置文件 ![image.png](http://qingniu.oos.hailay.site/202501111927980.png)\n\n2. **插件** MicroPico、“Code Completion for MicroPython”、Pylance、python、IntelliCode\n3. **配置**：**MicroPico: Setup MicroPico project**、MicroPython: 启用代码补全功能。\n","x":-379,"y":-940,"width":375,"height":400}
+	],
+	"edges":[
+		{"id":"c6126c1c7dce5ab7","fromNode":"70c988a944eeeb95","fromSide":"right","toNode":"eb3935d04b088fe8","toSide":"left"},
+		{"id":"158c85dfee767678","fromNode":"eb3935d04b088fe8","fromSide":"bottom","toNode":"f071b8b74a593a4c","toSide":"top"},
+		{"id":"b4433846e6c71cb9","fromNode":"f071b8b74a593a4c","fromSide":"bottom","toNode":"eb6513da1789ae5c","toSide":"top"},
+		{"id":"61ec1e6faa0788de","fromNode":"eb3935d04b088fe8","fromSide":"bottom","toNode":"a9fb37eb9a7e92ca","toSide":"top"},
+		{"id":"d19d00a61ba30391","fromNode":"eb3935d04b088fe8","fromSide":"right","toNode":"314e1b366aa8b5a3","toSide":"left"},
+		{"id":"5905b110dbd2f0ea","fromNode":"5da45c948d7ecda5","fromSide":"left","toNode":"ebd14d6d8a8e32c9","toSide":"right","label":"更新IDE"},
+		{"id":"a3142ed9c2148c97","fromNode":"eb6513da1789ae5c","fromSide":"bottom","toNode":"5da45c948d7ecda5","toSide":"top"},
+		{"id":"7b7924885b58c6d6","fromNode":"5da45c948d7ecda5","fromSide":"bottom","toNode":"704a6af52ab736a6","toSide":"top","label":"重新烧写镜像"},
+		{"id":"480d57af11c546eb","fromNode":"704a6af52ab736a6","fromSide":"right","toNode":"bf78a5829a638bee","toSide":"left","label":"能够使用"},
+		{"id":"7732ad21c0f6637b","fromNode":"ebd14d6d8a8e32c9","fromSide":"left","toNode":"25b27d9737133743","toSide":"right"},
+		{"id":"8653a898c5e74304","fromNode":"5da45c948d7ecda5","fromSide":"left","toNode":"6dabf77acd01c490","toSide":"right"},
+		{"id":"40364695cba214ac","fromNode":"bf78a5829a638bee","fromSide":"bottom","toNode":"eb02be81ab55783e","toSide":"top"},
+		{"id":"3f4b9a9301222c92","fromNode":"a9fb37eb9a7e92ca","fromSide":"bottom","toNode":"6b5a8a02e5b06ab4","toSide":"top"},
+		{"id":"873563cac641d0ce","fromNode":"b1c6c82934090af7","fromSide":"bottom","toNode":"70c988a944eeeb95","toSide":"top"},
+		{"id":"d765fdd78f4c58c4","fromNode":"b1c6c82934090af7","fromSide":"bottom","toNode":"eb3935d04b088fe8","toSide":"top"},
+		{"id":"fbac620b992bfa29","fromNode":"314e1b366aa8b5a3","fromSide":"bottom","toNode":"ceeb15042ae97c22","toSide":"top"},
+		{"id":"9ad801f4515a3fd7","fromNode":"d3905fd1dd8938a8","fromSide":"bottom","toNode":"314e1b366aa8b5a3","toSide":"top"},
+		{"id":"042fec96865b6013","fromNode":"eb3935d04b088fe8","fromSide":"top","toNode":"d6dbb0a5b3ee7e96","toSide":"bottom","label":"ESP32S3"}
+	]
+}

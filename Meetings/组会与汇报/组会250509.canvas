@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"8b3a7660d66f0992","type":"text","text":"底板硬件组装完成","x":-520,"y":-160,"width":250,"height":60,"color":"3"},
+		{"id":"d0e2188e714e1e42","type":"text","text":"触觉板硬件组装完成","x":-120,"y":-160,"width":250,"height":60,"color":"3"},
+		{"id":"925ff8e586acf9ab","type":"file","file":"99-Meta/附件存储/appendix/04ca2ccc95acca6a03700cab715df82.jpg","x":-220,"y":20,"width":400,"height":300},
+		{"id":"90a52dcf21c2a98d","type":"text","text":"电子硬件","x":-307,"y":-382,"width":250,"height":60,"color":"5"},
+		{"id":"7b9678c0733c0832","type":"text","text":"http/websocket(tcp)/UDP传输","x":384,"y":-169,"width":236,"height":69,"color":"2"},
+		{"id":"1bdf8f8d05c70a43","type":"text","text":"摄像头60-133fps\n音频64-96fps","x":380,"y":0,"width":250,"height":60},
+		{"id":"f729a2cfff7aa67f","type":"text","text":"视听觉板+底板\nplatformio 合并工程","x":720,"y":-160,"width":250,"height":60,"color":"2"},
+		{"id":"c8c4bbf13b24d2c1","type":"text","text":"软件","x":720,"y":-380,"width":250,"height":60,"color":"5"},
+		{"id":"0a50458f686b4b00","type":"text","text":"上位机数据接收","x":1042,"y":-166,"width":250,"height":60,"color":"2"},
+		{"id":"9cd37ecaef7fa02d","type":"text","text":"图像","x":1040,"y":-20,"width":250,"height":60},
+		{"id":"476e456ee940aabe","type":"text","text":"下位机工程 \n[gaca_esp_body](https://gitea.hailay.site/agiteam/gaca_esp_body)\n","x":720,"y":-20,"width":250,"height":60},
+		{"id":"870d0237bde2e3d7","type":"text","text":"上位机工程\n[gaca_python_brain](https://gitea.hailay.site/agiteam/gaca_python_brain)","x":1040,"y":100,"width":250,"height":60},
+		{"id":"e97a70a19dd4a496","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250509160341.png","x":-1000,"y":40,"width":279,"height":400},
+		{"id":"50d0d89838813ded","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20250509160408.png","x":-180,"y":420,"width":304,"height":400},
+		{"id":"222e28ac37f5398f","type":"file","file":"99-Meta/附件存储/appendix/img_v3_02m4_478af512-1319-4446-b42f-b23ae5900cag.jpg","x":600,"y":220,"width":400,"height":310},
+		{"id":"7a6d0f2206bccb63","type":"text","text":"![[c84d39a34bdcbace0580844d561f649.jpg]]","x":-640,"y":0,"width":314,"height":472},
+		{"id":"a481be291d866d7d","type":"text","text":"ppt","x":-762,"y":-328,"width":250,"height":60},
+		{"id":"ecd031056ef87171","type":"text","text":"手册","x":-756,"y":-228,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"ffb376248611c046","fromNode":"8b3a7660d66f0992","fromSide":"right","toNode":"d0e2188e714e1e42","toSide":"left","color":"3"},
+		{"id":"afad0f94382b8ace","fromNode":"8b3a7660d66f0992","fromSide":"bottom","toNode":"7a6d0f2206bccb63","toSide":"top"},
+		{"id":"659154d45a81423d","fromNode":"d0e2188e714e1e42","fromSide":"bottom","toNode":"925ff8e586acf9ab","toSide":"top"},
+		{"id":"e2246dd6853b6c46","fromNode":"90a52dcf21c2a98d","fromSide":"bottom","toNode":"8b3a7660d66f0992","toSide":"top"},
+		{"id":"846cdaae0b7f7c5b","fromNode":"90a52dcf21c2a98d","fromSide":"right","toNode":"c8c4bbf13b24d2c1","toSide":"left","color":"5"},
+		{"id":"0eb95731c3447f92","fromNode":"7b9678c0733c0832","fromSide":"bottom","toNode":"1bdf8f8d05c70a43","toSide":"top"},
+		{"id":"7929d6744d8680dc","fromNode":"c8c4bbf13b24d2c1","fromSide":"bottom","toNode":"7b9678c0733c0832","toSide":"top"},
+		{"id":"65b87581e67f3904","fromNode":"c8c4bbf13b24d2c1","fromSide":"bottom","toNode":"f729a2cfff7aa67f","toSide":"top"},
+		{"id":"f86d6531aa9d780a","fromNode":"c8c4bbf13b24d2c1","fromSide":"bottom","toNode":"0a50458f686b4b00","toSide":"top"},
+		{"id":"977e86f7f8cbd2bf","fromNode":"0a50458f686b4b00","fromSide":"bottom","toNode":"9cd37ecaef7fa02d","toSide":"top"},
+		{"id":"781848e96febffa0","fromNode":"f729a2cfff7aa67f","fromSide":"bottom","toNode":"476e456ee940aabe","toSide":"top"},
+		{"id":"ac9db90af6fc51ad","fromNode":"9cd37ecaef7fa02d","fromSide":"bottom","toNode":"870d0237bde2e3d7","toSide":"top"},
+		{"id":"a824e4cc3397b9ff","fromNode":"e97a70a19dd4a496","fromSide":"right","toNode":"7a6d0f2206bccb63","toSide":"left"},
+		{"id":"5bf8298408f175a3","fromNode":"50d0d89838813ded","fromSide":"top","toNode":"925ff8e586acf9ab","toSide":"bottom"},
+		{"id":"b665c061daa00af9","fromNode":"476e456ee940aabe","fromSide":"bottom","toNode":"222e28ac37f5398f","toSide":"top"}
+	]
+}

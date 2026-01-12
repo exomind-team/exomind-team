@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"c2b70e013de0afe9","type":"file","file":"第三版小车设计/设计框架图.md","x":-420,"y":-284,"width":260,"height":60},
+		{"id":"8b0dd623abcb813c","type":"file","file":"MCU/STM32H757IIT6.md","x":20,"y":-433,"width":142,"height":149}
+	],
+	"edges":[
+		{"id":"da4268785bb83bcc","fromNode":"c2b70e013de0afe9","fromSide":"right","toNode":"8b0dd623abcb813c","toSide":"left"}
+	]
+}

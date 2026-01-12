@@ -1,0 +1,42 @@
+{
+	"nodes":[
+		{"id":"18a857823f31856d","type":"group","x":1100,"y":-260,"width":290,"height":371,"label":"芯片任务"},
+		{"id":"e8261cfa9877a305","type":"text","text":"烧录程序点灯验证","x":-767,"y":-103,"width":250,"height":60,"color":"1"},
+		{"id":"123e0cc39846745b","type":"text","text":"开发环境配置","x":-767,"y":150,"width":250,"height":60,"color":"2"},
+		{"id":"027f7621d70590d2","type":"text","text":"调试器连线焊接","x":-1151,"y":120,"width":250,"height":60,"color":"4"},
+		{"id":"4f63ba710d60de18","type":"link","url":"http://qingniu.oos.hailay.site/202412281520768.png","x":-1156,"y":240,"width":260,"height":220},
+		{"id":"cb896af4dc6e21a9","type":"text","text":"准备焊接笔、吸烟机","x":-1494,"y":120,"width":250,"height":60,"color":"4"},
+		{"id":"df931e53fd5f3bf1","type":"text","text":"### 劳动时间预计\n1h","x":-901,"y":-442,"width":301,"height":122},
+		{"id":"ab6800929c4da4fd","type":"text","text":"资料搜集\n购买[链接](https://detail.tmall.com/item.htm?_u=s2jp62755fcd&id=773478957422&spm=a1z09.2.0.0.79682e8d64JsOn)\n","x":-420,"y":60,"width":250,"height":60,"color":"6"},
+		{"id":"dda200d043b14529","type":"text","text":"评价开发难度、可行性","x":580,"y":-103,"width":280,"height":60,"color":"1"},
+		{"id":"f4990166e2c95492","type":"text","text":"接管运动","x":1120,"y":-240,"width":250,"height":60,"color":"1"},
+		{"id":"5b59a226bb5e1b4c","type":"text","text":"烧录","x":-767,"y":620,"width":250,"height":60,"color":"2"},
+		{"id":"84e0e051c4932676","type":"text","text":"keil没有识别这个调试器\n解决：买一个正规的调试器\n","x":-476,"y":680,"width":361,"height":70,"color":"4"},
+		{"id":"efbac816507970de","type":"text","text":"验证","x":-767,"y":915,"width":250,"height":60,"color":"2"},
+		{"id":"63f4e2eaee56ddfe","type":"text","text":"连接调试器 DAP-LINK","x":-459,"y":566,"width":250,"height":60,"color":"2"},
+		{"id":"b247755835e06192","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20241228152757.png","x":-295,"y":260,"width":164,"height":224},
+		{"id":"8b8caea61b0187df","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20241228152812.png","x":-95,"y":280,"width":178,"height":204},
+		{"id":"77be0dde2425907b","type":"text","text":"蓝牙掉了","x":-90,"y":860,"width":250,"height":60,"color":"1"},
+		{"id":"f65980c96f54bf29","type":"text","text":"接管触觉","x":1120,"y":31,"width":250,"height":60,"color":"1"},
+		{"id":"1e18f7a4ba7ca9c7","type":"text","text":"PWLINKv2 Lite\n\n9.9r\n","x":-428,"y":830,"width":266,"height":115,"color":"4"},
+		{"id":"891077dcc177c3e8","type":"text","text":"没有arm调试器比较难搞，需要等集几天，时间上不太划算。\n\n使用**ESP32C3**代替","x":595,"y":140,"width":251,"height":200,"color":"6"},
+		{"id":"21b797342593f6ee","type":"file","file":"99-Meta/附件存储/appendix/Pasted image 20241228155256.png","x":-60,"y":528,"width":190,"height":244}
+	],
+	"edges":[
+		{"id":"d257716a0c68d764","fromNode":"e8261cfa9877a305","fromSide":"bottom","toNode":"027f7621d70590d2","toSide":"top","label":"硬件连接"},
+		{"id":"278cec2f4f5944d2","fromNode":"e8261cfa9877a305","fromSide":"bottom","toNode":"123e0cc39846745b","toSide":"top","label":"软件"},
+		{"id":"11de6a6a08ee3eb7","fromNode":"123e0cc39846745b","fromSide":"bottom","toNode":"5b59a226bb5e1b4c","toSide":"top"},
+		{"id":"b80cbbe4b4187402","fromNode":"5b59a226bb5e1b4c","fromSide":"bottom","toNode":"efbac816507970de","toSide":"top"},
+		{"id":"790197e35ad295fe","fromNode":"e8261cfa9877a305","fromSide":"right","toNode":"dda200d043b14529","toSide":"left"},
+		{"id":"b7d300b813c46096","fromNode":"dda200d043b14529","fromSide":"right","toNode":"18a857823f31856d","toSide":"left","label":"yes"},
+		{"id":"e859729bdd81c03c","fromNode":"df931e53fd5f3bf1","fromSide":"bottom","toNode":"e8261cfa9877a305","toSide":"top"},
+		{"id":"4a0876fadc395ce0","fromNode":"cb896af4dc6e21a9","fromSide":"right","toNode":"027f7621d70590d2","toSide":"left"},
+		{"id":"f78392265a3a85aa","fromNode":"123e0cc39846745b","fromSide":"right","toNode":"ab6800929c4da4fd","toSide":"left"},
+		{"id":"13fe0822fdb6e5bf","fromNode":"027f7621d70590d2","fromSide":"bottom","toNode":"4f63ba710d60de18","toSide":"top"},
+		{"id":"fa5fca638691c2e3","fromNode":"63f4e2eaee56ddfe","fromSide":"right","toNode":"21b797342593f6ee","toSide":"left"},
+		{"id":"bb73d5ee05e8875a","fromNode":"63f4e2eaee56ddfe","fromSide":"bottom","toNode":"84e0e051c4932676","toSide":"top"},
+		{"id":"260584ee5558ef47","fromNode":"21b797342593f6ee","fromSide":"bottom","toNode":"77be0dde2425907b","toSide":"top","label":"串口连接"},
+		{"id":"f9a24fb14d92eb30","fromNode":"84e0e051c4932676","fromSide":"bottom","toNode":"1e18f7a4ba7ca9c7","toSide":"top"},
+		{"id":"80a60a72d3962deb","fromNode":"dda200d043b14529","fromSide":"bottom","toNode":"891077dcc177c3e8","toSide":"top"}
+	]
+}

@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"2b83c0e9f2ae885f","type":"text","text":"汇报 Python","x":-716,"y":-140,"width":250,"height":60,"color":"1"},
+		{"id":"bb04b674bd290f25","type":"file","file":"010-实践/AGI Car/Python 科学计算.canvas","x":-820,"y":57,"width":460,"height":285},
+		{"id":"5aa7d17b9ace3eb1","type":"text","text":"主动找问题","x":73,"y":312,"width":250,"height":60,"color":"2"},
+		{"id":"1ebbaa517c9f9c6e","type":"text","text":"发文科核心：平时看多书，记下idea，做好笔记\n\n老师输出的观点\n\n很多论文是从平时的心得、idea中慢慢积累出来的","x":-87,"y":-73,"width":260,"height":280,"color":"1"},
+		{"id":"d1511dedbbcb6ad2","type":"text","text":"真正的科学是由**问题**推进的","x":73,"y":400,"width":250,"height":60},
+		{"id":"f4879b8f8dc36a00","type":"text","text":"不是用的方法、技术","x":73,"y":483,"width":250,"height":60},
+		{"id":"19cbb202a5b0acd0","type":"text","text":"日常积累","x":-180,"y":312,"width":153,"height":60,"color":"2"},
+		{"id":"58e367b5cdcfed80","type":"text","text":"做研究是**兴趣**驱动的","x":440,"y":400,"width":250,"height":60},
+		{"id":"9681d7b9c03eab10","type":"text","text":"2个节点成环，正常人两个点成环也很多，不是一个很好的指标\n","x":-327,"y":489,"width":250,"height":60},
+		{"id":"7cc9cffeb93d4193","type":"link","url":"https://yabook.org/","x":-503,"y":880,"width":400,"height":400},
+		{"id":"3d8087edfcc20057","type":"text","text":"随时每天找电子书","x":-428,"y":740,"width":250,"height":60,"color":"1"},
+		{"id":"270be898cba1ed1b","type":"text","text":"pass 圆形方案，自我认知比较困难认识前后","x":214,"y":642,"width":326,"height":128},
+		{"id":"aeed2d4fd94c0b97","type":"text","text":"日期 250107\n\n刘凯_AGI:\n有一个有趣的问题：**AGI小车运动持续性的本质是什么？**\n如果f（forward）表示前进运动，那么一直向前的运动，是不是多个f单元叠加或累加的结果？\n\n刘凯_AGI:\n实际上，这个问题与硬件操作方式有关，目前为止，几乎都是“重写”机制。即**如果没有新操作覆盖当前操作，那么当前操作将一直发挥作用。** 因此，**操作的类型主要取决于缓存状态**。换言之，对小车轮子而言，没有固定时间的单子操作，有的只是写入缓存动作指令的变化。在这种情况下，**时间（感）** 就是通过AGI小车在环境中**感受到的其他运动效果的重复模式的间隔而产生**。\n","x":800,"y":427,"width":500,"height":413},
+		{"id":"29321b4eca2afcf9","type":"text","text":"预设有多少层","x":1629,"y":-98,"width":250,"height":60},
+		{"id":"e8e819aeaa76eab9","type":"text","text":"主动视觉相关实验，软件下一步\n形式上是神经网络系统，好几层，输入层 \n输出层：输入有可能是输出--\n\n最大区别：输入层基本感觉信息\n\n\n","x":1555,"y":3,"width":400,"height":204},
+		{"id":"87bf5745da1edfdf","type":"text","text":"特定问题的解决方案，目标内化到训练数据中（用了专门的数据）","x":2049,"y":-23,"width":250,"height":123},
+		{"id":"2c5f8fce4e025e22","type":"text","text":"不预设输出内容是什么目的\n预设输出是什么感觉\n","x":2042,"y":152,"width":272,"height":109},
+		{"id":"42240550574e43eb","type":"text","text":"真正意义上了解自己的身体，不然不能真正理解物理世界，什么是大什么是形状，不然容易理解为一个点。现在的车预设了不能触碰，不能出事故。","x":1110,"y":39,"width":380,"height":173},
+		{"id":"02b08039d755710a","type":"text","text":"中间 生命系统","x":1755,"y":232,"width":250,"height":60},
+		{"id":"11c74da23f5c01cb","type":"text","text":"中间不预设多少层、有多少点。让先天机制能增加节点和连接，动态生成的网络","x":1754,"y":352,"width":251,"height":150},
+		{"id":"40cf7ff98692807a","type":"text","text":"预设动机的网","x":1454,"y":303,"width":250,"height":60},
+		{"id":"9dccd9d7dafb3496","type":"text","text":"怎么知道自己痒的地方在哪？机器人如何分辨是前面碰到了还是后面碰到了？","x":1430,"y":502,"width":250,"height":148,"color":"1"},
+		{"id":"fc9b16644bdad2d5","type":"text","text":"要先对自己身体有一个认知才行","x":1430,"y":730,"width":250,"height":60,"color":"1"}
+	],
+	"edges":[
+		{"id":"e2e728153c42b5b4","fromNode":"2b83c0e9f2ae885f","fromSide":"bottom","toNode":"bb04b674bd290f25","toSide":"top","color":"2"},
+		{"id":"85ba7a7b4621511e","fromNode":"1ebbaa517c9f9c6e","fromSide":"bottom","toNode":"19cbb202a5b0acd0","toSide":"top"},
+		{"id":"cf3b3b68af12de48","fromNode":"1ebbaa517c9f9c6e","fromSide":"bottom","toNode":"5aa7d17b9ace3eb1","toSide":"top"},
+		{"id":"2f9b8e01f30109e5","fromNode":"d1511dedbbcb6ad2","fromSide":"left","toNode":"19cbb202a5b0acd0","toSide":"bottom","label":"支撑理解+解决"},
+		{"id":"31fb1c30de2f1970","fromNode":"58e367b5cdcfed80","fromSide":"left","toNode":"d1511dedbbcb6ad2","toSide":"right","label":"自己推动"},
+		{"id":"d9000a84e3b6d073","fromNode":"5aa7d17b9ace3eb1","fromSide":"bottom","toNode":"d1511dedbbcb6ad2","toSide":"top"},
+		{"id":"997e7b9f4ff1e7df","fromNode":"3d8087edfcc20057","fromSide":"bottom","toNode":"7cc9cffeb93d4193","toSide":"top"},
+		{"id":"18c264f01dc17b51","fromNode":"e8e819aeaa76eab9","fromSide":"right","toNode":"87bf5745da1edfdf","toSide":"left","label":"主流"},
+		{"id":"5e20d63582f8a5a2","fromNode":"e8e819aeaa76eab9","fromSide":"right","toNode":"2c5f8fce4e025e22","toSide":"left","label":"AGI"},
+		{"id":"86f6cda8648798ec","fromNode":"9dccd9d7dafb3496","fromSide":"bottom","toNode":"fc9b16644bdad2d5","toSide":"top"}
+	]
+}

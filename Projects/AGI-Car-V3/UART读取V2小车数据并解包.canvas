@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"27d616de8d65e6bc","type":"text","text":"逐行读取","x":-480,"y":-18,"width":160,"height":60,"color":"4"},
+		{"id":"92c88fc725d340a3","type":"text","text":"视觉侦读取","x":-524,"y":180,"width":250,"height":60,"color":"4"},
+		{"id":"9f23396bb4756ea7","type":"text","text":"简单日志系统","x":-525,"y":80,"width":250,"height":60,"color":"4"},
+		{"id":"e2b62736a2e7aebe","type":"text","text":"物理层数据整体设计","x":-525,"y":280,"width":250,"height":60},
+		{"id":"bf5ae32a78c9af98","type":"text","text":"先用同步验证数据处理算法\n\n再用队列和异步加快数据处理","x":-575,"y":-200,"width":353,"height":98},
+		{"id":"4ce6d694ea3f4dd9","type":"text","text":"物理层类数据构造","x":-120,"y":-18,"width":250,"height":60},
+		{"id":"5816d495154e297b","type":"text","text":"array([[202, 114],\n       [202, 114],\n       [202, 114],\n       [202, 114],\n       [202, 114],\n       [202, 122],\n       [235, 122],\n       [235, 122],\n       [11, 123],\n       [11, 123],\n       [43, 123],\n       [44, 131],\n       [44, 131],\n       [44, 131],\n       [43, 131],\n       [11, 123],\n       [235, 114],\n       [170, 98],\n       [138, 90],\n       [137, 82],\n       [106, 82],\n       [106, 74],\n       [74, 74],\n       [143, 115],\n       [78, 99],\n       [12, 91],\n       [203, 82],\n       [203, 82],\n       [236, 82],\n       [13, 83],\n       [246, 140],\n       [95, 215],\n       [159, 215],\n       [159, 215],\n       [191, 215],\n       [191, 223],\n       [191, 223],\n       [191, 215],\n       [191, 215],\n       [159, 215],\n       [159, 215],\n       [159, 207],\n       [127, 207],\n       [127, 207],\n       [95, 207],\n       [95, 207],\n       [63, 207],\n       [63, 199],\n       [63, 199],\n       [63, 199],\n       [95, 199],\n       [95, 199],\n       [95, 207],\n       [95, 207],\n       [95, 207],\n       [95, 207],\n       [95, 199],\n       [63, 199],\n       [63, 199],\n       [31, 199],\n       [63, 199],\n       [63, 199],\n       [63, 199],\n       [63, 207]]","x":-910,"y":340,"width":200,"height":2002,"color":"4"},
+		{"id":"6277f3c23d09a51e","type":"text","text":"RGB565格式 2个Byte 一个像素\n\n最小64 * 64","x":-920,"y":180,"width":210,"height":97,"color":"4"}
+	],
+	"edges":[
+		{"id":"b9dc276e5215465b","fromNode":"27d616de8d65e6bc","fromSide":"right","toNode":"4ce6d694ea3f4dd9","toSide":"left"},
+		{"id":"02db747b7942b34d","fromNode":"92c88fc725d340a3","fromSide":"right","toNode":"4ce6d694ea3f4dd9","toSide":"left"},
+		{"id":"b408f49f5cb341df","fromNode":"9f23396bb4756ea7","fromSide":"right","toNode":"4ce6d694ea3f4dd9","toSide":"left"},
+		{"id":"3d69de80b7d4aef8","fromNode":"92c88fc725d340a3","fromSide":"left","toNode":"6277f3c23d09a51e","toSide":"right"},
+		{"id":"fedb4c484ab0b265","fromNode":"e2b62736a2e7aebe","fromSide":"right","toNode":"4ce6d694ea3f4dd9","toSide":"left"},
+		{"id":"8fd87a2b290dcfa3","fromNode":"6277f3c23d09a51e","fromSide":"bottom","toNode":"5816d495154e297b","toSide":"top","label":"[0]"}
+	]
+}

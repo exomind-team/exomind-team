@@ -1,0 +1,33 @@
+{
+	"nodes":[
+		{"id":"f2ff887608afdafa","x":-657,"y":-187,"width":1117,"height":707,"type":"group","label":"应用层"},
+		{"id":"f8b1ded2586d2dcd","x":-560,"y":740,"width":834,"height":220,"type":"group","label":"物理层"},
+		{"id":"a643923758925786","type":"text","text":"声音编码","x":-624,"y":-167,"width":250,"height":60,"color":"2"},
+		{"id":"331d7b9fced67e83","type":"text","text":"wav","x":-209,"y":-45,"width":250,"height":60},
+		{"id":"1f540dda3e9a45cd","type":"text","text":"G.711 a/u\nk230 micropython支持","x":-624,"y":-45,"width":250,"height":60,"color":"4"},
+		{"id":"72532db339fef411","type":"text","text":"aac","x":-637,"y":80,"width":250,"height":60},
+		{"id":"919a616e54187794","type":"text","text":"Opus","x":-622,"y":182,"width":250,"height":60},
+		{"id":"7901a6243145623a","type":"text","text":"FLAC","x":-624,"y":320,"width":250,"height":60},
+		{"id":"184c638afb24bad3","type":"text","text":"mp4\nm4a\naac","x":-163,"y":55,"width":158,"height":111},
+		{"id":"dfdef2f9d9fb3820","type":"text","text":"Vorbis","x":-622,"y":440,"width":250,"height":60},
+		{"id":"7fdea7422f02d8e0","type":"text","text":".ogg","x":-205,"y":434,"width":250,"height":60},
+		{"id":"ec4376be80940c12","type":"text","text":"音频文件格式","x":-209,"y":-167,"width":250,"height":60,"color":"2"},
+		{"id":"6159679ac13872b2","x":124,"y":-166,"width":250,"height":60,"color":"2","type":"text","text":"音量调整"},
+		{"id":"531c4508506eaa67","x":124,"y":-2,"width":250,"height":82,"type":"text","text":"增幅 -39db 到6 dB，步长1.5dB"},
+		{"id":"d15c261edeb0f835","x":140,"y":150,"width":219,"height":184,"type":"text","text":"[Canmv API ](https://developer.canaan-creative.com/k230_canmv/zh/dev/zh/api/mpp/K230_CanMV_Audio%E6%A8%A1%E5%9D%97API%E6%89%8B%E5%86%8C.html)\ndef volume(self,vol = None, channel = LEFT_RIGHT)"},
+		{"id":"fec9344b13b4c5e4","x":-540,"y":760,"width":237,"height":60,"type":"text","text":"DAC 左右声道输出"},
+		{"id":"5f8194c7e87a6b7f","x":-540,"y":880,"width":237,"height":60,"type":"text","text":"3.5mm 耳机接口"},
+		{"id":"2017422a52766ee6","x":-225,"y":817,"width":222,"height":63,"type":"text","text":"音频放大器\n功率放大器"},
+		{"id":"38f09a474c30d596","x":117,"y":817,"width":137,"height":57,"type":"text","text":"扬声器"},
+		{"id":"aab9e680a1891b24","x":-205,"y":1060,"width":161,"height":61,"type":"text","text":"HT6873"},
+		{"id":"e75fb2e14cca746a","x":-205,"y":1160,"width":155,"height":59,"type":"text","text":"8002"}
+	],
+	"edges":[
+		{"id":"a3d93d7b0639000e","fromNode":"7fdea7422f02d8e0","fromSide":"left","toNode":"dfdef2f9d9fb3820","toSide":"right"},
+		{"id":"2ff727346c922f47","fromNode":"a643923758925786","fromSide":"right","toNode":"ec4376be80940c12","toSide":"left"},
+		{"id":"86d4dc8b52da14b9","fromNode":"2017422a52766ee6","fromSide":"right","toNode":"38f09a474c30d596","toSide":"left"},
+		{"id":"c858f3e04153d538","fromNode":"fec9344b13b4c5e4","fromSide":"right","toNode":"2017422a52766ee6","toSide":"left"},
+		{"id":"fc80474f22db3e26","fromNode":"6159679ac13872b2","fromSide":"bottom","toNode":"531c4508506eaa67","toSide":"top"},
+		{"id":"3e766d69d45e7132","fromNode":"531c4508506eaa67","fromSide":"bottom","toNode":"d15c261edeb0f835","toSide":"top"}
+	]
+}
