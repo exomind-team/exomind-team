@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-01-09T20:17:53.177737",
+  "usage": {
+    "model": "MiniMax-M2",
+    "total": 1500,
+    "used": 0,
+    "remaining": 1500,
+    "percentage": 0.0,
+    "reset_in_seconds": 13302,
+    "reset_in_minutes": 221,
+    "reset_in_hours": 3
+  },
+  "percentage": null,
+  "api_url": "https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains?GroupId=2003760230508269693",
+  "raw_response": {
+    "model_remains": [
+      {
+        "start_time": 1767960000000,
+        "end_time": 1767974400000,
+        "remains_time": 13302627,
+        "current_interval_total_count": 1500,
+        "current_interval_usage_count": 1500,
+        "model_name": "MiniMax-M2"
+      }
+    ],
+    "base_resp": {
+      "status_code": 0,
+      "status_msg": "success"
+    }
+  }
+}

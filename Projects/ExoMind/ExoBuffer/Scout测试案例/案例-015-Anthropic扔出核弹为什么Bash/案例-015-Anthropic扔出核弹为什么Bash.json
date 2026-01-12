@@ -1,0 +1,125 @@
+{
+  "id": "695f7d86000000001a0325a2",
+  "url": "https://www.xiaohongshu.com/discovery/item/695f7d86000000001a0325a2?app_platform=android&ignoreEngage=true&app_version=9.6.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBpuOS_IjkIc3mZ154XK9DJa4Xh6om9NH5k3dMTKrk9eI%3D&author_share=1",
+  "title": "Anthropic扔出核弹：为什么Bash而非API工具",
+  "author": "sqb的Ai学习笔记",
+  "content": "#大模型 #AI工具 #开发 #AI #AI编程 #产品经理 #人工智能发展 #小红书科技AMA #ai创作营 #AI工具",
+  "images": [
+    "https://sns-webpic-qc.xhscdn.com/202601091247/34b4eab328c74bb363bfce86024e922f/spectrum/1040g0k031r2u8l570m505o6pfljg88i2j6g8l08!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/6b733f49c6e8ca05aa86a6986c8fdbe2/spectrum/1040g0k031r2u8l570m005o6pfljg88i2gb3ogao!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/a76145cccb1171211ef16d2b7fa4a27e/spectrum/1040g0k031r2u8l570m0g5o6pfljg88i2tca5of8!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/53597ca17ad651aa5111bee89cc7fbc2/spectrum/1040g0k031r2u8l570m105o6pfljg88i2dvvo8u0!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/d17db49f2a4b3fc7f6e7f13918a7669f/spectrum/1040g0k031r2u8l570m1g5o6pfljg88i2i90na48!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/76c080662d98d45ac5e1658b4c1585d1/spectrum/1040g0k031r2u8l570m205o6pfljg88i28o0faf0!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/cd9bb8f6df7ff6088adff9de4de81388/spectrum/1040g0k031r2u8l570m2g5o6pfljg88i2e3lgl88!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/3760bc2c4a453f36bb7d7289632db0cb/spectrum/1040g0k031r2u8l570m305o6pfljg88i2m3ae0o8!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/4c4ac6cd8b79078f2dd8a938a099b245/spectrum/1040g0k031r2u8l570m3g5o6pfljg88i2l5k21io!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/754c7b0380bc0f05fab10b8b468ff80f/spectrum/1040g0k031r2u8l570m405o6pfljg88i2fngauo8!nd_dft_wlteh_webp_3",
+    "https://sns-webpic-qc.xhscdn.com/202601091247/f8b9c722033916ffb61d2125abc4fbc3/spectrum/1040g0k031r2u8l570m4g5o6pfljg88i26c51lb0!nd_dft_wlteh_webp_3"
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "user": "",
+      "content": "这些ai公司整天把一些常识吹得好像很高大上",
+      "time": "6小时前北京",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 3,
+      "user": "",
+      "content": "大模型输出的命令要先被json转义一次，然后再被bash转义一次，不知道会不会提高命令出错的概率",
+      "time": "昨天 19:53上海",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 4,
+      "user": "",
+      "content": "应该不会",
+      "time": "昨天 21:21广东",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 5,
+      "user": "",
+      "content": "bash+curl，基本能做完所有的非UI交互的事情了",
+      "time": "1小时前上海",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 6,
+      "user": "",
+      "content": "这个角度很新颖！Bash确实更灵活，但API的稳定性也有优势，你在实际项目中怎么权衡的？💡",
+      "time": "昨天 22:53美国",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 7,
+      "user": "",
+      "content": "写一首关于 GNU is Not Unix 的绯句",
+      "time": "1小时前上海",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 8,
+      "user": "",
+      "content": "AI 公司都在賣流量而已",
+      "time": "1小时前四川",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 9,
+      "user": "",
+      "content": "精简指令集和复杂指令集",
+      "time": "5小时前广东",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 10,
+      "user": "",
+      "content": "如果是应用到垂直的业务领域而非 claude code 的编程场景，例如金融分析，HCM 人力资源管理等，参考这个模式，是否意味着每一个对话 session 背后都得开一堆 bash 进程呢？对服务器资源的要求是不是会变高？",
+      "time": "昨天 22:28四川",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 11,
+      "user": "",
+      "content": "？这句话通顺吗",
+      "time": "3小时前广东",
+      "replies": [],
+      "reply_to": null
+    },
+    {
+      "id": 12,
+      "user": "",
+      "content": "@Redditscraper",
+      "time": "昨天 22:48广东",
+      "replies": [],
+      "reply_to": null
+    }
+  ],
+  "collected_at": "2026-01-09T12:47:29.038798",
+  "local_images": [
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_01.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_02.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_03.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_04.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_05.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_06.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_07.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_08.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_09.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_10.jpg",
+    "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2\\images\\img_11.jpg"
+  ],
+  "screenshot": "D:\\Obsidian Vault\\10-Projects\\ExoMind\\ExoBuffer\\Scout测试案例\\695f7d86000000001a0325a2_screenshot.png"
+}

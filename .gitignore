@@ -1,1 +1,80 @@
-tmpclaude-*
+# --- 操作系统生成文件 (OS Generated) ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+*$RECYCLE.BIN/
+
+# --- Obsidian 核心忽略 (Core Ignored) ---
+# 忽略工作区布局文件 (这是"会话状态"，不应提交)
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspaces.json
+
+# 忽略缓存和索引 (Build Artifacts)
+.obsidian/cache/
+.obsidian/caches/
+.obsidian/indexeddb/
+
+# 忽略回收站 (Trash)
+.trash/
+
+# 忽略.jar
+*.jar
+
+# Images / binaries (optional, keep if you want full exclusion)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.pdf
+*.mp4
+*.mp3
+*.exe
+*.dll
+*.m4a
+*.amr
+*.url
+*.html
+*.edn
+*.zip
+*.svg
+*.rar
+*.wav
+
+# Office documents
+*.docx
+*.pptx
+*.xlsx
+*.doc
+*.ppt
+*.xls
+
+# --- 插件特定忽略 (Plugin Specific) ---
+# 这里的原则是：保留配置(data.json)，忽略缓存
+
+# 如果未来有特定插件产生大量垃圾文件，加在这里
+.aider*
+.venv
+
+.git.bfg-report/
+
+profile/
+__pycache__/
+
+# Build caches
+.zig-cache/
+
+# --- 开发工具 (Dev Tools) ---
+# .claude/
+# .vscode/
+..bfg-report/
+tmpclaude*
+
+# --- 临时输出 (Temp Output) ---
+# output/
+
+# 附件不进入git历史
+99-Meta/

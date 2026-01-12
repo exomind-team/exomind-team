@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"zone_sop","type":"text","text":"## 🔄 人机协作 SOP: The Scout Loop\n1. **Capture**: URL/指令输入。\n2. （记录时间 start）\n3. **Protein**: `scout_converter.py` 直连抓取。\n4. **Evaluation**: Scout V1.3 协议输出 (JSON + 资源矩阵)。\n5. （记录时间 end）\n6. **Log**: Prepend 记录至项目日志。\n7. **Persistence**: 强制 **Git Commit**。","x":-1560,"y":-420,"width":480,"height":350},
+		{"id":"zone_arch","type":"text","text":"## 🏗️ 核心架构: Scout V3 (Direct Fetch)\n```mermaid\nURL -> urllib (Direct) -> JS Variable Extraction -> Markdownify -> Lossless MD\n```\n- **状态**: 解除 `wechat-article-exporter` 依赖。","x":-1040,"y":-420,"width":500,"height":350},
+		{"id":"file_agents","type":"file","file":"10-Projects/ExoMind/ExoBuffer/AGENTS.md","x":-1560,"y":-20,"width":480,"height":400},
+		{"id":"header","type":"text","text":"# 🚀 ExoBuffer: 侦察兵前哨站 (Scout Outpost)\n> \"让 Scout 替我挡子弹，只让真理通过。\"\n\n**当前状态**: MVP 24h 验证冲刺 (阶段性胜利) | **核心模型**: gemini-3-flash-preview","x":-1560,"y":-1100,"width":1000,"height":200},
+		{"id":"zone_identity","type":"text","text":"## 🎯 核心使命\n- **短期**: 24h 内验证 Agent 过滤微信噪音的准确率。\n- **长期**: 建立个人信息主权的“价值过滤膜”。\n\n## ⚖️ 评价标尺\n- **9-10**: 战略/核心 (代码/SOP)\n- **5-6**: 长期资产 (身份对齐)\n- **0-2**: 噪音 (地缘/干扰)","x":-1560,"y":-840,"width":480,"height":370},
+		{"id":"zone_progress","type":"text","text":"## 📊 验证进度 (10/10)\n- [x] 001-005: 基础能力验证\n- [x] 006-008: 噪音/博弈过滤测试\n- [x] 009: 生产级范式 (Skills)\n- [x] 010: 效能与心理偏见识别\n\n**结论**: Scout Agent v1.3 逻辑已闭环。","x":-1040,"y":-840,"width":480,"height":370},
+		{"id":"zone_proteins","type":"text","text":"## 🧪 进化能力库 (Proteins)\n- **V3 Converter**: 直连下载与转换。\n- **Archive Log**: 价值导向日志精简。\n- **Refactor Title**: 语义化标题自动修正。","x":-520,"y":-840,"width":400,"height":370},
+		{"id":"file_tech_plan","type":"file","file":"10-Projects/ExoMind/ExoBuffer/微信公众号抓取技术方案.md","x":-500,"y":-400,"width":440,"height":200},
+		{"id":"file_log","type":"file","file":"10-Projects/ExoMind/ExoBuffer/ExoBuffer项目日志.md","x":-2080,"y":-860,"width":480,"height":800},
+		{"id":"file_converter","type":"file","file":"10-Projects/ExoMind/ExoBuffer/scout_converter.py","x":-500,"y":-140,"width":480,"height":140}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"header","fromSide":"bottom","toNode":"zone_arch","toSide":"top"},
+		{"id":"e3","fromNode":"zone_identity","fromSide":"right","toNode":"zone_progress","toSide":"left"},
+		{"id":"e4","fromNode":"zone_sop","fromSide":"right","toNode":"zone_arch","toSide":"left"}
+	]
+}
