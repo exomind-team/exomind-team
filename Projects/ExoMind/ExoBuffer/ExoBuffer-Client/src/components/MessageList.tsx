@@ -1,7 +1,46 @@
-import { format } from 'date-fns';
+import { format, isToday, isSameYear } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 import type { Fact } from '../api/types';
 import { User, Bot, Clock } from 'lucide-react';
 import { useEffect, useRef, useMemo, useState } from 'react';
+
+// ===== 渐进披露时间格式化 =====
+function formatTimestampProgressive(timestamp: number): {
+  display: string;
+  title: string;
+} {
+  const date = new Date(timestamp);
+  const now = new Date();
+
+  // 完整格式
+  const fullFormat = format(date, 'yyyy-MM-dd HH:mm', { locale: zhCN });
+
+  // 悬停显示原始时间戳
+  const title = timestamp.toString();
+
+  // 渐进披露逻辑
+  if (isToday(date)) {
+    // 当天：只显示 HH:mm
+    return {
+      display: format(date, 'HH:mm'),
+      title: `完整时间: ${fullFormat}\n原始: ${title}`,
+    };
+  }
+
+  if (isSameYear(date, now)) {
+    // 同年但非当天：显示 MM-DD HH:mm
+    return {
+      display: format(date, 'MM-dd HH:mm', { locale: zhCN }),
+      title: `完整时间: ${fullFormat}\n原始: ${title}`,
+    };
+  }
+
+  // 跨年：显示完整日期
+  return {
+    display: fullFormat,
+    title: `原始: ${title}`,
+  };
+}
 
 interface MessageListProps {
   messages: Fact[];
@@ -170,9 +209,12 @@ export function MessageList({
                 <span className="text-xs" style={{ color: textColor }}>
                   {message.meta?.sender || message.source || 'unknown'}
                 </span>
-                <span className="text-xs text-gray-400">
+                <span
+                  className="text-xs text-gray-400 cursor-help"
+                  title={formatTimestampProgressive(message.timestamp).title}
+                >
                   <Clock className="w-3 h-3 inline mr-1" />
-                  {format(new Date(message.timestamp), 'HH:mm')}
+                  {formatTimestampProgressive(message.timestamp).display}
                 </span>
               </div>
 
