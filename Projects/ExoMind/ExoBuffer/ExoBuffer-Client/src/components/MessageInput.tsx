@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { Send, Loader2, AlertCircle, User, Reply } from 'lucide-react';
+import { useState, useCallback, useMemo } from 'react';
+import { Send, Loader2, AlertCircle, User, Reply, Enter } from 'lucide-react';
 import { createFact } from '../api/client';
 import type { Fact } from '../api/types';
 import { useAutoSize } from '../hooks/useAutoSize';
@@ -7,6 +7,21 @@ import { useAutoSize } from '../hooks/useAutoSize';
 interface MessageInputProps {
   source: string;
   onMessageSent?: (fact: Fact) => void;
+}
+
+// 检测是否为移动设备
+function isMobileDevice(): boolean {
+  if (typeof window === 'undefined') return false;
+
+  // 方法1: 检查 userAgent
+  const ua = navigator.userAgent || navigator.vendor || (window as unknown as { opera: string }).opera;
+  const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+  const isMobileUA = mobileRegex.test(ua.toLowerCase());
+
+  // 方法2: 检查屏幕宽度（更可靠）
+  const isNarrowScreen = window.innerWidth <= 768;
+
+  return isMobileUA || isNarrowScreen;
 }
 
 export function MessageInput({ source, onMessageSent }: MessageInputProps) {
@@ -17,8 +32,11 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
   const [error, setError] = useState<string | null>(null);
   const [showOptions, setShowOptions] = useState(false);
 
+  // 设备类型检测
+  const isMobile = useMemo(() => isMobileDevice(), []);
+
   // 使用 useAutoSize hook 实现输入框自动调整高度
-  const textareaRef = useAutoSize(content, 1, 4);
+  const textareaRef = useAutoSize(content, isMobile ? 2 : 1, 4);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,13 +115,23 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
         <div className="flex gap-3">
           <textarea
             ref={textareaRef}
-            placeholder="输入消息..."
+            placeholder={isMobile ? "输入消息...（Shift+回车发送）" : "输入消息..."}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSubmit(e);
+              // 移动端：回车换行，Shift+回车发送
+              if (isMobile) {
+                if (e.key === 'Enter' && e.shiftKey) {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
+                // 普通回车：允许换行，不发送
+              } else {
+                // 桌面端：回车发送，Shift+回车换行
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSubmit(e);
+                }
               }
             }}
             rows={1}
