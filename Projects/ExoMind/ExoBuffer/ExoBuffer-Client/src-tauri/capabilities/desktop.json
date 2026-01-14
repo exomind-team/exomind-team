@@ -1,0 +1,9 @@
+{
+  "identifier": "desktop-default",
+  "description": "Default permissions for the desktop",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "shell:allow-open"
+  ]
+}

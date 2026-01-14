@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.exomind.exobuffer">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:label="ExoBuffer"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/Theme.ExoBuffer">
+        <activity
+            android:label="ExoBuffer"
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
