@@ -1,3 +1,4 @@
 [submodule "Projects/ExoMind/ExoBuffer/ExoBuffer-Connector"]
 	path = Projects/ExoMind/ExoBuffer/ExoBuffer-Connector
 	url = https://github.com/exomind-team/ExoBuffer-Connector
+	branch = main
