@@ -7,19 +7,25 @@ import { fetchFacts } from './api/client';
 import type { Fact } from './api/types';
 import { MessageSquare, Settings, Menu, Tag } from 'lucide-react';
 
-const DEFAULT_SOURCE = 'human';
-const MESSAGE_ORDER_KEY = 'exobuffer_messageOrder';
+// 全局常量
+export const DEFAULT_SOURCE = 'human';
+export const DEFAULT_MESSAGE_ORDER: MessageOrder = 'newest-bottom';
+export const MESSAGE_ORDER_KEY = 'exobuffer_messageOrder';
+export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // 消息顺序类型
 type MessageOrder = 'newest-top' | 'newest-bottom';
 
 function App() {
+  console.group('App.tsx')
+  console.log('API_BASE', API_BASE)
+  console.groupEnd()
   const [messages, setMessages] = useState<Fact[]>([]);
   const [loading, setLoading] = useState(true);
   const [source, setSource] = useState(DEFAULT_SOURCE);
   const [messageOrder, setMessageOrder] = useState<MessageOrder>(() => {
     // 从 localStorage 读取，默认微信风格（新下旧上）
-    return (localStorage.getItem(MESSAGE_ORDER_KEY) as MessageOrder) || 'newest-bottom';
+    return (localStorage.getItem(MESSAGE_ORDER_KEY) as MessageOrder) || DEFAULT_MESSAGE_ORDER;
   });
   const [showSettings, setShowSettings] = useState(false);
 
@@ -31,7 +37,7 @@ function App() {
   // 切换消息顺序时保存锚点并触发滚动
   const handleSetMessageOrder = useCallback((newOrder: MessageOrder) => {
     // 切换前保存当前滚动位置对应的消息
-    if (messageOrder === 'newest-bottom') {
+    if (messageOrder === DEFAULT_MESSAGE_ORDER) {
       // 当前在底部，保存最后一个消息作为锚点
       if (messages.length > 0) {
         anchorRef.current = messages[messages.length - 1].fact_id;

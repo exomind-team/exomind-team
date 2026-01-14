@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    host: '0.0.0.0',  // 关键：绑定所有接口
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
