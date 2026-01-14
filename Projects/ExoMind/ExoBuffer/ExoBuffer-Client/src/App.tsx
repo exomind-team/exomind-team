@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MessageList } from './components/MessageList';
 import { MessageInput } from './components/MessageInput';
 import { ConnectionStatus } from './components/ConnectionStatus';
@@ -23,12 +23,12 @@ function App() {
   });
   const [showSettings, setShowSettings] = useState(false);
 
-  // 锚点定位：保存第一个可见消息的 fact_id
-  const firstVisibleIdRef = useRef<string | null>(null);
+  // 锚点定位：保存第一个可见消息的 fact_id（使用 state 而非 ref，使其响应式）
+  const [anchorId, setAnchorId] = useState<string | null>(null);
 
   // 记录第一个可见消息的回调
   const handleFirstVisibleChange = useCallback((factId: string | null) => {
-    firstVisibleIdRef.current = factId;
+    setAnchorId(factId);
   }, []);
 
   // 切换消息顺序（带锚点定位）
@@ -37,12 +37,12 @@ function App() {
     if (messageOrder === 'newest-bottom') {
       // 当前在底部，保存最后一个消息作为锚点
       if (messages.length > 0) {
-        firstVisibleIdRef.current = messages[messages.length - 1].fact_id;
+        setAnchorId(messages[messages.length - 1].fact_id);
       }
     } else {
       // 当前在顶部，保存第一个消息作为锚点
       if (messages.length > 0) {
-        firstVisibleIdRef.current = messages[0].fact_id;
+        setAnchorId(messages[0].fact_id);
       }
     }
 
@@ -204,7 +204,7 @@ function App() {
           loading={loading}
           messageOrder={messageOrder}
           onFirstVisibleChange={handleFirstVisibleChange}
-          anchorId={firstVisibleIdRef.current}
+          anchorId={anchorId}
         />
       </main>
 
