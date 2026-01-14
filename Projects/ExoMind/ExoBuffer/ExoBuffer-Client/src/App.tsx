@@ -8,11 +8,20 @@ import type { Fact } from './api/types';
 import { MessageSquare, Settings, Menu } from 'lucide-react';
 
 const DEFAULT_SOURCE = 'mobile-client';
+const MESSAGE_ORDER_KEY = 'exobuffer_messageOrder';
+
+// 消息顺序类型
+type MessageOrder = 'newest-top' | 'newest-bottom';
 
 function App() {
   const [messages, setMessages] = useState<Fact[]>([]);
   const [loading, setLoading] = useState(true);
   const [source, setSource] = useState(DEFAULT_SOURCE);
+  const [messageOrder, setMessageOrder] = useState<MessageOrder>(() => {
+    // 从 localStorage 读取，默认微信风格（新下旧上）
+    return (localStorage.getItem(MESSAGE_ORDER_KEY) as MessageOrder) || 'newest-bottom';
+  });
+  const [showSettings, setShowSettings] = useState(false);
 
   // Fetch initial messages
   const loadMessages = useCallback(async () => {
@@ -27,26 +36,43 @@ function App() {
   }, []);
 
   // 发送消息后刷新列表
-  const handleMessageSent = useCallback(() => {
-    loadMessages();
-  }, [loadMessages]);
+  const handleMessageSent = useCallback((fact: Fact) => {
+    // 直接添加新消息到列表（避免依赖 SSE 延迟）
+    setMessages((prev) => {
+      if (prev.some(m => m.fact_id === fact.fact_id)) {
+        return prev;
+      }
+      return [...prev, fact];
+    });
+  }, []);
+
+  // 切换消息顺序
+  const toggleMessageOrder = useCallback(() => {
+    setMessageOrder((prev) => {
+      const newOrder = prev === 'newest-top' ? 'newest-bottom' : 'newest-top';
+      localStorage.setItem(MESSAGE_ORDER_KEY, newOrder);
+      return newOrder;
+    });
+  }, []);
 
   // 初始化加载消息
   useEffect(() => {
     loadMessages();
   }, [loadMessages]);
 
-  // SSE connection for real-time updates
+  // SSE connection for real-time updates (使用 useCallback 稳定回调)
+  const handleFact = useCallback((fact: Fact) => {
+    setMessages((prev) => {
+      // 去重：检查是否已存在相同 fact_id
+      if (prev.some(m => m.fact_id === fact.fact_id)) {
+        return prev;
+      }
+      return [...prev, fact];
+    });
+  }, []);
+
   const { isConnected, reconnectCount, reconnect } = useSSE({
-    onFact: (fact) => {
-      setMessages((prev) => {
-        // 去重：检查是否已存在相同 fact_id
-        if (prev.some(m => m.fact_id === fact.fact_id)) {
-          return prev;
-        }
-        return [...prev, fact];
-      });
-    },
+    onFact: handleFact,
   });
 
   return (
@@ -85,16 +111,55 @@ function App() {
             className="flex-1 px-4 py-2.5 text-sm bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent touch-manipulation"
           />
           <button
-            onClick={() => setSource(DEFAULT_SOURCE)}
+            onClick={() => setShowSettings(!showSettings)}
             className="p-2.5 text-gray-400 hover:text-gray-600 bg-white border border-gray-200 rounded-xl touch-manipulation"
-            title="重置"
+            title="设置"
           >
             <Settings className="w-5 h-5" />
           </button>
         </div>
 
+        {/* Settings Panel */}
+        {showSettings && (
+          <div className="mb-4 p-4 bg-white border border-gray-200 rounded-xl">
+            <h3 className="text-sm font-medium text-gray-700 mb-3">消息顺序</h3>
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  setMessageOrder('newest-bottom');
+                  localStorage.setItem(MESSAGE_ORDER_KEY, 'newest-bottom');
+                }}
+                className={`flex-1 px-3 py-2 text-sm rounded-lg border ${
+                  messageOrder === 'newest-bottom'
+                    ? 'bg-blue-50 border-blue-500 text-blue-700'
+                    : 'bg-gray-50 border-gray-200 text-gray-600'
+                }`}
+              >
+                微信风格（新下旧上）
+              </button>
+              <button
+                onClick={() => {
+                  setMessageOrder('newest-top');
+                  localStorage.setItem(MESSAGE_ORDER_KEY, 'newest-top');
+                }}
+                className={`flex-1 px-3 py-2 text-sm rounded-lg border ${
+                  messageOrder === 'newest-top'
+                    ? 'bg-blue-50 border-blue-500 text-blue-700'
+                    : 'bg-gray-50 border-gray-200 text-gray-600'
+                }`}
+              >
+                看板风格（新上旧下）
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Message List */}
-        <MessageList messages={messages} loading={loading} />
+        <MessageList
+          messages={messages}
+          loading={loading}
+          messageOrder={messageOrder}
+        />
       </main>
 
       {/* Footer Input - Fixed Bottom */}

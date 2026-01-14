@@ -32,15 +32,19 @@ export function useSSE(options: UseSSEOptions = {}) {
     };
 
     eventSource.onerror = (event) => {
+      // 不要立即关闭，让浏览器自动处理重试
       setIsConnected(false);
       onError?.(event);
-      eventSource.close();
 
-      // Reconnect after 3 seconds
+      // 指数退避重连策略
+      const baseDelay = 3000;
+      const maxDelay = 30000;
+      const delay = Math.min(baseDelay * Math.pow(2, reconnectCount), maxDelay);
+
       reconnectTimeoutRef.current = window.setTimeout(() => {
         setReconnectCount((prev) => prev + 1);
         connect();
-      }, 3000);
+      }, delay);
     };
 
     eventSource.addEventListener('new_fact', (event) => {
@@ -70,7 +74,7 @@ export function useSSE(options: UseSSEOptions = {}) {
         console.error('Failed to parse analysis event:', e);
       }
     });
-  }, [onFact, onAnalysis, onError, onOpen]);
+  }, []); // 空依赖，只在挂载时执行一次
 
   const disconnect = useCallback(() => {
     if (eventSourceRef.current) {

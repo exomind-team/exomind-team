@@ -1,10 +1,11 @@
 import { useState, useCallback } from 'react';
 import { Send, Loader2, AlertCircle, User, Reply } from 'lucide-react';
 import { createFact } from '../api/client';
+import type { Fact } from '../api/types';
 
 interface MessageInputProps {
   source: string;
-  onMessageSent?: () => void;
+  onMessageSent?: (fact: Fact) => void;
 }
 
 export function MessageInput({ source, onMessageSent }: MessageInputProps) {
@@ -23,7 +24,7 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
     setError(null);
 
     try {
-      await createFact({
+      const fact = await createFact({
         content: content.trim(),
         source,
         meta: {
@@ -34,7 +35,8 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
 
       setContent('');
       setShowOptions(false);
-      onMessageSent?.();
+      setReplyTo('');
+      onMessageSent?.(fact);
     } catch (err) {
       setError(err instanceof Error ? err.message : '发送失败');
     } finally {

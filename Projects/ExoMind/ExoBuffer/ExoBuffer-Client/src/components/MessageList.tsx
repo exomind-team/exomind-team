@@ -6,6 +6,7 @@ import { useEffect, useRef, useMemo } from 'react';
 interface MessageListProps {
   messages: Fact[];
   loading?: boolean;
+  messageOrder?: 'newest-top' | 'newest-bottom';
 }
 
 // ===== 原 HTML 前端的颜色生成函数（保持一致）=====
@@ -55,13 +56,24 @@ function isOwnMessage(source: string, currentSource: string): boolean {
   return source === currentSource || source === 'mobile-client';
 }
 
-export function MessageList({ messages, loading }: MessageListProps) {
+export function MessageList({ messages, loading, messageOrder = 'newest-bottom' }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  // 根据消息顺序排序
+  const sortedMessages = useMemo(() => {
+    const sorted = [...messages];
+    if (messageOrder === 'newest-top') {
+      return sorted.reverse();
+    }
+    return sorted;
+  }, [messages, messageOrder]);
 
   // 自动滚动到底部
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    if (messageOrder === 'newest-bottom') {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, messageOrder]);
 
   if (loading && messages.length === 0) {
     return (
@@ -85,7 +97,7 @@ export function MessageList({ messages, loading }: MessageListProps) {
 
   return (
     <div className="space-y-4 pb-4">
-      {messages.map((message) => {
+      {sortedMessages.map((message) => {
         const isOwn = isOwnMessage(message.source, 'mobile-client');
         // 使用原 HTML 前端的颜色生成函数
         const { backgroundColor, textColor } = getMessageStyle(message);
@@ -99,7 +111,7 @@ export function MessageList({ messages, loading }: MessageListProps) {
             <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
               isOwn ? 'bg-blue-500' : 'bg-gray-200'
             }`}>
-              {message.source.includes('kanban') ? (
+              {message.source?.includes('kanban') ? (
                 <Bot className={`w-5 h-5 ${isOwn ? 'text-white' : 'text-gray-500'}`} />
               ) : (
                 <User className={`w-5 h-5 ${isOwn ? 'text-white' : 'text-gray-500'}`} />
@@ -111,7 +123,7 @@ export function MessageList({ messages, loading }: MessageListProps) {
               {/* Sender Info */}
               <div className={`flex items-center gap-2 mb-1 ${isOwn ? 'justify-end' : 'justify-start'}`}>
                 <span className="text-xs" style={{ color: textColor }}>
-                  {message.meta?.sender || message.source}
+                  {message.meta?.sender || message.source || 'unknown'}
                 </span>
                 <span className="text-xs text-gray-400">
                   <Clock className="w-3 h-3 inline mr-1" />
