@@ -9,6 +9,7 @@ interface MessageListProps {
   messageOrder?: 'newest-top' | 'newest-bottom';
   onFirstVisibleChange?: (factId: string | null) => void;
   anchorId?: string | null;
+  currentSource?: string;
 }
 
 // ===== 原 HTML 前端的颜色生成函数（保持一致）=====
@@ -55,7 +56,7 @@ function getMessageStyle(fact: Fact) {
 }
 
 function isOwnMessage(source: string, currentSource: string): boolean {
-  return source === currentSource || source === 'mobile-client';
+  return source === currentSource;
 }
 
 export function MessageList({
@@ -63,7 +64,8 @@ export function MessageList({
   loading,
   messageOrder = 'newest-bottom',
   onFirstVisibleChange,
-  anchorId
+  anchorId,
+  currentSource = ''
 }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -156,7 +158,7 @@ export function MessageList({
   return (
     <div className="space-y-4 pb-4">
       {sortedMessages.map((message) => {
-        const isOwn = isOwnMessage(message.source, 'mobile-client');
+        const isOwn = isOwnMessage(message.source, currentSource);
         const { backgroundColor, textColor } = getMessageStyle(message);
 
         // 保存消息元素的 ref（不使用 useCallback，遵守 React Hooks 规则）

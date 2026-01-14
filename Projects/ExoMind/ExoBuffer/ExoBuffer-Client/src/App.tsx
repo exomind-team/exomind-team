@@ -7,7 +7,7 @@ import { fetchFacts } from './api/client';
 import type { Fact } from './api/types';
 import { MessageSquare, Settings, Menu, Tag } from 'lucide-react';
 
-const DEFAULT_SOURCE = 'mobile-client';
+const DEFAULT_SOURCE = 'human';
 const MESSAGE_ORDER_KEY = 'exobuffer_messageOrder';
 
 // 消息顺序类型
@@ -205,6 +205,7 @@ function App() {
           messageOrder={messageOrder}
           onFirstVisibleChange={handleFirstVisibleChange}
           anchorId={anchorId}
+          currentSource={source}
         />
       </main>
 
