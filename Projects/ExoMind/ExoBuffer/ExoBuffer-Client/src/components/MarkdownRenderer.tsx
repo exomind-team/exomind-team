@@ -80,7 +80,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         },
         // 有序列表 - 容器
         ol({ children }: { children?: ReactNode }) {
-          return <ol className="list-decimal list-inside my-2 ml-4">{children}</ol>;
+          return <ol className="list-decimal list-inside my-2 ml-4 pl-2">{children}</ol>;
         },
         // 列表项
         li({ children }: { children?: ReactNode }) {
