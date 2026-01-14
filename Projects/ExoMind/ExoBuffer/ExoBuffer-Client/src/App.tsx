@@ -59,7 +59,7 @@ function App() {
   // Fetch initial messages
   const loadMessages = useCallback(async () => {
     try {
-      const data = await fetchFacts(undefined, 50);
+      const data = await fetchFacts();
       setMessages(data);
     } catch (error) {
       console.error('Failed to fetch messages:', error);
