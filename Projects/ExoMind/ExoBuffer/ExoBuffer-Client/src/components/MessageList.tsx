@@ -1,12 +1,14 @@
 import { format } from 'date-fns';
 import type { Fact } from '../api/types';
 import { User, Bot, Clock } from 'lucide-react';
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useCallback, useState } from 'react';
 
 interface MessageListProps {
   messages: Fact[];
   loading?: boolean;
   messageOrder?: 'newest-top' | 'newest-bottom';
+  onFirstVisibleChange?: (factId: string | null) => void;
+  anchorId?: string | null;
 }
 
 // ===== 原 HTML 前端的颜色生成函数（保持一致）=====
@@ -56,8 +58,17 @@ function isOwnMessage(source: string, currentSource: string): boolean {
   return source === currentSource || source === 'mobile-client';
 }
 
-export function MessageList({ messages, loading, messageOrder = 'newest-bottom' }: MessageListProps) {
+export function MessageList({
+  messages,
+  loading,
+  messageOrder = 'newest-bottom',
+  onFirstVisibleChange,
+  anchorId
+}: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const messageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const [hasAnchored, setHasAnchored] = useState(false);
 
   // 根据消息顺序排序
   const sortedMessages = useMemo(() => {
@@ -68,12 +79,59 @@ export function MessageList({ messages, loading, messageOrder = 'newest-bottom' 
     return sorted;
   }, [messages, messageOrder]);
 
-  // 自动滚动到底部
+  // 设置 IntersectionObserver 跟踪第一个可见消息
   useEffect(() => {
-    if (messageOrder === 'newest-bottom') {
+    if (!onFirstVisibleChange) return;
+
+    // 清理旧的 observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            // 找到消息的 fact_id
+            for (const [factId, el] of messageRefs.current) {
+              if (el === entry.target) {
+                onFirstVisibleChange(factId);
+                break;
+              }
+            }
+          }
+        }
+      },
+      { rootMargin: '-1px 0px -99% 0px' }
+    );
+
+    observerRef.current = observer;
+
+    // 观察所有消息元素
+    messageRefs.current.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [onFirstVisibleChange, sortedMessages]);
+
+  // 锚点定位：切换顺序后滚动到锚点消息
+  useEffect(() => {
+    if (!anchorId || hasAnchored) return;
+
+    const anchorElement = messageRefs.current.get(anchorId);
+    if (anchorElement) {
+      anchorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setHasAnchored(true);
+      const resetTimer = setTimeout(() => setHasAnchored(false), 1000);
+      return () => clearTimeout(resetTimer);
+    }
+  }, [anchorId, messageOrder, hasAnchored]);
+
+  // 微信风格：初始加载或新消息时滚动到底部
+  useEffect(() => {
+    if (messageOrder === 'newest-bottom' && !anchorId) {
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, messageOrder]);
+  }, [messages, messageOrder, anchorId]);
 
   if (loading && messages.length === 0) {
     return (
@@ -99,12 +157,21 @@ export function MessageList({ messages, loading, messageOrder = 'newest-bottom' 
     <div className="space-y-4 pb-4">
       {sortedMessages.map((message) => {
         const isOwn = isOwnMessage(message.source, 'mobile-client');
-        // 使用原 HTML 前端的颜色生成函数
         const { backgroundColor, textColor } = getMessageStyle(message);
+
+        // 保存消息元素的 ref
+        const setMessageRef = useCallback((el: HTMLDivElement | null) => {
+          if (el) {
+            messageRefs.current.set(message.fact_id, el);
+          } else {
+            messageRefs.current.delete(message.fact_id);
+          }
+        }, [message.fact_id]);
 
         return (
           <div
             key={message.fact_id}
+            ref={setMessageRef}
             className={`flex gap-3 ${isOwn ? 'flex-row-reverse' : 'flex-row'}`}
           >
             {/* Avatar */}

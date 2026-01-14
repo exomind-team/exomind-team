@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { MessageList } from './components/MessageList';
 import { MessageInput } from './components/MessageInput';
 import { ConnectionStatus } from './components/ConnectionStatus';
@@ -22,6 +22,34 @@ function App() {
     return (localStorage.getItem(MESSAGE_ORDER_KEY) as MessageOrder) || 'newest-bottom';
   });
   const [showSettings, setShowSettings] = useState(false);
+
+  // 锚点定位：保存第一个可见消息的 fact_id
+  const firstVisibleIdRef = useRef<string | null>(null);
+
+  // 记录第一个可见消息的回调
+  const handleFirstVisibleChange = useCallback((factId: string | null) => {
+    firstVisibleIdRef.current = factId;
+  }, []);
+
+  // 切换消息顺序（带锚点定位）
+  const handleSetMessageOrder = useCallback((newOrder: MessageOrder) => {
+    // 切换前保存当前滚动位置对应的消息
+    if (messageOrder === 'newest-bottom') {
+      // 当前在底部，保存最后一个消息作为锚点
+      if (messages.length > 0) {
+        firstVisibleIdRef.current = messages[messages.length - 1].fact_id;
+      }
+    } else {
+      // 当前在顶部，保存第一个消息作为锚点
+      if (messages.length > 0) {
+        firstVisibleIdRef.current = messages[0].fact_id;
+      }
+    }
+
+    // 设置新顺序并保存到 localStorage
+    setMessageOrder(newOrder);
+    localStorage.setItem(MESSAGE_ORDER_KEY, newOrder);
+  }, [messageOrder, messages]);
 
   // Fetch initial messages
   const loadMessages = useCallback(async () => {
@@ -128,10 +156,7 @@ function App() {
                 <h3 className="text-sm font-medium text-gray-700 mb-3">消息顺序</h3>
                 <div className="flex flex-col gap-2">
                   <button
-                    onClick={() => {
-                      setMessageOrder('newest-bottom');
-                      localStorage.setItem(MESSAGE_ORDER_KEY, 'newest-bottom');
-                    }}
+                    onClick={() => handleSetMessageOrder('newest-bottom')}
                     className={`px-3 py-2 text-sm rounded-lg border text-left ${
                       messageOrder === 'newest-bottom'
                         ? 'bg-blue-50 border-blue-500 text-blue-700'
@@ -141,10 +166,7 @@ function App() {
                     微信风格（新下旧上）
                   </button>
                   <button
-                    onClick={() => {
-                      setMessageOrder('newest-top');
-                      localStorage.setItem(MESSAGE_ORDER_KEY, 'newest-top');
-                    }}
+                    onClick={() => handleSetMessageOrder('newest-top')}
                     className={`px-3 py-2 text-sm rounded-lg border text-left ${
                       messageOrder === 'newest-top'
                         ? 'bg-blue-50 border-blue-500 text-blue-700'
@@ -181,6 +203,8 @@ function App() {
           messages={messages}
           loading={loading}
           messageOrder={messageOrder}
+          onFirstVisibleChange={handleFirstVisibleChange}
+          anchorId={firstVisibleIdRef.current}
         />
       </main>
 
