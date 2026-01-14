@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { Send, Loader2, AlertCircle, User, Reply } from 'lucide-react';
 import { createFact } from '../api/client';
 import type { Fact } from '../api/types';
+import { useAutoSize } from '../hooks/useAutoSize';
 
 interface MessageInputProps {
   source: string;
@@ -15,6 +16,9 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showOptions, setShowOptions] = useState(false);
+
+  // 使用 useAutoSize hook 实现输入框自动调整高度
+  const textareaRef = useAutoSize(content, 1, 4);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,6 +96,7 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
         {/* Message Input Area */}
         <div className="flex gap-3">
           <textarea
+            ref={textareaRef}
             placeholder="输入消息..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -102,8 +107,8 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
               }
             }}
             rows={1}
-            className="flex-1 px-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white resize-none"
-            style={{ minHeight: '44px', maxHeight: '120px' }}
+            className="flex-1 px-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white resize-none transition-all duration-200"
+            style={{ height: 'auto', overflow: 'hidden' }}
           />
           <button
             type="submit"
