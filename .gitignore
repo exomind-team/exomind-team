@@ -83,3 +83,6 @@ tmpclaude*
 
 *.private.*
 *.local.*
+
+## 事实记录
+**/data/facts.**.jsonl
