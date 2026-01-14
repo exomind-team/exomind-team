@@ -7,8 +7,8 @@ interface MessageListProps {
   messages: Fact[];
   loading?: boolean;
   messageOrder?: 'newest-top' | 'newest-bottom';
-  onFirstVisibleChange?: (factId: string | null) => void;
-  anchorId?: string | null;
+  scrollToAnchor?: string | null;
+  onAnchorScrollComplete?: () => void;
   currentSource?: string;
 }
 
@@ -63,14 +63,13 @@ export function MessageList({
   messages,
   loading,
   messageOrder = 'newest-bottom',
-  onFirstVisibleChange,
-  anchorId,
+  scrollToAnchor,
+  onAnchorScrollComplete,
   currentSource = ''
 }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
   const messageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-  const [hasAnchored, setHasAnchored] = useState(false);
+  const [hasScrolledToAnchor, setHasScrolledToAnchor] = useState(false);
 
   // 根据消息顺序排序
   const sortedMessages = useMemo(() => {
@@ -81,59 +80,36 @@ export function MessageList({
     return sorted;
   }, [messages, messageOrder]);
 
-  // 设置 IntersectionObserver 跟踪第一个可见消息
+  // 锚点定位：使用 setTimeout 确保 DOM 已更新后再滚动
   useEffect(() => {
-    if (!onFirstVisibleChange) return;
+    if (!scrollToAnchor || hasScrolledToAnchor) return;
 
-    // 清理旧的 observer
-    if (observerRef.current) {
-      observerRef.current.disconnect();
+    // 延迟执行，确保 DOM 已更新
+    const timer = setTimeout(() => {
+      const anchorElement = messageRefs.current.get(scrollToAnchor);
+      if (anchorElement) {
+        anchorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setHasScrolledToAnchor(true);
+        onAnchorScrollComplete?.();
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [scrollToAnchor, hasScrolledToAnchor, onAnchorScrollComplete]);
+
+  // 重置锚点状态（当 scrollToAnchor 变化时）
+  useEffect(() => {
+    if (scrollToAnchor === null) {
+      setHasScrolledToAnchor(false);
     }
+  }, [scrollToAnchor]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            // 找到消息的 fact_id
-            for (const [factId, el] of messageRefs.current) {
-              if (el === entry.target) {
-                onFirstVisibleChange(factId);
-                break;
-              }
-            }
-          }
-        }
-      },
-      { rootMargin: '-1px 0px -99% 0px' }
-    );
-
-    observerRef.current = observer;
-
-    // 观察所有消息元素
-    messageRefs.current.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, [onFirstVisibleChange, sortedMessages]);
-
-  // 锚点定位：切换顺序后滚动到锚点消息
+  // 微信风格：初始加载或新消息时滚动到底部（无锚点时）
   useEffect(() => {
-    if (!anchorId || hasAnchored) return;
-
-    const anchorElement = messageRefs.current.get(anchorId);
-    if (anchorElement) {
-      anchorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setHasAnchored(true);
-      const resetTimer = setTimeout(() => setHasAnchored(false), 1000);
-      return () => clearTimeout(resetTimer);
-    }
-  }, [anchorId, messageOrder, hasAnchored]);
-
-  // 微信风格：初始加载或新消息时滚动到底部
-  useEffect(() => {
-    if (messageOrder === 'newest-bottom' && !anchorId) {
+    if (messageOrder === 'newest-bottom' && !scrollToAnchor) {
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, messageOrder, anchorId]);
+  }, [messages, messageOrder, scrollToAnchor]);
 
   if (loading && messages.length === 0) {
     return (

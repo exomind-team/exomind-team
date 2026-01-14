@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { MessageList } from './components/MessageList';
 import { MessageInput } from './components/MessageInput';
 import { ConnectionStatus } from './components/ConnectionStatus';
@@ -23,33 +23,38 @@ function App() {
   });
   const [showSettings, setShowSettings] = useState(false);
 
-  // 锚点定位：保存第一个可见消息的 fact_id（使用 state 而非 ref，使其响应式）
-  const [anchorId, setAnchorId] = useState<string | null>(null);
+  // 锚点定位：使用 ref 存储锚点消息 ID（用于下一次渲染）
+  const anchorRef = useRef<string | null>(null);
+  // 使用 state 触发 MessageList 中的锚点滚动
+  const [scrollToAnchor, setScrollToAnchor] = useState<string | null>(null);
 
-  // 记录第一个可见消息的回调
-  const handleFirstVisibleChange = useCallback((factId: string | null) => {
-    setAnchorId(factId);
-  }, []);
-
-  // 切换消息顺序（带锚点定位）
+  // 切换消息顺序时保存锚点并触发滚动
   const handleSetMessageOrder = useCallback((newOrder: MessageOrder) => {
     // 切换前保存当前滚动位置对应的消息
     if (messageOrder === 'newest-bottom') {
       // 当前在底部，保存最后一个消息作为锚点
       if (messages.length > 0) {
-        setAnchorId(messages[messages.length - 1].fact_id);
+        anchorRef.current = messages[messages.length - 1].fact_id;
       }
     } else {
       // 当前在顶部，保存第一个消息作为锚点
       if (messages.length > 0) {
-        setAnchorId(messages[0].fact_id);
+        anchorRef.current = messages[0].fact_id;
       }
     }
 
-    // 设置新顺序并保存到 localStorage
+    // 设置新顺序
     setMessageOrder(newOrder);
     localStorage.setItem(MESSAGE_ORDER_KEY, newOrder);
+
+    // 触发锚点滚动（在下一个渲染周期）
+    setScrollToAnchor(anchorRef.current);
   }, [messageOrder, messages]);
+
+  // 重置锚点状态（滚动完成后）
+  const handleAnchorScrollComplete = useCallback(() => {
+    setScrollToAnchor(null);
+  }, []);
 
   // Fetch initial messages
   const loadMessages = useCallback(async () => {
@@ -203,8 +208,8 @@ function App() {
           messages={messages}
           loading={loading}
           messageOrder={messageOrder}
-          onFirstVisibleChange={handleFirstVisibleChange}
-          anchorId={anchorId}
+          scrollToAnchor={scrollToAnchor}
+          onAnchorScrollComplete={handleAnchorScrollComplete}
           currentSource={source}
         />
       </main>
