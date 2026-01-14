@@ -1,21 +1,54 @@
 import { format } from 'date-fns';
 import type { Fact } from '../api/types';
 import { User, Bot, Clock } from 'lucide-react';
+import { useEffect, useRef, useMemo } from 'react';
 
 interface MessageListProps {
   messages: Fact[];
   loading?: boolean;
 }
 
-const SOURCE_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  'left-kanban': { bg: 'bg-gray-100', text: 'text-gray-700', border: 'border-gray-200' },
-  'right-kanban': { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-200' },
-  'manual': { bg: 'bg-gray-50', text: 'text-gray-600', border: 'border-gray-100' },
-  'mobile-client': { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100' },
-};
+// ===== 原 HTML 前端的颜色生成函数（保持一致）=====
 
-function getSourceStyle(source: string) {
-  return SOURCE_COLORS[source] || SOURCE_COLORS['manual'];
+// 字符串转哈希
+function hashStr(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash = hash & hash;
+  }
+  return hash;
+}
+
+// 基于 source 和 ip 生成 HSL 颜色（与原 HTML 前端一致）
+function generateColor(source: string, ip: string): { h: number; s: number; l: number } {
+  const hash_both = hashStr(source + '' + ip);
+  const hash_ip = hashStr(ip);
+
+  const hue = Math.abs(hash_both) % 360;
+  const saturation = 90 + Math.abs(hash_ip) % 10; // 90-99%
+  const lightness = 85 + Math.abs(hash_ip) % 10; // 85-94%
+
+  return { h: hue, s: saturation, l: lightness };
+}
+
+// 获取消息样式（基于 source + ip 动态生成）
+function getMessageStyle(fact: Fact) {
+  const source = fact.source || '';
+  const ip = fact.meta?.ip || '';
+
+  const { h, s, l } = generateColor(source, ip);
+
+  // 背景色（柔和色调）
+  const backgroundColor = `hsl(${h}, ${s}%, ${l}%)`;
+
+  // 文字颜色（比背景色深很多，确保可读性）
+  const textColor = `hsl(${h}, ${s}%, ${Math.max(l - 60, 10) / 2}%)`;
+
+  // 边框颜色
+  const borderColor = `hsl(${h}, ${s}%, ${Math.max(l - 35, 15)}%)`;
+
+  return { backgroundColor, textColor, borderColor };
 }
 
 function isOwnMessage(source: string, currentSource: string): boolean {
@@ -23,6 +56,13 @@ function isOwnMessage(source: string, currentSource: string): boolean {
 }
 
 export function MessageList({ messages, loading }: MessageListProps) {
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  // 自动滚动到底部
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   if (loading && messages.length === 0) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -47,7 +87,8 @@ export function MessageList({ messages, loading }: MessageListProps) {
     <div className="space-y-4 pb-4">
       {messages.map((message) => {
         const isOwn = isOwnMessage(message.source, 'mobile-client');
-        const style = getSourceStyle(message.source);
+        // 使用原 HTML 前端的颜色生成函数
+        const { backgroundColor, textColor } = getMessageStyle(message);
 
         return (
           <div
@@ -69,19 +110,24 @@ export function MessageList({ messages, loading }: MessageListProps) {
             <div className={`flex-1 max-w-[75%] ${isOwn ? 'items-end' : 'items-start'}`}>
               {/* Sender Info */}
               <div className={`flex items-center gap-2 mb-1 ${isOwn ? 'justify-end' : 'justify-start'}`}>
-                <span className="text-xs text-gray-500">{message.meta?.sender || message.source}</span>
+                <span className="text-xs" style={{ color: textColor }}>
+                  {message.meta?.sender || message.source}
+                </span>
                 <span className="text-xs text-gray-400">
                   <Clock className="w-3 h-3 inline mr-1" />
                   {format(new Date(message.timestamp), 'HH:mm')}
                 </span>
               </div>
 
-              {/* Bubble */}
-              <div className={`relative px-4 py-2.5 rounded-2xl ${
-                isOwn
-                  ? 'bg-blue-500 text-white rounded-br-sm'
-                  : `${style.bg} ${style.text} rounded-bl-sm`
-              }`}>
+              {/* Bubble - 使用动态 HSL 背景色 */}
+              <div
+                className={`relative px-4 py-2.5 rounded-2xl ${
+                  isOwn
+                    ? 'bg-blue-500 text-white rounded-br-sm'
+                    : 'rounded-bl-sm'
+                }`}
+                style={isOwn ? {} : { backgroundColor, color: textColor }}
+              >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
                   {message.content}
                 </p>
@@ -97,6 +143,8 @@ export function MessageList({ messages, loading }: MessageListProps) {
           </div>
         );
       })}
+      {/* 滚动锚点 */}
+      <div ref={bottomRef} className="h-0" />
     </div>
   );
 }

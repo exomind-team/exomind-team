@@ -43,6 +43,16 @@ export function useSSE(options: UseSSEOptions = {}) {
       }, 3000);
     };
 
+    eventSource.addEventListener('new_fact', (event) => {
+      try {
+        const fact = JSON.parse(event.data) as Fact;
+        onFact?.(fact);
+      } catch (e) {
+        console.error('Failed to parse fact event:', e);
+      }
+    });
+
+    // 兼容旧事件名 'fact'
     eventSource.addEventListener('fact', (event) => {
       try {
         const fact = JSON.parse(event.data) as Fact;

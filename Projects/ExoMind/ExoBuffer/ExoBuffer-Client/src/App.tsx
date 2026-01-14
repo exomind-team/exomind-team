@@ -26,6 +26,12 @@ function App() {
     }
   }, []);
 
+  // 发送消息后刷新列表
+  const handleMessageSent = useCallback(() => {
+    loadMessages();
+  }, [loadMessages]);
+
+  // 初始化加载消息
   useEffect(() => {
     loadMessages();
   }, [loadMessages]);
@@ -33,13 +39,15 @@ function App() {
   // SSE connection for real-time updates
   const { isConnected, reconnectCount, reconnect } = useSSE({
     onFact: (fact) => {
-      setMessages((prev) => [...prev, fact]);
+      setMessages((prev) => {
+        // 去重：检查是否已存在相同 fact_id
+        if (prev.some(m => m.fact_id === fact.fact_id)) {
+          return prev;
+        }
+        return [...prev, fact];
+      });
     },
   });
-
-  const handleMessageSent = () => {
-    // Scroll to bottom or refresh if needed
-  };
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">

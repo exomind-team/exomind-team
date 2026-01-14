@@ -78,3 +78,8 @@ tmpclaude*
 
 # 附件不进入git历史
 99-Meta/
+
+# 私密文件 / 本地文件
+
+*.private.*
+*.local.*
