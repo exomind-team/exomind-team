@@ -1,10 +1,10 @@
-import type { Fact, Analysis, CreateFactRequest, CreateFactResponse, FactMeta } from './types';
+import type { Fact, Analysis, CreateFactRequest } from './types';
 import { API_BASE } from '../App';
 
 
 // ==================== Fact API ====================
 
-export async function createFact(data: CreateFactRequest): Promise<CreateFactResponse> {
+export async function createFact(data: CreateFactRequest): Promise<Fact> {
   const response = await fetch(`${API_BASE}/api/fact`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

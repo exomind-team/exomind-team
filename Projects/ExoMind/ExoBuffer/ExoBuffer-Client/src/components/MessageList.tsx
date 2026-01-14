@@ -3,6 +3,7 @@ import { zhCN } from 'date-fns/locale';
 import type { Fact } from '../api/types';
 import { User, Bot, Clock } from 'lucide-react';
 import { useEffect, useRef, useMemo, useState } from 'react';
+import { MessageContent } from './MessageContent';
 
 // ===== 渐进披露时间格式化 =====
 function formatTimestampProgressive(timestamp: number): {
@@ -227,9 +228,7 @@ export function MessageList({
                 }`}
                 style={isOwn ? {} : { backgroundColor, color: textColor }}
               >
-                <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
-                  {message.content}
-                </p>
+                <MessageContent content={message.content} />
               </div>
 
               {/* Reply Info */}
