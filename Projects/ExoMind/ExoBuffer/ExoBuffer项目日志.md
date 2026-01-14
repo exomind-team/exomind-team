@@ -27,10 +27,10 @@
 >     3. 创建 `output/10-exobuffer-3review-opus/` 目录，按 leanspec 拆分为多个子文档。
 >     4. 输出四个文件（均 < 3500 tokens）：`README.md`、`SCOUT_PROTOCOL.md`、`NODE_SYNC.md`、`REVIEW_SUMMARY.md`。
 > - **产物**:
->     - [[output/10-exobuffer-3review-opus/README.md]] (主规格书 v3.0)
->     - [[output/10-exobuffer-3review-opus/SCOUT_PROTOCOL.md]] (Scout 协议 v1.4)
->     - [[output/10-exobuffer-3review-opus/NODE_SYNC.md]] (节点同步规格 Phase 2)
->     - [[output/10-exobuffer-3review-opus/REVIEW_SUMMARY.md]] (会审综合摘要)
+>     - [[ExoMind-Team/Projects/ExoMind/ExoBuffer/10-exobuffer-3review-opus/README]] (主规格书 v3.0)
+>     - [[SCOUT_PROTOCOL]] (Scout 协议 v1.4)
+>     - [[NODE_SYNC]] (节点同步规格 Phase 2)
+>     - [[REVIEW_SUMMARY]] (会审综合摘要)
 > ## AI评价
 > **关键决策**：采纳"双核"架构（Python Core + Tauri Shell）、移动端 PWA 优先、取消 Node.js 中间层。四模型评审有效识别了技术栈冲突和实现风险，v3.0 规格书已达可执行水平。
 > ## 人工评价
