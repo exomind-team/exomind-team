@@ -5,7 +5,7 @@ import { ConnectionStatus } from './components/ConnectionStatus';
 import { useSSE } from './hooks/useSSE';
 import { fetchFacts } from './api/client';
 import type { Fact } from './api/types';
-import { MessageSquare, Settings, Menu } from 'lucide-react';
+import { MessageSquare, Settings, Menu, Tag } from 'lucide-react';
 
 const DEFAULT_SOURCE = 'mobile-client';
 const MESSAGE_ORDER_KEY = 'exobuffer_messageOrder';
@@ -77,48 +77,105 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      {/* Header - Mobile Optimized */}
+      {/* Header - Mobile Optimized with Source Input & Settings */}
       <header className="flex-shrink-0 sticky top-0 z-10 bg-white/95 backdrop-blur-sm border-b border-gray-200 px-4 py-3 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
+          {/* Left: Menu + Logo + Title */}
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button className="p-2 -ml-2 text-gray-600 hover:text-gray-800 touch-manipulation">
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             </button>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-white" />
-              </div>
-              <h1 className="text-lg font-semibold text-gray-800">ExoBuffer</h1>
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+              <MessageSquare className="w-5 h-5 text-white" />
             </div>
+            <h1 className="text-lg font-semibold text-gray-800 whitespace-nowrap">ExoBuffer</h1>
           </div>
-          <ConnectionStatus
-            isConnected={isConnected}
-            reconnectCount={reconnectCount}
-            onReconnect={reconnect}
-          />
+
+          {/* Middle: Source Input - Compact (desktop) */}
+          <div className="relative flex-1 max-w-[160px] hidden sm:flex items-center">
+            <Tag className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="来源"
+              value={source}
+              onChange={(e) => setSource(e.target.value)}
+              className="w-full pl-8 pr-2 py-1.5 text-xs bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+            />
+          </div>
+
+          {/* Right: Settings + Connection Status */}
+          <div className="relative flex items-center gap-2 flex-shrink-0 ml-auto">
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className={`p-2 rounded-lg transition-colors ${
+                showSettings
+                  ? 'text-blue-600 bg-blue-50'
+                  : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+              }`}
+              title="设置"
+            >
+              <Settings className="w-5 h-5" />
+            </button>
+            <ConnectionStatus
+              isConnected={isConnected}
+              reconnectCount={reconnectCount}
+              onReconnect={reconnect}
+            />
+
+            {/* Settings Panel - Floating Menu */}
+            {showSettings && (
+              <div className="absolute top-full right-0 mt-2 w-48 p-4 bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+                <h3 className="text-sm font-medium text-gray-700 mb-3">消息顺序</h3>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() => {
+                      setMessageOrder('newest-bottom');
+                      localStorage.setItem(MESSAGE_ORDER_KEY, 'newest-bottom');
+                    }}
+                    className={`px-3 py-2 text-sm rounded-lg border text-left ${
+                      messageOrder === 'newest-bottom'
+                        ? 'bg-blue-50 border-blue-500 text-blue-700'
+                        : 'bg-gray-50 border-gray-200 text-gray-600'
+                    }`}
+                  >
+                    微信风格（新下旧上）
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMessageOrder('newest-top');
+                      localStorage.setItem(MESSAGE_ORDER_KEY, 'newest-top');
+                    }}
+                    className={`px-3 py-2 text-sm rounded-lg border text-left ${
+                      messageOrder === 'newest-top'
+                        ? 'bg-blue-50 border-blue-500 text-blue-700'
+                        : 'bg-gray-50 border-gray-200 text-gray-600'
+                    }`}
+                  >
+                    看板风格（新上旧下）
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Source Input - Always visible on mobile */}
+        <div className="mt-3 sm:hidden">
+          <div className="relative">
+            <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="来源标识"
+              value={source}
+              onChange={(e) => setSource(e.target.value)}
+              className="w-full pl-9 pr-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white"
+            />
+          </div>
         </div>
       </header>
 
       {/* Main Content - Scrollable */}
       <main className="flex-1 overflow-y-auto px-4 py-4">
-        {/* Source Selector - Collapsible */}
-        <div className="mb-4 flex items-center gap-2">
-          <input
-            type="text"
-            placeholder="来源标识"
-            value={source}
-            onChange={(e) => setSource(e.target.value)}
-            className="flex-1 px-4 py-2.5 text-sm bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent touch-manipulation"
-          />
-          <button
-            onClick={() => setShowSettings(!showSettings)}
-            className="p-2.5 text-gray-400 hover:text-gray-600 bg-white border border-gray-200 rounded-xl touch-manipulation"
-            title="设置"
-          >
-            <Settings className="w-5 h-5" />
-          </button>
-        </div>
-
         {/* Settings Panel */}
         {showSettings && (
           <div className="mb-4 p-4 bg-white border border-gray-200 rounded-xl">
