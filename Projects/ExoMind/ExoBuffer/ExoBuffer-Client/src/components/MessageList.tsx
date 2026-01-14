@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import type { Fact } from '../api/types';
 import { User, Bot, Clock } from 'lucide-react';
-import { useEffect, useRef, useMemo, useCallback, useState } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 
 interface MessageListProps {
   messages: Fact[];
@@ -159,14 +159,14 @@ export function MessageList({
         const isOwn = isOwnMessage(message.source, 'mobile-client');
         const { backgroundColor, textColor } = getMessageStyle(message);
 
-        // 保存消息元素的 ref
-        const setMessageRef = useCallback((el: HTMLDivElement | null) => {
+        // 保存消息元素的 ref（不使用 useCallback，遵守 React Hooks 规则）
+        const setMessageRef = (el: HTMLDivElement | null) => {
           if (el) {
             messageRefs.current.set(message.fact_id, el);
           } else {
             messageRefs.current.delete(message.fact_id);
           }
-        }, [message.fact_id]);
+        };
 
         return (
           <div
