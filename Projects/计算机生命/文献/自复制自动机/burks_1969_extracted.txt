@@ -1,0 +1,4026 @@
+
+
+=== PAGE 1 ===
+
+08226-11-T 
+Von Neumann's Self-Reproducing 
+Automata 
+ARTHUR W. BURKS 
+June 1969 
+Department of Health. Education, and Welfare 
+National Institutes of Health 
+Grant No. GM-12236-03 
+Bethesda, Maryland 
+and 
+Department of the Navy 
+Office of Naval Research 
+Contract No. N00014-67-A-0181-0011 
+Washington, D. C. 
+and 
+U. S. Army Research Office (Durham) 
+Grant No. DA-31-124-AR0-D-483 
+Durham, North Carolina 
+KM   r,<   IQ 
+rr/J^   Computer and Communication Sciences Department 
+Distribution of this document is unlimited. 
+Reproduced by the 
+CLEARINGHOUSE 
+(or Federal Scientific & Technical 
+Information Springfield Va   22151 
+i 
+;'.3 
+
+=== PAGE 2 ===
+
+THE UNIVERSITY OF MICHIGAN 
+College of Ligerature, Science, and the Arts 
+Computer and Communication Sciences Department 
+Technical Report 
+VON NEUMANN'S SELF-REPRODUCING AUTOMATA 
+Arthur W. Burks 
+supported by: 
+Department of Health, Education,  and Welfare 
+National Institutes of Health 
+Grant No. GM-12236-03 
+Bethesda, Maryland 
+and 
+Department of the Navy 
+Office of Naval Research 
+Contract No.  N00014-67-A-0181-0011 
+Washington,  D.  C. 
+and 
+U. S. Army Research Office (Durham) 
+Grant No. DA-31-124-ARO-D-483 
+Durham, North Carolina 
+administered through: 
+OFFICE OF RESEARCH ADMINISTRATION    ANN ARBOR 
+June 1969 
+Distribution of This Document is Unlimited 
+
+=== PAGE 3 ===
+
+ABSTRACT 
+John von Neumann's kinematic and cellular automaton systems are des- 
+cribed. A complete informal description of the cellular system is pre- 
+sented including an explanation of the realization of logical components, 
+the design of computer organs, the construction, destruction and move- 
+ment of organs by sequences of internally originated pulses, universal 
+computation and construction, and self-reproduction. Connections between 
+von Neumann's automaton research and his work on computer design are 
+brought out, and the significance of cellular arrays for biological research 
+discussed. 
+iii 
+
+=== PAGE 4 ===
+
+mm 
+TABLE OF CONTENTS 
+ABSTRACT 
+LIST OF FIGURES 
+1. KINEMATIC SELF-REPRODUCTION 
+2. CELLULAR AUTOMATA 
+3. VON NEUMANN'S CELLULAR SYSTEM 
+4. CONFLUENT AND TRANSMISSION STATES 
+5. SOME COMPUTER ORGANS 
+6. CONSTRUCTION AND DESTRUCTION 
+7. FINITE AUTOMATA 
+8. CONSTRUCTING ARM 
+9. UNIVERSAL COMPUTER 
+10. UNIVERSAL CONSTRUCTOR AND SELF-REPRODUCTION 
+11. KINEMATIC AND CELLULAR SELF-REPRODUCTION 
+12. HEURISTICS OF CELLULAR SPACES 
+BIBLIOGRAPHY 
+in 
+v 
+1 
+7 
+10 
+12 
+14 
+19 
+23 
+2o 
+30 
+35 
+43 
+47 
+97 
+IV 
+
+=== PAGE 5 ===
+
+LIST OF FIGURES 
+Fig. 1  Cellular space 65 
+Fig. 2  Von Neumann's 29-states 66 
+Fig. 3  Switch and delay realization of confluent and ordinary 
+transmission elements 
+(a) Switch and delay circuits 67 
+(b) Corresponding confluent and ordinary transmission elements 68 
+Fig. 4 Operation of special transmission states 69 
+Fig. 5 Pulser P(.10101) 70 
+Fig. 6 Decoder JDCIOIOI) 71 
+Fig. 7 A coded channel 72 
+Fig. 8 Crossing organ 73 
+Fig. 9 Construction process 74 
+Fig. 10 Example of the construction process 75 
+Fig. 11 Example of the destruction process 76 
+Fig. 12 Periodic pulser ^^(IGlOl) 
+(a) Repeater for periodic pulser 77 
+(b) Periodic pulser 78 
+Fig. 13 Flip-flop and gate 79 
+Fig. 14 Recognizer R(101001) 80 
+Fig. 15 Von Neumann's transmission function 81 
+Fig. 16 Schematic diagram of finite cellular automaton 
+(a) Transition and output table for a particular finite automaton 32 
+(b) Corresponding finite cellular automaton g» 
+Fig. 17 Operation of the constructing arm g^ 
+Fig. 18 Constructing arm gc 
+Fig. 19 Horizontal advance of constructing arm g^ 
+Fig. 20 Vertical advance of constructing arm 07 
+
+=== PAGE 6 ===
+
+.z-jzzixs itT.Taa:.- 
+Fig. 21 Horizontal retreat of constructing arm with construction of y and 6  88 
+Fig. 22 Vertical retreat of constructing arm with construction of y  and 6   89 
+Fig. 23 Injection of starting stimulus into the constructed automaton 90 
+Fig. 24 Tape, reading loop, and constructing arm 91 
+Fig. 25 Writing "one" in cell x    and lengthening the reading loop 92 
+Fig. 26 Universal computer 93 
+Fig. 27 Universal constructor 94 
+Fig. 28 Modified universal constructor 95 
+Fig. 29 Automata self-reproduction 96 
+vi 
+
+=== PAGE 7 ===
+
+[This paper uses some of my figures and text from von Neumann's 
+Theory of Self-Beproduoing Automata» which I edited and completed.    Some 
+use is also made of figures from my "Cellular Automata," which appeared 
+in Russian at pp.   100-111 of Theory of Finite and Probabtliatio Automata, 
+edited by M.  A.  Gavrilov, Moscow, Nauka,   1965.] 
+1.     KINEMATIC SELF-REPRODUCTION 
+The late John von Neumann once pointed out that, in the past, 
+science has dealt mainly with problems of energy, power, force and motion. 
+He predicted that in the future science would be much more concerned with 
+problems of control, programming, information processing, communication, 
+organization, and systems.    General purpose digital computers provide an 
+excellent opportunity for studies of this kind, and von Neumann started a 
+theory of automata based on them.    He wished this theory to deal with the 
+control,  informational, and logical aspects of both man-made automata 
+(such as digital and analog computers) and natural systems  (such as cells, 
+nervous systems, and brains).    Von Neumann's conception of automata theory 
+was very close to Wiener's conception of cybernetics, and each influenced 
+the other.     But von Neumann's automata theory placed more emphasis on logic 
+and digital computers, while Wiener's cybernetics was oriented more around 
+physiology and control engineering. 
+[Von Neumann,  "The General and Logical Theory of Automata," "Probabilistic 
+Logics and the Synthesis of Reliable Organisms from Unreliable Components," 
+and review of Wiener's Cybemetias -    See also my Introduction to Theory of 
+Self-Reproducing Automata, and the Preface to Wiener's Cybemetioe •] 
+- 
+I 
+
+=== PAGE 8 ===
+
+One problem von Neumann posed and essentially solved was: What kind 
+of logical organization is sufficient for an automaton to control itself in 
+such a manner that it reproduces itself? He first formulated this question 
+in terms of a kinematic automaton system, and later reformulated and solved 
+it in terms of a cellular automaton system. We will explain the kinematic 
+system briefly and then develop the cellular system sufficiently to see how 
+self-reproduction is accomplished in it. 
+[For a rigorous and more complete discussion the reader is referred 
+to von Neumann's Theory of Self-Heproduaing Automata. ] 
+Consider a digital computer or automaton which operates synchronously 
+and which is composed entirely of switches ("and," "or," and "not") and 
+delays (which delay pulses for one time unit). We will refer to these 
+idealized elements as computing elements. 
+[Actually, von Neumann used idealized neurons as computing elements. 
+These neurons combined the functions of switching and delay and were passive 
+in that they produced no output unless they were stimulated. This type of 
+neuron was used by von Neumann in working out the logical design of the 
+first stored program electronic computer, the EDVAC.  See Theory of Self- 
+Reproducing Automata,  pp. 9, 44, 99.] 
+To represent an input capability and a dynamic output capability we will 
+add five other kinds of primitive elements: a kinematic (muscle-like) 
+element (e.g., an artificial hand), which can move elements around when 
+signaled to do so by a computing element; a cutting element, which will 
+disconnect two elements when signaled to do so by a computing element; 
+a fusing (welding or soldering) element, which will connect two elements 
+together when signaled to do so by a computing element; a rigid element 
+(e^g-» girder or bar), which will provide rigid or structural support to 
+
+=== PAGE 9 ===
+
+assemblies of elements; and a sensing element, capable of recognizing 
+each kind of element and communicating this information to a computing 
+element.    We shall call an automaton composed of these elements a kinematic 
+automaton. 
+To model self-reproduction at even the most abstract logical level 
+we need to place a kinematic automaton in an environment with which it 
+can interact.    This environment will be composed of the same stuff as 
+the automaton is made of,  namely,  the various primitive elements just 
+listed.     Imagine an infinite body of liquid with infinitely many copies 
+of each kind of part distributed in random fashion over its surface. 
+There are switches, delays,  kinematic elements, cutting elements, fusing 
+elements, rigid elements,  and sensing elements floating on the surface; 
+imagine that they are moving back and forth i.» random motion, after the 
+manner of molecules of a gas.    On this arrangement,  an indefinite 
+supply of parts is available to any kinematic automaton which floats on 
+the surface of the "lake."    We will call this environment, together with 
+any kinematic automata it contains,  a kinematic automaton system. 
+It is well known how to construct a finite automaton out of switches 
+and delays.    A Turing machine consists of a finite automaton operating on 
+an indefinitely expandable tape.    We will indicate in a general way how 
+to construct tape in the kinematic system, and how to augment a finite 
+automaton so that it can read an arbitrary position on the tape, modify an 
+arbitrary position on a tape,  and extend  (or contract)  the tape. 
+The matrix or basis of the tape is a zig-zag arrangement of the rigid 
+elements   (girders).    Each intersection holds a binary digit or bit of 
+information:  a "one" is represented by a protruding girder attached to the 
+intersection,  a "zero" by the absence of such a girder.    For example. 
+
+=== PAGE 10 ===
+
+BWS^W^w"W 
+^l^lJ^     stores 0110110 while       j^L^J^sJ 
+stores 1101001.    The finite automaton can move itself relative to the 
+tape by means of kinematic elements.    It can change a "one" to a "zero" 
+by separating a protruding girder from the tape intersection to which 
+it is attached.    It can change a "zero" to a "one", or extend the tape, 
+by sensing a girder on the surface of the lake with a sensing element, 
+picking up the girder and placing it in position with a kinematic element, 
+and connecting the girder to the tape   by means of a fusing element. 
+The primitive elements of von Neumann's kinematic system are at a 
+higher level than atoms and molecules, so that this system is not suitable 
+for modeling the chemical, physical, or biological aspects of self- 
+reproduction.    It was intended for modeling the control, organizational, 
+progranuning, and logical aspects of self-reproduction.    Let us view this 
+process at the block diagram level. 
+One can see in a general way how construction takes place in the 
+kinematic system.    A finite kinematic automaton can be completely described 
+by listing its parts and their connections, and this description PW can 
+be stored on the tape.    A (finite) constructing automaton can then be 
+designed which will interpret this description and carry out the construction. 
+The parts  (elements) needed are moving randomly on the surface of the lake, 
+and hence will come in contact with the constructing automaton, which can 
+sense the particular kinds of parts needed, pick them up,  and assemble them 
+according to the specification V(M). 
+Self-reproduction in this scheme takes the following abstract form. 
+Let W   be a constructing machine.    To begin with, machine M   stores its own 
+description PW )on its tape,  and floats in an environment of an unlimited 
+number of parts of each kind.    The constructing machine M   then interprets 
+the description VfM ) and makes a copy of the machine described, namely M . 
+
+=== PAGE 11 ===
+
+i 
+I The constructing machine M   next makes a tape for the new machine, copies 
+its own tape contents {namely, V(M )} on this new tape, and attaches the 
+tape to the newly constructed machine M  . The process just described began 
+with a machine M   storing V(M )  on its tape, and ended with a second machine 
+M   storing V(M )  on its tape. Compare Figure 29. This is a kind of self- 
+reproduction. 
+This is the general picture von Neumann had in mind. How can it be 
+worked out in detail in a logically rigorous way? To do this we must 
+completely specify the powers of each element and the rules of operation 
+of the elements when they interact with one another in a machine and on 
+the interface between a machine and the environment. Consider, as an 
+example, a constructing automaton. This employs kinematic, cutting, and 
+fusing elements to move and operate on other elements. How does the 
+constructing automaton find the elements and loci for the kinematic, 
+cutting, and fusing elements to operate on? It might do this via the 
+kinematic, cutting,and fusing elements themselves, if these elements had 
+sensing powers of their own. Alternatively, it might do this by means of 
+sensing elements, provided it could coordinate the operation of a sensing 
+element with a kinematic (or cutting or fusing) element. 
+It is a difficult problem to develop a complete, precise set of rules 
+for the kinematic system which is at the same time simple and enlightening. 
+Moreover, it is doubtful that anything of much value is contributed by the 
+kinematic or motional capabilities of the system. On the one hand, these 
+kinematic features of the model are too remote from chemistry, physics, and 
+mechanics to be of much interest in their own right; while on the other hand, 
+they are too remote from problems of organization, control, and logic to 
+contribute to our understanding of these problems. Thus the motional 
+
+=== PAGE 12 ===
+
+capability of the kinematic system is the source of complexities which, 
+in the present context, are not worth their cost, and might better be 
+eliminated. 
+
+=== PAGE 13 ===
+
+2,     CELLULAR AUTOMATA 
+The concept of a cellular automaton eliminates just these complexities. 
+[This concept was suggested to von Neumann by S. M.  Ulam.    See Theory 
+of Self-Reproduaing Automatat p.  94, where von Neumann gives his own reasons 
+for shifting from the kinematic to the cellular model of self-reproduction. 
+Though he does not mention it,  he was probably also influenced by his interest 
+in obtaining high speeds of computation by parallelism.] 
+A cellular system constitutes  a basic framework or "space" in which automaton 
+events  can take place.    Moreover, one can formulate precise and simple rules 
+governing the operation of the system.    In this section we will explain the 
+general concept of a cellular system.    In Sections    3-10 we will define the 
+specific 29-state cellular system that von Neumann worked with, and show in 
+a general,  intuitive way how finite automata, Turing machines, and self- 
+reproducing automata can be constructed in this  system.     In Section 11 we 
+will compare von Neumann's kinematic and cellular models of self-reproduction, 
+and in Section 12 we will make some general remarks about the investigation 
+of cellular systems. 
+Cellular automata are the main theme of the essays collected in Essays 
+in Cellular Automata.    They are also called tessellation automata and 
+iterative circuit computers. 
+Tie notion of a cellular automaton is built up in the following way. 
+We begin with a cellular space, which consists of an infinite n-dimensional 
+space together with a neighborhood relation defined on this space.    The 
+neighborhood relation gives,  for each cell,  a finite  list of cells which 
+are its neighbors.     The time basis of the system is  synchronous, with t  = 0, 
+1,   2,   3,   ... 
+A aellular automaton system  (or "cellular system," for short)   is 
+
+=== PAGE 14 ===
+
+mm 
+8 
+specified by giving a finite list of states  for each cell, a distinguished 
+state (called the "blank state"), and a rule which gives the state of a 
+cell at time t + 1 as a function of its own state and the states of its 
+immediate neighbors at time t.    We will call the list of states for a 
+cell together with the rule governing the state transition of the cell a 
+transition function.    The distinguished state corresponds to the blank 
+state of a square of a computing machine tape,  and it is required of a 
+transition function that if a cell and its neighbors are in the blank 
+state at time t, the cell is in the blank state at time t + 1. 
+Thus a cellular automaton system consists of a cellular space and a 
+transition function defined over that spac^.    A cellular automaton state 
+is specified by a finite list of cells together with the cell state 
+assigned to each,  it being understood that all other cells are in the 
+blank state.    It follows inductively from the finitistic character of 
+a transition function that each cellular automaton state is succeeded by 
+a cellular automaton state.    A oellular automaton consists of a cellular 
+automaton system together with an assigned initial state  (state at t  =0). 
+In most of the cellular systems we will discuss, the neighborhood 
+relation and transition function are the same over the whole space.    But 
+the intent is to allow variations from cell to cell, provided that the 
+neighborhood relation and transition function of any cell is calculable 
+from its coordinates. 
+[One could also allow neighborhood relations and transition functions 
+which change over time,  as Holland does in his concept of path-building 
+in iterative circuit computers.] 
+It follows that the state of a cellular automaton at time t + 1 is 
+calculable from its state at time t. 
+
+=== PAGE 15 ===
+
+The preceding definitions are actually for the deterministic case. 
+A deterministic transition function yields a unique next state for each 
+cell, and a detemdnistio oellular automaton   has a single initial state, 
+so that a deterministic cellular automaton has a unique history through 
+time.    An indeterndnistio oellular automaton may have more than one 
+initial automaton state,  and its transition function yields a set of 
+possible next states for a cell.    A probabilistia cellular automaton is 
+an indeterministic cellular automaton with a probability distribution over 
+the initial automaton states and with a probability distribution over the 
+possible next states of each cell. 
+A transition function is equivalent to a finite automaton which is 
+located in the cell and receives inputs from the neighboring cells via 
+unit delays.    The finite automaton located in a cell is deterministic, 
+indeterministic,  or probabilistic according to the nature of the 
+transition function. 
+
+=== PAGE 16 ===
+
+10 
+[See Burks and Wright, "Sequence Generators and Digital Computers," 
+pp.   153,   193-197.] 
+3.     VON NEUMANN'S  CELLULAR SYSTEM 
+We will discuss the general case again in Secion 12. Until then we 
+will restrict our attention to von Neumann's specific cellular automaton 
+system. It is based on a two-dimensional cellular space of square cells 
+in which each cell has as neighbors the four cells with which it shares 
+boundaries; see Figure 1. Each cell is capable of 29 different states; 
+see Figure 2. The transition function is deterministic, and is the same 
+for every cell of the space. 
+We proceed now to describe the transition function of von Neumann's 
+29-state cellular system.    He called the blank state the "unexcitable 
+state" (UJ, because in his system a single pulse is not sufficient to 
+excite it.     It is represented in our diagrams either by a blank or by 
+cross-hatching  (as in Fig.  7).    For expository purposes we will divide 
+the remaining 28-states into subsets,  so we can treat the automaton occu- 
+pying each cell  as a set of nine basic elements or circuits  (as  in Fig.  3), 
+together with control processes  for creating any of these elements from 
+U and for reducing any of these elements to U.    There is one confluent 
+element  (C),  four ordinary transmission elements  (->,   +, -•-,  •(•),  and four 
+special transmission elements  (-», A,   <=» v).    Each transmission element 
+has a quiescent  (passive, no-pulse,  zero) state and an excited  (active, 
+"pulse," one)  state; the confluent element has a quiescent state and 
+three active states.    Thus the nine basic elements require only 20 
+different states. 
+
+=== PAGE 17 ===
+
+11 
+The control processes are of two kinds.    The constructive process 
+converts an unexcitable state into a passive confluent or transmission 
+element, employing as intermediaries some transient (sensitized)  states. 
+The destructive process converts a confluent or transmission element into 
+an unexcitable state.    The complete set of 29-states and a summary of the 
+transition rule is given in Figure 15. 
+
+=== PAGE 18 ===
+
+«BMH! 
+12 
+4.  CONFLUENT AND TRANSMISSION STATES 
+The confluent element C has four states.  It performs the functions 
+of conjunction, double-delay, and wire-branching. The four states are 
+the four on-off combinations of the two delay units; no states are allo- 
+cated to specify input or output directions, since these are determined 
+by the contents of the four bordering cells in the following way. A 
+confluent element receives inputs from all ordinary transmission elements 
+whose outputs are directed toward it. It transmits an output (after two 
+units of delay) to all ordinary and all special transmission elements in 
+contiguous cells provided that the outputs of these elements are not 
+directed toward it. Cells Al and 52 of Figure 3 contain confluent elements, 
+They arc shown in Figure 3a as constructions of switches, and delays 
+(whose initial outputs are zero) and in Figure 3b in abbreviated notation. 
+The notation "C" does not indicate the specific state of the confluent 
+element at any time. This is shown by subscripts when needed; for example, 
+"CQI" indicates that the present output state is zero (0) and the next 
+output state is one (1). The four confluent states are thus £oo» £oi» 
+ClO' and ^ii- 
+There are four ordinary transmission elements, ■+, + ,■*•,+,  one for 
+each output direction. An ordinary transmission element performs the 
+functions of disjunction and unit delay, and has two states. A right- 
+directed ordinary transmission element is shown in celli42of Figure 3, 
+a left-directed ordinary transmission element is shown in cell Bl . The 
+number and direction of inputs to an ordinary transmission element are 
+specified by the contents of the four neighboring cells. An ordinary 
+transmission element receives disjunctively from all contiguous cells not 
+in its output direction which contain either ordinary transmission elements 
+
+=== PAGE 19 ===
+
+rr 
+13 
+whose outputs are directed toward it or confluent elements.  An ordinary 
+transmission element in cell a transmits to the neighboring cell $ in its 
+output direction if either cell ß contains a confluent element or if ß 
+contains an ordinary transmission element not directed toward a. 
+Each of these ordinary transmission elements has two states, a 
+quiescent (passive, no-pulse, zero) state, and excited (active, pulse, 
+one) state. When the state is to be indicated, the former is shown by 
+a plain arrow, the latter by an arrow with a dot beside it. 
+There are four special transmission elements,♦, |. '•s j|> one for 
+each output direction. Internally, special transmission elements operate 
+in the same way as ordinary transmission elements, but their relations to 
+other elements are different, especially with respect to the destruction 
+process (Sec. 5). A special transmission element receives disjunctively 
+from all contiguous cells (not in its output direction) which contain 
+either confluent elements or special transmission elements whose outputs 
+are directed toward it. A special transmission element transmits to the 
+neighboring cell in its output direction only if this cell contains a 
+special transmission element not directed toward it.  In Figure 4, an 
+ordinary transmission pulse into input a at time t   will produce two 
+special transmission pulses from output b,  one at time t+ 5 and the other 
+at time t + 9. 
+Each special transmission element has two states, the quiescent and 
+the excited. When these are to be indicated, the quiescent state is 
+represented by a plain double-arrow, while the excited state is represented 
+by a double arrow with a dot beside it. See Figure 15. 
+We have now explained how the confluent and transmission elements of 
+the system operate, except for the construction and destruction processes. 
+We will next show how these elements may be used to construct some organs. 
+
+=== PAGE 20 ===
+
+14 
+5.  SOME COMPUTER ORGANS 
+A useful method of operation in a cellular automaton is to convert a 
+pulse into a binary sequence of pulses and spaces, transmit the sequence, 
+and then decode it. This may be accomplished by means of the following 
+two organs. 
+A pulser  is an organ which converts a single pulse into a specific 
+pulse-space sequence. The method of operation is clear from Figure 5. 
+When supplied with a single input pulse at time t  this pulser will produce 
+the sequence 10101 from its output at times t + 10 through t  + 14. The 
+input pulse is sent along three paths of varying temporal lengths; these 
+paths are merged disjunctively to produce the sequence 10101. 
+A decoder produces a single output pulse if the sequence it receives 
+has pulses in certain specified positions. The method of operation is 
+clear from Figure 6. This decoder produces an output pulse if and only 
+if the input sequence is 10101 or a sequence which "covers" 10101 (i.e., 
+which has a "1" in its first, third, and fifth positions). The technique 
+is again that of diverging and merging paths, but here the paths are 
+merged conjunctively (at confluent elements) rather than disjunctively, 
+so that unless pulses appear at certain places in the input sequence, 
+there will be no output pulse. 
+It is clear that there is an algorithm which, when given any finite 
+binary sequence, will design both a pulser and a decoder for that sequence. 
+The decoder does not recognize only its defining sequence, but that 
+sequence or any sequence which "covers" it. Thus the decoder of Figure 6 
+produces an output for any of the sequences 10101, 11101, 10111, and 11111. 
+One can construct a recognizer which recognizes only its defining sequence; 
+MHi 
+
+=== PAGE 21 ===
+
+15 
+see Section 5 and Figure 14 below. Alternatively, one can use sets of 
+sequences such that no sequence of the set covers any other one, so that 
+decoders are sufficient for recognizing sequences. This technique is used 
+in the coded channel, which is described next. 
+There is no wire-crossing primitive in von Neumann's system. Two 
+kinds of wire-crossing units may be synthesized. The first is a coded 
+ahannel  which has any number of associated inputs and outputs. A single 
+pulse (one) fed into an input will later appear at the corresponding 
+output or outputs, provided that no other input is stimulated during the 
+operation of the coded channel. Thus the coded channel can cross any 
+(finite) number of wires or channels, provided that only one input is 
+used at a time. The coded channel cannot cross two continuous streams 
+of signals (ones and zeros) without interference. This can be done by 
+a "real time" crossing organ, which will be described in a moment. 
+The principle of a coded channel may be explained in connection with 
+Figure 7. There are inputs a.,  a2, a,, and outputs fc, , i , J»,; each input 
+a.  is associated with the corresponding output (or outputs) b..    Thus a 
+pulse into input a   will eventually appear at both h    outputs (not simul- 
+taneously) and nowhere else. The coded channel is made up of seven pulsers 
+and seven decoding organs (all shown in reduced size), together with a 
+"main channel" running from the output of pulser ^(10011) to the input of 
+decoder D(11001). A long arrow represents a sequence of ordinary trans- 
+mission states. 
+The coding for this particular coded channel is done with six sequences 
+of length five such that none of these sequences bitwise implies (is covered 
+by) any other. The sequences 11100, 11010, 11001, 10110, 10101, 1001.1 are 
+associated with a , a , a . b.3 b , b ,  in that order. The way the sequences 
+
+=== PAGE 22 ===
+
+16 
+operate is best explained by means of an example.  Suppose input a2 
+is  stimulated. This will cause pulser ^(11010) to inject its defining 
+sequence 11010 into the main channel. This sequence will travel to the 
+end of the main channel, but because it is distinct from every other 
+sequence used it will affect only decoder 0(11010).  D(11010) will then 
+send a pulse to pulser P(10101), which will inject 10101 into the main 
+channel. The sequence 10101 will travel to the end of the main channel, 
+but because it differs from every other sequence used it will affect only 
+the two decoders £(10101), both of which will emit pulses from their 
+outputs b2- 
+The inputs and outputs of the coded channel may be positioned in any 
+order. It is because of this that two sequences are associated with each 
+input-output pair, the conversion from one sequence to its mate taking 
+place at the top of Figure 7. 
+The inputs to the coded channel must be spaced sufficiently far apart 
+in time to avoid corruption or cross talk. For suppose ai and <7 were 
+stimulated so their outputs 11100 and 11010 followed each other immediately 
+in the main channel. The combined sequence 1110011010 contains the 
+sequence 11001 which is assigned to input a^,  and hence which would 
+operate 0(11001) and eventually cause an output at £3. 
+The second kind of wire-crossing is the real-time crossing organ of 
+Figure 8. 
+[This organ was designed by J. E. Gorman.] 
+Recall that a dot beside an arrow signifies that the transmission element 
+is in the active state at some temporal reference point. Thus this organ 
+contains five clocks, each producing an alternating sequence of zeros and 
+ones; these sequences are used to gate the signals being crossed. 
+
+=== PAGE 23 ===
+
+17 
+The crossing organ operates as follows. Consider first the behavior 
+of the crossing organ when the inputs aj and a2 are 000 ... The clocks 
+send alternate zeros and ones into both inputs of each of the six confluent 
+states Cd, C6, F3, F6, El,    and #5.  The phasing of the ones (i.e., pulses) 
+as they enter these confluent cells is indicated in Figure 8a by dashed and 
+dotted lines. A dashed line signifies a one (pulse) at every even time 
+(t _> 4) and a dotted line signifies a one (pulse) at every odd time (t .> 3). 
+It is clear from Figure 8a that the two sequences arriving at a confluent state 
+are out of phase. The function of these clock sequences is to gate the 
+sequences coming into a^ and 0.2  so that they can cross each other. 
+The sequence %$, i^, iz, i$,  H, ^5, ... entering a^  is split into two 
+sequences by the confluent cell A4.    The clocks insert ones into every 
+even position of the upper sequence and into every odd position of the lower 
+sequence.  The odd bits -, iy,  -,  £3, -, t5, ... are allowed by the gating 
+pulses to pass along row 3 and out at h^,  while the even bits i^,  -, ^2,  -,  ^i+i 
+are allowed by the gating pulses to pass along row 6 and out at fcj. Similarly, 
+the sequence JQ, ji, J2>  J3» j\> Js>   ••• entering 02 is split, with the even 
+bits jo, -, J2» -» jit» -> ••• traveling up column C  and the odd bits 
+-> 01,  -> J3>  -> J5>   ••• traveling up column F.    The phasing of the whole 
+system is such that the sequence j0, -, j2, -, J.,  -, ... is interleaved with 
+^0 » -1 ^23  ->  i-h*  -» ••• at cel1 c6  and with -, i.,  -, i3, -, i5,   ... at 
+cell C3.    Likewise, the sequence -, jj, -, J3, -, J5, ... is interleaved 
+with io,  -, ^2. -. H> ->   ••• at cel1 ^ ancl with -, i1,  -,  t3, -, i5, ... 
+at cell F3.    For example, the sequences entering and leaving cell C6  are: 
+From the left: 0 0 1 0 1 i0 1 t2 1 ik  ... 
+From below:    0 0 0 1 JQ  I j2 I j\ 1 ... 
+Output:       0 0 0 0 0 0 j0 i0 j2 i2 jH ik   ... 
+The sequences from cells C3  and F3  are combined in cell El  to give the output 
+
+=== PAGE 24 ===
+
+18 
+Jg. J > J  ,   •••  delayed 15 units of time. Similarly, the sequences from 
+cells F3  and F6  are combined in cell H5  to give the output ig» M» ^2» ••• 
+delayed 15 units of time. In this way information passes from aj to i^ and 
+from a    to b    without any cross interference. 2    2 ' 
+This concludes our examples of organs synthesized from ordinary trans- 
+mission elements and confluent elements alone.  It should be noted that the 
+operation of these elements depends in an essential way upon their context, 
+i.e., upon the contents of neighboring cells. Whether a confluent or trans- 
+mission element receives information from or transmits information to a 
+neighboring cell depends upon what is in that cell. See, for example. 
+Figure 5. The ordinary transmission element of cell A2  receives only from 
+the ordinary transmission element of cell AS,  and hence functions only as 
+a unit delay. In contrast, the ordinary transmission element of cell El 
+receives from both cell Dl  and cell E2,  and hence is a disjunction ("or") 
+element as well as a unit delay. In Figure 6, the confluent element C6 
+operates as a wire-branching element, feeding C5  and D6,  while the confluent 
+element El  operates as a conjunction ("and" element), producing an output 
+(with two units of delay) only when it is stimulated by both Dl  and E2. 
+
+=== PAGE 25 ===
+
+rr 
+19 
+6.  CONSTRUCTION AND DESTRUCTION 
+Twenty-one states so far described (one unexcitable, four confluent, 
+eight ordinary transmission, and eight special transmission) are not suf- 
+ficient to generate all switching functions. The switching functions 
+realized by these primitives are all "positive" in the sense that they carry 
+zeros into zeros (quiescence into quiescence). Now, a negation element 
+converts a passive input (quiescence, zero) into an active output (excited, 
+one). Consequently, a negation element cannot be synthesized from the twenty- 
+one states described so far. 
+We could add a negation element to the list of primitives, but there 
+are two reasons not to do so if it can be avoided. First, it would increase 
+the number of states beyond twenty-nine. Second, when construction and 
+self-reproduction take place in a cellular automaton it is desirable that 
+the constructed automaton be completely passive, otherwise the automaton 
+being constructed may start its own construction-destruction processes and 
+thereby interfere with its construction. Moreover, we can obtain the effect 
+of negation as a by-product of the destruction and construction processes 
+which are needed anyhow. 
+There are two of these processes. The aonatruotion process (von Neumann 
+called it the "direct process") transforms the unexcitable state into any 
+of the nine passive forms Cgg, ■*,   t, <-, +, =*•, f|, «=, using the eight 
+"sensitive" or transient states SQ,  §0 , Sl> .§00, S01 , S10, S^, S000 as 
+intermediaries. The destruction process  (von Neumann called it the "reverse 
+process") transforms both passive and active forms of the confluent, ordinary 
+transmission, and special transmission states back into the unexcitable 
+state in a single time step. 
+Ordinary and special transmission states operate the same way in the 
+■MM! 
+
+=== PAGE 26 ===
+
+20 
+construction process. Consider a cell a which is in the unexcitable state 
+and which has one or more immediate neighbors which contain transmission 
+elements directed toward it. The construction process is defined by the 
+tree of Figure 9, where a "1" means that at least one of the transmission 
+elements directed toward the cell a is active. A pulse is required to 
+start the process; after it is started the process continues until cell 
+a is in one of the passive states £, -►, +, ■«-, 4-, ^>, A, *=, ||. Consider, 
+for example, Figure 10, where the sequences 1101 and 1010 are supplied 
+to cells A2  and B3.  The disjointed sequence is 1111; it carries cell 52 
+through this sequence: U, S0, Si, ^n, £00. 
+The reason for having both special and ordinary transmission states 
+is that they play opposite roles in the destruction process. A pulse 
+from an ordinary transmission state into a cell containing a special 
+transmission state changes the latter to an unexcitable state in one 
+time step. Similarly, a pulse from a special transmission state into a 
+cell containing either an ordinary transmission state or a confluent 
+state transforms that cell into an unexcitable state. These destruction 
+pulses override any pulses used for communication and computation. In 
+Figure 11, a pulse into input a  at time t  will enter cell Dl  at time 
+t + 4 and cell A2  at time t + 5 so these cells will contain unexcitable 
+elements at times t + 5 and t + 6  respectively. 
+Note that the destruction process is effective on both the active 
+and passive forms of the nine elements (£,-> , +, ■*-,  +, =*», A, •S=,J|). 
+The initial configuration of a cellular automaton may contain the active 
+as well as the passive forms of these elements; indeed, it may contain 
+any of the 29 states. On the other hand, the construction process leads 
+only to the passive forms of the nine elements (C, -> , + , -«- , + , =*, A, «*», |) 
+that is, only to 9 different states. 
+
+=== PAGE 27 ===
+
+21 
+Next we will illustrate how the destruction and construction processes 
+may be used to synthesize negation. Figure 12 shows a periodic pulser 
+which, when started, emits the sequence 10101 until it is turned off. 
+It consists of a pulser which produces the desired sequence (10101) when 
+it is stimulated by a start pulse, a repeater (cells A4, 84, AS, B5)  which 
+repeats the sequence until it is turned off, a pulser which produces a 
+sequence 11111 when stimulated by a stop pulse, and a transducer (cells 
+A2,  Bl, B2, 33)  by means of which the repeater is turned off. The sequence 
+10101 enters repeater cell A4  and cycles around the cells 34, BS, AS, A4, 
+and also out of cell 34  to the right, indefinitely. These four cells have 
+a total delay of five units. The stop pulse produces a sequence 11111 which 
+passes down channel 31-32-33  and enters cell 34.    The first pulse kills 
+C to U and the next four restore l^ to £00 v^a t'ie sequence of sensitized 
+states Sg S.j S.., and S..., the last being CQQ- This erases the sequence 
+10101 in the repeater and leaves the repeater in its original state. 
+It is clear that there is an algorithm which, when given any finite 
+sequence, will design a periodic pulser for that sequence. Larger output 
+sequences will require longer killing sequences, and the length of the 
+erasing sequence must be a multiple of five, so that the confluent cell 
+(B4) feeding the output is left in its original state at the end of the 
+stop operation. 
+A periodic pulser whose output is a repeated 1 is a binary storage 
+element or "flip-flop". Since the minimal cell cycle consists of four 
+cells and a delay of five, it must be designed to produce a sequence of 
+length five or longer. Figure 13 shows a periodic pulser which produces 
+the sequence 11111 until it is turned off, together with a gate (confluent 
+element). When PP(lllll) is on, it sends a constant stream of pulses 
+
+=== PAGE 28 ===
+
+«WBIUffS' 
+22 
+to the gate, and the signals recieved at the gate input are transmitted 
+to the gate output. When the PP(lllll) is off, the gate is closed. 
+The method used for erasing sequences in periodic pulsers can also 
+be employed in recognizers. It will be recalled that a decoder responds 
+not only to its defining sequence, but also to any sequence which "covers" 
+its defining sequence. Thus the decoder D(10101) responds to any of the 
+sequences 10101, 11101, 10111, and 11111. In contrast, a recognizer 
+responds only to its defining sequence. 
+The underlying operating principle of a recognizer may be explained 
+in connection with an example. Figure 14 shows a recognizer R^(101001). 
+Every input sequence is fed to a decoder 0(101001), which produces an 
+output pulse for any one of the eight sequences l,a^,l,a^,a^,l, 
+(where x t x t x =■(), 1}.    Since we want a final output only for 
+x - x   = x   = 0, we need to detect when any of x , x , x   are one. 12   3 12    3 
+This is done by a pulser P(1101), provided that the timing is correct. 
+Hence if there is an output from 0(101001) and none from J^(1101), we want 
+a final output from b;  while if there is an output from WlOlOOl) and also 
+from P(1101), we do not want a final output from b.    The arrangement of 
+Figure 14 provides this. If there is an output from D(101001) and none 
+from P(1101), a pulse leaves cell Gland  zig-zags down rows 1 and 2 to 
+exit at b.    But if there is an output from £(1101) in the right phase with 
+respect to   the output of J3(101001), the confluent element in cell J5 
+will stimulate the pulser JP(11111), whose purpose is to block the output 
+at cell fl.    The pulser P(1101) will respond to any input pulse, of course, 
+but the delay-length of the path from input a through 0,(101001) to the 
+confluent cell IS1, relative to the delay-length of the path from input a 
+through P(1101) to the same confluent cell J5, is such that P(lllll) is 
+
+=== PAGE 29 ===
+
+23 
+stimulated only when x^ x2j or a^ is one. The output sequence 11111 from 
+the pulser P (Hill) cycles Tl  from C through U, Sfi, S,, S,,, S,, and back 
+to CQQ. Consider the two paths from the output of D(1Ö1001) to the final 
+output b of the recognizer, one along rows 1  and 2,  the other through P(lllll). 
+The timing along these paths is such that an output from D(101001) is blocked 
+at cell Tl  if and only if xi  or xz  or X3 is 1. Hence the recognizer ^(10101) 
+produces a final output for the sequence 10101 but not for any sequence 1, 
+Xj, 1, x2,  x3, 1, where x^  or #2 or x3 ^s  1' 
+We have now finished our description of the deterministic transition 
+function governing von Neumann's 29-state cellular automaton system. We 
+will next formulate and answer some specific questions concerning the 
+logical powers of this system. 
+7.  FINITE AUTOMATA 
+Finite automata are important in their own right, and constitute the 
+bases of Turing machines, so we will first show how they can be embedded 
+in von Neumann's cellular automaton system. 
+A finite automaton is a device or system <I, V, 0, T",  X, dn>  which 
+operates deterministically as follows. At each discrete moment of time 
+(0, 1, 2, ...) it is in one of a finite set V of internal (delay) states, 
+receives any one of a finite set I of input states, and transmits any one 
+of a finite set 0  of output states. At time zero the automaton is in some 
+distinguished internal state d*.    Its transition from state to state is 
+governed by a function T from inout state and internal state to internal 
+state; T is called its transition function. The automaton's output state 
+is governed by a function X from internal state and output state to output state; 
+X is called the "output function". An example is given in Figure 16a. 
+
+=== PAGE 30 ===
+
+24 
+[This conception is used in Burks and Wright, "Theory of Logical Nets", 
+p.  1364, but without the various states being named.  It is given in Moore, 
+"Gedanken-Experiments in Sequential Machines", p.  133 and Burks and Wang, 
+"The Logic of Automata", p.  203.] 
+To represent a finite automaton in von Neumann's cellular system, 
+one marks off a finite area of the cellular space, specifies the states 
+of the cells of this area so as to make a device which simulates the 
+automaton, and sends inputs into and takes outputs from the device across 
+the boundary of this area. 
+[More generally, our original definition of a cellular automaton system 
+(Sec.  2) can be extended to include finite cellular spaces with inputs 
+and outputs along the border.] 
+Finite automata embedded in this cellular system cannot in general operate 
+as fast as finite automata in the pure or idealized sense. This is so 
+because the finite automaton of each cell is of limited capability (having 
+only 29-states), and there is at least a unit delay across the boundary of each 
+cell.   But finite cellular automata can simulate idealized finite automata. 
+In the terminology introduced later,  for each idealized finite automaton 
+there is a finite cellular automaton which is computationally equivalent 
+to it, but not in general behaviorally equivalent to it  (See Holland, 
+"Hierarchical Language").  In the following discussion we will assume 
+that the time-scale is slowed as much as is needed for the simulation. 
+For a fuller discussion of simuldtion speeds see especially Section 12 
+below. 
+In embedding a finite automaton in a cellular system there is a choice 
+as to how inputs and outputs are represented. We will assume given a finite 
+automaton,  <  I> P, (? > YJ  ^   dn>   w^th its input states coded as sequences. 
+
+=== PAGE 31 ===
+
+25 
+each successive sequence starting at  time kt + m,  where k and m are  integers 
+to be chosen on the basis of the time-delays of the simulating cellular automaton 
+The given finite automaton can be simulated in von Neumann's cellular 
+system in the manner of Figure 16.    Each input state i t I is represented 
+by a recognizer R(^) which produces a single pulse when the sequence 
+representing  input  state'   I is received as   input.   Each internal state 
+d e P is represented by a periodic pulser PP(11111), which is turned 
+on to represent the given finite automaton being in state di  initially 
+the periodic pulser representing d    is turned on.    Each output state o 
+represented by a pulser P(0) which produces, when stimulated,  a sequence 
+to represent 0.    The transition function and output function are rep- 
+resented by confluent elements functioning as  gates  ("and" elements), 
+to detect coincidences between periodic pulsers representing internal states 
+and pulses representing input states.  The outputs of the coincidences 
+go to produce the desired output state,  and,  if a new internal state is 
+called for,  to turn off the PP(lllll)  representing the new input state. 
+All these organs  are interconnected by means  of a coded channel. 
+(The cellular automaton design described here is that of the decoded 
+normal form net,   Burks  and Wang,  "The  Logic of Automata", p.   281.   A 
+variant of the simulation method of Figure  16 is described in von Neumann's 
+Theory of Self-Reproducing Automata,  Sec.   5.1.3.) 
+We will  explain the operation of this device for two cycles.   Suppose 
+the system represents  external state   d   when a sequence representing  I 
+is received,   followed   (after a suitable delay), by an input representing 
+-^•1  .    The sequence representing    iy will be recognized by R(^o)> which 
+will  send a pulse into the coded channel  at CZQ.     This will exit  at both the 
+upper and lower b0  exits, having an effect  only   in the first case.   At 
+
+=== PAGE 32 ===
+
+26 
+the upper exit it will pass through the conjunction ("and" switch) gated 
+by the upper PP(lllll), and will enter the coded channel at a ,  exiting a 
+i and stimulating P(0o) t0 produce the output sequence representing output 
+state ^o- Thus internal state "0and input state ^l produce output state 
+Ooand next internal state ^Q. 
+After the simulation of this transition is finished, the sequence 
+representing ^l will be received and will be recognized by R^ ), which 
+will send a pulse into the coded channel at a . This will exit at both 
+the upper and lower b    exits, again having an effect only in the first case. 
+Here it will pass through the "and" gate and enter the coded channel at 
+a    (to exit at b    and start the internal state^ 1  at a (to exit at h 
+and stop the internal state ^ ), and a (to exit at b    to simulateJP(Ö) 
+to produce the output sequence representing 0 ). Thus the internal state 
+^ and input state :    produce output state 0    and the next internal state 
+In this cellular simulation of a finite automaton each successive input 
+sequence starts at the time kt  + m;    the integer m  of the formula kt + m 
+can be zero, but k  must be chosen so that in the worst case the system 
+can change its representation of the present internal state before the 
+representation of the next internal state enters the system. The sequences 
+representing output states will start at times kt  + n,  where n  is an integer 
+depending on the transit time of the simulating system. 
+The foregoing should suffice to show that any finite automaton can be 
+simulated in von Neumann's cellular system, given a suitable representation 
+and timing of input and output states. Actually, a considerably stronger 
+result is inherent in the foregoing construction. For with the exception 
+of the periodic pulser PP(lllll) which represents internal state "Q 
+
+=== PAGE 33 ===
+
+27 
+all of the cells of the automaton of Figure 16 are initially quiescent. 
+Moreover,  this automaton can be modified so that this PP(lllll)  is  initially 
+quiescent and is started by a pulse injected into the automaton from the 
+outside.    This leads to the following definition. 
+An initially quiescent automaton is a finite area of the cellular 
+structure,   every cell of which is  in one of the ten quiescent states J,], 
+->,   tj  •<-,   •l-,=s>i A. **=, |1,  and £    .     It is easy to arrange for an initially 
+quiescent automaton to be started by a stimulus at its periphery, and we 
+will assume that this is done. 
+The method of construction illustrated in Figure 16 shows that the 
+following is the case.    For every finite automaton,  there is an initially 
+quiescent aellulav automaton whiah aan simulate it. 
+It should be noted that the crossing organ of Figure 8 is not initially 
+quiescent,   since it contains five "clocks"  (Fig.  8b) which must be operating 
+before it can operate.    Moreover,  one of these clocks is in the center,  so 
+that the crossing organ cannot be started by a stimulus on its periphery. 
+In this respect the coded channel  is  superior to the real time crossing 
+organ. 
+(One can use a real time crossing organ in an in an initially quiescent 
+automaton in the following way.    Construct the quiescent part of the crossing 
+organ,  except for a path to the center clock.    Then add pulsers to 
+complete the construction and start the organ.    The starting stimulus 
+to the whole automaton must stimulate these pulsers, which then complete 
+and start  the crossing organ.    See von Neumann,  Theory of Self-Reproduaing 
+Automata,   pp.   264-5.) 
+There  is another method of simulating an arbitrary finite automaton, 
+which involves constructing only one  finite automaton.    This method is to 
+
+=== PAGE 34 ===
+
+T^ 
+28 
+construct or embed a universal Turing machine in the cellular system. 
+Since a universal Turing machine can simulate any automaton,  a fortiori, 
+it can simulate a finite automaton,     toreover,  when it  simulates  a finite 
+automaton it need use only a finite amount of its  tape,  and hence is 
+also a finite automaton. 
+We will sketch the construction of a universal Turing machine 
+in Section 8.     It turns out that the most efficient method of operating 
+the tape involves a constructing arm which can be used  for general 
+construction purposes as  well as part of a tape unit.     We therefore 
+explain this constructing arm next. 
+8.     CONSTRUCTING ARM 
+The constructing arm is used both for the process of construction 
+(see Fig.   17)  and for operating an indefinite tape   (see Fig.   18).    We 
+will  first explain how it   is used to construct  a  finite,   initially 
+quiescent automaton. 
+The general arrangement   is  shown in Figure   17.     Appropriate sequences 
+of ordinary pulses are generated in the constructing device and fed into 
+the input s   (through a confluent state C)  and the  input o of the con- 
+structing arm.    These signals  cause the head of the constructing arm 
+to sweep backwards and downwards over the area a  -   ß,   leaving each cell 
+of this  area in the desired state. 
+The construction is  carried out by the head of the construction 
+arm,  shown in Figure 18a  in normal  form.    Signals  for construction 
+and destruction are sent  alternately through the ordinary transmission 
+elements and the special  transmission elements.    The constructing arm 
+can be advanced either horizontally or vertically.     It can also be 
+
+=== PAGE 35 ===
+
+29 
+retracted either horizontally or vertically, leaving cells y and 6 
+in any of the ten quiescent states U, Cloo » ->, +, *-, +, =*■, |, «*=, 1- 
+The actual binary (pulse-no pulse) sequences needed for construction 
+and destruction are derivable from Figures 9 and 15.  For purposes of 
+comprehension, however, it is best to replace these sequences by a 
+representation of their effects. We will explain this notation in 
+connection with the passage from Figure 19a to Figure 19b. The starting 
+configuration is given in Figure 19a.  The following sequences are fed 
+into input s  or input s    via special transmission or confluent states: 
+1110 changes cell Cl  from U to | 
+1101   "     " C2      " U " **= 
+1      "     " B2      " + " U 
+" U " ->■ 
+10000 II   DO 
+The result is Figure 19b. Rather than writing this sequence as 
+"1110 1101 1 10000", however, we write it as " (| U ". 
+Figures 19 and 20 specify the sequences needed for advancing the 
+constructing arm by one cell. Figures 21 and 22 specify the sequences 
+needed for withdrawing the constructing arm and leaving two cells, 
+Y, 5 in one of the ten quiescent states U, Gn , "* , ^ , "•" , + ,=^, jf. "*=, ||. 
+The actual binary sequence needed for y  and 6 is obtained from Figures 
+9 and 15, as before. 
+Because construction proceeds from top to bottom and from right 
+to left, the lower left hand corner is completed last.  It is therefore 
+convenient to stipulate that an initially quiescent automaton be started 
+by injecting a symbol into its left-most, lowest cell, from beneath. Figure 
+23 shows how this is accomplished. 
+This completes our discussion of the five operations of the con- 
+structing arm: horizontal advance, vertical advance, horizontal retreat 
+
+=== PAGE 36 ===
+
+30 
+with y-6,    vertical  retreat with y-&, and injection of the starting 
+stimulus.    These operations suffice for the construction of any 
+initially quiescent automaton in the first quadrant, assuming that the 
+required sequences  are supplied to the input of the constructing arm. 
+A crude way in which these sequences  can be obtained is by making 
+the constructing device consist of a row of special transmission states 
+feeding input s   (Fig.   17)  and a row of ordinary transmission states 
+feeding input   o.   By choosing the proper sequence of quiescent and active 
+states in each case,  one can obtain any  desired finite, binary  (pulse) 
+sequence.    Since the automaton to be constructed is finite, the pulse 
+sequences needed for its construction are also finite.    Consequently, 
+for each finite initially quiescent automaton A there is a finite non- 
+quiescent automaton B which will construct A. 
+Of more interest is a constructing automaton which is itself initially 
+quiescent.    Such an automaton will be discussed in Section 10.    But 
+since it contains the essentials of a universal Turing machine, we will 
+explain next how to embed a Turing machine  in von Neumann's cellular 
+system. 
+9.     UNIVERSAL COMPUTER 
+A Turing machine consists of a finite automaton operating on an 
+indefinitely extendable tape. 
+[Turing,  "On Computable Numbers, with an Application to the 
+Entscheidungsproblem." ] 
+In the usual arrangement, the tape and the finite automaton move 
+relatively to each other; usually the tape is viewed as moving back 
+and forth past the finite automaton, but occasionally the finite automaton 
+is viewed as moving back and forth along the tape.    In both cases the 
+
+=== PAGE 37 ===
+
+31 
+information on the tape moves relative to the finite automaton.     In the 
+cellular system both the tape and the finite automaton are  "by nature" 
+at  rest,   so  it is best  to connect  them by a loop which can be extended 
+or contracted. 
+[One could embody the usual  arrangement by designing the  finite 
+automaton so that it constructs  an indefinitely long shift  register 
+(adding new stages as needed)   and shifts the information in the register 
+back and forth.    This  is done in  Burks,   "The Logic of Fixed and Growing 
+Automata"  and "Computation,   Behavior,  and Structure in Fixed and Growing 
+Automata".] 
+The arrangement is shown in  Figure 24.    The "tape"  itself consists 
+of an infinite  linear array of cells  leading off to the right;  this is 
+row 3  in the  figure.     "Zero"  is  represented by the unexcitable state  (U) 
+and "one" by an ordinary transmission state directed downward   (I). 
+In an initial  cell assignment  for the cellular system only a finite number 
+of cells  are  in a state other than the unexcitable  (U),  so that initially 
+(and hence also at any subsequent  time)  only a finite number of cells 
+(squares)   of the tape will  register "one". 
+The  following five tape operations are clearly sufficient  for all 
+computational purposes:     reading,  writing "one" and  lengthening the 
+reading  loop by one cell, writing  "zero" and lengthening,  writing "one" 
+and shortening,  and writing "zero" and shortening. 
+Reading is accomplished by means of the reading  loop,  which consists 
+of rows  1}   column ^(including the cell under scan)  and row 4 of Figure 
+24.     To read the contents of cell x  , we inject the sequence 10101 
+into entry y.     This sequence passes  alon.   row 1  and down into cell x . 
+There are now two cases  to consider.     If cell x    is  in U   (representing 
+a "zero") ,   the sequence 1010 converts  it  into an ordinary transmission 
+
+=== PAGE 38 ===
+
+32 
+State directed downward  (I),  and the  final  1 of the sequence  10101 
+returns down row 4 and out exit w  .     If cell x    is in +  ,  the complete 
+sequence 10101  returns down row 4 and out exit w .    Thus an output from 
+w    of 2  indicates that x =U, while an output of 10101  indicates that 
+x =1.    This readout procedure is destructive, since cell x    is  left  in n r n 
+state ■*•  in either case  (Fig.   24b).    The old value of x    is restored, 
+or a ne« value  is  inserted,  during the process of lengthening or shortening 
+the reading loop. 
+Changing the length of the reading  loop, and recording the new bit 
+in cell x ,   is  accomplished by means of the constructing arm, which 
+consists of rows I and 2 of Figure 24.     Note that row i  is part of the 
+reading loop as well as part of the constructing arm.    The constructing 
+arm used to modify the tape is the same as that used for construction 
+(see the previous section),  except that the ordinary transmission 
+elements are  located above  (rather than below) the special  transmission 
+elements.    The routine for writing "one" in cell x    and lengthening the 
+reading  loop  is  given in Figure 25,  where the notation of representing 
+a binary sequence is represented by its  effects,  as before.     Note that 
+modifications  in the bottom row of the unit are made through the cell 
+x   before this  cell is left in its  final state; no other cell  of the 
+tape is disturbed.    Note also that since "one" is represented by +   , the 
+process ^f writing "one" and lengthening  (or shortening)  is the same as 
+lengthening   (or shortening).  The other three cases  (writing "zero" 
+and lengthening, writing "one" and shortening, and writing "zero" and 
+shortening)  are handled similarly. 
+In the process described by Figure 25, binary sequences are fed 
+first into u  ,  then into v ,  into u again, and finally into v again. 
+
+=== PAGE 39 ===
+
+33 
+The two successive sequences  into u can be combined into one long 
+sequence by inserting zeros during the moments when input y is being 
+used,  and similarly for the alternate sequences   into v.    Consequently, 
+the operation of writing "one" and lengthening can be accomplished 
+by feeding two long sequences  into u and y in parallel.    These sequences 
+can be generated by two pulsers, one feeding input y and the other 
+feeding input u. 
+Let us now summarize the organs needed for our five tape operations. 
+Four pulsers feeding u and four pulsers  feeding y are needed for the 
+four operations of writing "zero"  (or"one")  and lengthening  (or shortening) 
+One pulser 10101 feeding v is needed for reading cell x.. One recog- 
+nizer is needed to recognize the sequence 00100   (i.e.,a;     =0 )    and 
+another to recognize the sequence 10101   (i.e.,   x     =1  )> both of these 
+n 
+recieve the output  from w.    Thus nine pulsers and two recognizers are 
+needed to operate the tape,  its reading loop,  and its construction arm. 
+This completes our brief explanation of how to embed an indefinitely 
+expandable tape in a cellular system, how to establish contact with 
+an arbitrary square  (cell)  of the tape,  and how to read from and write 
+in this cell. 
+We now have the essential ingredients  for embedding a Turing machine 
+in von Neumann's  cellular system.    In Section 7 we saw how to con- 
+struct an arbitrary finite automaton in this system,  and we see now 
+how to construct and use an arbitrarily  long tape.     It remains to 
+combine these two entities. 
+The general arrangement  is shown in Figure 26.     The operation of 
+the tape, constructing arm  (for lengthening-shortening and writing), 
+and reading loop have been explained.    This operation is directed 
+by nine pulsers and two recognizers, which constitute part of the tape 
+
+=== PAGE 40 ===
+
+34 
+control.    To obtain the rest of the tape control, we must add organs 
+to control these pulsers on the basis of information received from 
+the recognizers according to the particular finite automaton operation 
+that  is desired.    Let " be the set of the internal states of the finite 
+automaton controlling the tape.     Each internal state d z V  is represented 
+by a periodic pulser PP(lllll),  as  in Figure 16.    At each stage one of 
+these periodic pulsers is on;  the system starts operation when the 
+periodic pulser representing the initial state J    is turned on and the 
+pulser P(10101)  is stimulated to  inaugurate the reading cycle.    The 
+outputs of the two recognizers representing x   = 0 and x   = 1 are gated 
+via confluent cells against the outputs of the internal state periodic 
+pulsers to determine the next operation.    According to the specific 
+transition function x of the finite automaton being simulated,  a next 
+state d z V  is selected, one of the four operations  lengthen-shorten 
+and write "zero"-write "one" is selected, and after a suitable delay 
+the pulser P(10101)  for reading the next tape square is stimulated. 
+This whole sequence is iterated indefinitely. 
+The foregoing sketch indicates  in a general way how,  given any 
+Turing machine M , we can embed in the 29-state cellular structure 
+an initially quiescent automaton which performs the same computations 
+as    M.   Since this is so for any Turing machine,  it is a fortiori so for 
+a universal Turing machine  (universal computer).    The full design for 
+a universal Turing machine is given in Thatcher's "Universality in 
+the von Neumann Cellular Model". 
+(An earlier design is given in von Neumann's Theory of Self- 
+Reproduoing Automata,  Part II, Chapters 3-5.) 
+
+=== PAGE 41 ===
+
+35 
+Hence we conclude: For any given Turing maahine M (and hence for a 
+universal Turing maahine M )3  there is an initially quiescent automaton 
+in von Neumann's 29-state cellular automaton system which will perform 
+the same computation as M (or M ).    As von Neumann expressed this 
+result, his cellular space is "logically universal". 
+The next step is to extend this result to obtain a corresponding 
+result for universal construction. 
+10.  UNIVERSAL CONSTRUCTOR AND SELF-REPRODUCTION 
+Let us return for a moment to von Neumann's kinematic self-re- 
+producing automaton.  In the kinematic system we start with an environ- 
+ment containing an unlimited supply of computirg, kinematic, cutting, 
+fusing, rigid, and sensing elements. We introduce into this environ- 
+ment a constructing automaton which is itself composed of these parts 
+and which contains an explicit plan of some desired automaton. The 
+constructing automaton proceeds to collect parts and construct the 
+desired automaton from these parts according to its explicit plan. 
+It is instructive to view this whole process in terms of the 
+states of the system. The original environment is more or less uniform, 
+homogeneous, and unorganized. We introduce a constructing automaton 
+containing the plan of a secondary automaton; this amounts to putting a 
+finite area of the space (i.e., the space occupied by the constructing 
+automaton and its plan) into a certain "state".  The constructing 
+automaton then organizes another area or region of the space according 
+to the plan of the secondary automaton; in other words, it puts a certain 
+secondary area into the state specified by the plan. If the constructing 
+automaton contains its own plan, the area of the secondary automaton 
+
+=== PAGE 42 ===
+
+Mi) Jü"" I, 
+36 
+is, at the end of the process, in the same state as the area of the 
+constructing automaton was at the beginning of the process. This is 
+self-reproduction in the kinematic model. 
+The corrseponding situation on the cellular model is this. We 
+begin with an infinite, uniform cellular system of 29-state automata, 
+each automaton being in the unexcitable state U.  We then organize by 
+fiat a finite area of this space so that the area constitutes a con- 
+structing automaton which contains the plan of a secondary automaton; that 
+is, we put a certain area into a certain state. The constructing automaton 
+then sends out a constructing arm which organizes another area according 
+to the plan of the secondary automaton; that is, it puts a certain 
+secondary area into the state specified by its plan. If the constructing 
+automaton contains its own plan, the state of the secondary area at the 
+end of the process is the same as the initial state of the area occupied 
+by the constructing automaton. This is self-reproduction in the cellular 
+system. 
+A universal constructor which is initially quiescent is shown in 
+Figure 27. It is composed of two units, each consisting of a finite 
+automaton and an indefinitely expandable part. The first unit is a 
+tape unit, which can store information on, and read it from, an 
+indefinitely extendable linear array of cells, or tape. The tape unit 
+itself consists of two parts: a finite tape control; and an indefinitely 
+long tape, together with its reading loop and constructing an», The tape 
+unit is a kind of Turing machine; see Fig. 25. The second unit of 
+the universal constructor is a constructing unit, which can carry out 
+the construction of any quiescent automaton whose description is on 
+the tape. The constructing unit also consists of two parts: a finite 
+construction control, and an indefinitaly long constructing arm. 
+
+=== PAGE 43 ===
+
+37 
+A description of the automaton to be constructed is stored in explicit 
+form on the tape of the universal constructor. Under direction of the 
+construction control, the tape control reads the description from the tape 
+and transmits it to the construction control. Using this description, 
+the construction control sends signals into the constructing arm to bring 
+about the construction. 
+The automaton to be constructed is to be initially quiescent, which 
+means that it can be explicitly described by giving the desired quiescent 
+state of each cell (y, +,  f, ^, +,=>■, A, .*=. |. 0T $00) •    T*16 limitation 
+to in i :il y quiescent automata should be noted. There are finite con- 
+figuration (areas of cells, each of which is in one of the 29-states) 
+which are not initially quiescent and are nevertheless constructible. For 
+example, one could easily construct a loop of active ordinary transmission 
+elements, each of which feeds its successor. But there are also finite 
+configurations (not initially quiescent) which are not constructible. A 
+simple example is a sensitized state SQ surrounded by a band of cells 
+in state C  . Since confluent states do not construct, this configuration •-«00 > e 
+can exist only at time zero and hence is not constructible.    Another example 
+is S surrounded by  (eight) cells  in state C^Q-    This can exist only at 
+times 0,  1,   2, or 3,  and is not constructible. 
+Moore and Myhill establish an interesting result related to construct- 
+ibility in those cellular structures  in which information requires at least 
+one time unit to pass from    a cell to any of its eight bordering cells. 
+Von Neumann's 29-state cellular structure is clearly one of these structures. 
+Moore speaks of a finite area of cells in some state  (i.e., with an ass- 
+ignment of a state to each cell)  as a configuration, and calls a configuration 
+which can exist only initially  (i.e.,  at time zero), a "Garden-of-Eden" 
+configuration.    Since construction takes one or more time steps, every 
+
+=== PAGE 44 ===
+
+38 
+Garden-of-Eden configuration is non-constructible. The converse is not the 
+case, as our example of S„„„ surrounded by cells in state €„„ shows. Moore 
+and Myhill establish a necessary and sufficient condition for existence of 
+Garden-of-Eden configurations in cellular structures of the type they consider. 
+The condition is essentially that the cellular structure be non-baakwards 
+deterministic,  that is, that a given state of an area can be derived from 
+two or more preceeding states. 
+[The concept of backwards determinism is defined in Burks and Wang, 
+The Logic of Automata,  Sec. 3.3.] 
+Actually, one must modify this concept to take account of the influence 
+of the environment on the edges of an area; Moore uses the term "erasable". 
+Von Neumann's 29-state cellular structure is clearly not backwards determin- 
+istic, for the configuration consisting of 4-^ surrounded by a wide band 
+of U's leads to all U's (except at the edges), as does also a configuration 
+consisting of all U's. 
+Before leaving this topic we note that the restriction to initially 
+quiescent automata is no restriction as far as computation (for either 
+finite automata or Turing machines) is concerned. The fact that not all 
+configurations can be constructed in von Neumann's cellular structure is 
+analogous to the fact that not all finite automaton behaviors are realizable 
+in the cellular structure, because of the limited capability of each cell 
+together with the delay between cells. 
+We return now to the task of designing a universal constructor. The 
+following conventions may be adopted without any essential loss of generality. 
+The constructed automaton is to occupy a rectangular area of width a and 
+height S, where g is an even integer. The desired cell states are designated 
+Ann '^m » *"• A      > anc* are t0 ^ arranged on the tape in reverse order 
+from which they are to be used. The lower left-hand corner of the cor^tructed 
+
+=== PAGE 45 ===
+
+39 
+automaton is to be located at point xQi  z/0. Moreover, the constructed 
+automaton may be started by injecting a stimulus into cell x j y    from 
+below (see Figure 23). The tape contents are then as follows: a period, 
+the origin  point xQ, ij ;  the dimensions a, 3; an enumeration of the states 
+of the cells X n , X , X , A.,,..., X       ; and a terminal asterisk. 00  10  ül  n      a-i , B-i 
+The construction control must execute the following program or 
+algorithm to construct the secondary automaton specified by the tape contents. 
+(1) The construction control orders the value of x^  read and sends pulse 
+sequences into the constructing arm for x * 2  horizontal advances. 
+It then orders the values of y     and gread and sends pulse sequences 
+into the constructing arm for z/ + 3 vertical advances. The head of 
+the constructing arm is now in the upper right-hand corner of the 
+construction area so that construction may begin. 
+(2) The construction control then iterates the following operation ß/2 
+times: 
+(a) A horizontal advance of the constructing arm a-2 times 
+(b) A horizontal retreat with construction of y and 6, for a-2 times, 
+with the specification of y and 6 coming from the values of the ^'s 
+stored on the tape. 
+(c) A vertical retreat with construction of y and 6, for two times, 
+with the specification of y and 6 coming from the appropriate 
+A's stored on the tape. 
+This completes the construction of the area ot-ß. 
+(3) The construction control next orders a single horizontal retreat and 
+then injects the starting signal into the left-most, lowest cell of 
+the constructed automaton (see Fig. 23). Following this the constructing 
+control executes y^   vertical retreats and then x + 2 horizontal 
+
+=== PAGE 46 ===
+
+40 
+retreats tc return the constructing arm to its  initial position; 
+in each of these retreats both   Y and 6  are to be blank  (U). 
+This completes our sketch of the algorithm or program for the 
+construction of an arbitrary finite initially quiescent automaton.    We 
+have not gone into details on such matters as how the numbers x   ,^   , a , 
+and   ßare represented on the tape and how the construction control keeps 
+track of what it is doing.    While there are many such small problems,  there 
+are standard ■»■ thods in the computer art for solving them. 
+The construction control can be designed by translating this algorithm 
+into a finite automaton,  and then designing a cellular automaton to 
+simulate the resultant finite automaton, using the method given in Section 
+6  (c.f.  Fig.   16). 
+Since a standard Turing machnie consists of a finite automaton attached 
+to a tape,  it is desirable to allow any automaton which is to be constructed 
+to have these two parts,  and so we will provide for the following three 
+cases. 
+\,1)    Tae case already discussed,  to wit:    The quiescent automaton to 
+be constructed is a finite rectangular machine M,     Its description Q (/u)   is 
+placed on the tape of the universal constructor preceded by a period and 
+followed by an asterisk,  as  in Figure 27.    The universal constructor reads 
+V (M) and makes M, and then starts M by injecting a starting stimulus  into it 
+at a standard position, 
+(2)    Let the description VW  of the desired quiescent automaton M be 
+placed on the tape of tne universal constructor,  followed by a diamond, 
+followed by the contents T(A0 of the tape to be attached to M, followed by 
+a concluding square.    The universal constructor will execute the description 
+V (A0 and thereby construct machine M, as before.      Seeing the diamonrl, 
+it will proceed to construct a tape with contents  TiM) and attach it to 
+
+=== PAGE 47 ===
+
+41 
+M at some standard place; see Figure 28. More specifically, the tape will 
+contain a period, followed by T (Af), followed by a concluding square. After 
+the tape has been constructed, the constructing arm will return to the 
+constructed automaton M and give it a starting signal. Note that the tape and 
+its contents coistitute a quiescent automaton of rectangular shape, just as 
+M   does, so that essentially the same technique can be used to construct a 
+tape with contents T [M)  as was used to construct M  . The tape is a special 
+case in that it is only one cell wide, and contains only the two states j^ 
+and I. 
+(3) As a special case of the preceding we will allow the description 
+P 0/) to be copied into the tape of M.     For this operation, the following 
+is placed on the tape of the universal constructor: a period, the description 
+PCVJ . and a concluding square. The universal constructor executes V (M)  and 
+lukos .'/, then makes a tape with the contents "period- V (Af) - square" by 
+copying P (/•/), and finally starts machine M. 
+Let the universal constructor be designated "A/ ". We then have the a 
+following result concerning the construction universality of our cellular 
+system. There aan be embedded in von Neumann's 29-state aellular automaton 
+system a universal aonstruator li   with this ability:    for each initially 
+quiescent automaton M with tape contents T (M)  there is a coded description 
+V(M) of M such that,  when V(M) and    T(M) are placed on the tape attached to 
+M ,  M   will construct M} will attach to M a. tape with contents T fM)3  and 
+will activate M . 
+Self-reproduction now follows as a special case. See Figure 29. 
+Put the following on the tape of the universal constructor M  :    a period, 
+P (A/ ), a square. The unviersal constructor executes P (Af ) and thereby 
+constructs M ,   it next copies P (Af ) onto the tape of the newly constructed 
+M  , and finally it activates the new M .    We began with M    and tape P (Af ). 
+
+=== PAGE 48 ===
+
+mg* 
+42 
+After the constructor is finished the cellular structure contains a second 
+copy of M   and tape p (;./ ). This is automaton self-reproduction. Hence an 
+automaton which reproduces itself can be embedded in von Neumann's 29-state 
+cellular automaton system. Iterated construction and iterated self-reproduction 
+can be achieved by obvious modificatiors of the universal constructor. 
+This result is obviously substantial, but to express its real force 
+we must formulate it in such a way that it cannot be trivialized. Consider, 
+for example, a two state cellular system whose transition function takes 
+a cell into state "one" when any of its neighbors is in state "one". Define 
+an automaton to be any area, even a single cell. A cell in state "one" 
+then "reproduces itself" trivially in its neighboring cells. Clearly, what 
+is needed is a requirement that the self-reproducing automaton have some 
+minimal complexity. This requirement can be formulated in a number of ways. 
+We will do it by requiring that the self-reproducing automaton also be a 
+Turing machine. 
+Since a universal Turing machine or computer can be embedded in 
+von Neumann's cellular system (Fig. 26), such a machine can easily be 
+combined with the universal constructor. When the description of this 
+combined machine is placed on its own tape, followed by a square, it 
+will produce a copy of itself. Hence, there can he embedded in von Neumann's 
+29-state aetlular automaton system a universal aonstmator-aomputev which 
+is self-reproducing. 
+We conclude that von Neumann's cellular automaton system is 
+computation-universal, construction-universal, and self-reproductive. 
+In this system, self-reproduction is a special case of construction, and 
+construction and computation are similar activities. 
+
+=== PAGE 49 ===
+
+43 
+11.  KINEMATIC AND CELLULAR SELF-REPRODUCTION 
+A brief comparison of von Neumann's two kinds of self-reproducing 
+automata may increase our understanding of them.  Both are automata, 
+being composed of computer or computer-like primitives.  Both exist in 
+environments made of the same elements as themselves, differing from 
+their environment only in tha they are "organized", while the environment 
+is not. 
+The most basic and important difference between the kinematic and 
+the cellular automata systems is in the treatment of motion. The primitive 
+elements of the kinematic system are capable of motion, while each finite 
+automaton of the cellular system is fixed to its cell and cannot move. 
+[Myhill, in "The Abstract Theory of Self-Reproduation"J  discusses a 
+system which combines features of both. ] 
+The processes which are achieved in the kinematic system by means of motion 
+are achieved in the cellular system by transmitting information from cell 
+to cell so as to realize the desired change of state. For example, in the 
+kinematic system a finite automaton is constructed by collecting the needed 
+parts, moving them into position, and soldering them together, while in 
+the cellular system a finite automaton is constructed by sending out a 
+communication channel (the constructing arm) and changing the state of a 
+cellular area by means of signals sent through this channel. The difference 
+is brought out by observing that in the kinematic system, self-reproduction 
+results from (is a special case of) organized motion, whereas in the cellular 
+system, motion is a special case of self-reproduction.  To move an object in 
+cellular space we "merely" make a copy of that object in the new location 
+and then destroy the original. 
+
+=== PAGE 50 ===
+
+44 
+As far as studies of logic and automata theory are concerned, the 
+cellular system is superior to the kinematic system just because it does 
+not include motion as a basic operation. Motion is not a proper object 
+of study for logic, and as we noted in discussing von Neumann's passage 
+from the kinematic to the cellular system, the motional aspects of the 
+kinematic system complicate it from the point of view of logical analysis. 
+Viewed abstractly, the processes of computation, self-reproduction, and action 
+are changes in the state of a system. In both the kinematic and the 
+cellular system we are only simulating these processes. Hence, the 
+ability to represent states and changes in them is the important thing, 
+not the type of entity (kinematic element versus cell) which possesses 
+the state. Since the detailed analysis of self-reproduction is facilitated 
+by the absence of motion from the cellular system, it is superior to the 
+kinematic system for von Neumann's purposes. 
+One minor difference between the two systems should be noted. The 
+kinematic system has a random or probabilistic feature, while the c&llular 
+system does not.  But randomness does not play an essential role in the 
+kinematic system.  It is used only as a device for making all the parts 
+accessible to a constructing automaton, and alternate schemes are possible. 
+For example, the parts could be arranged systematically and the constructing 
+automaton could move to the parts it needs. 
+[Von Neumann did recognize the importance of probabilistic automata 
+and felt that an adequate theory of automata should cover them as well 
+as deterministic automata. He discussed the question "How can reliable 
+systems be constructed from unreliable components?" at length (see Burks, 
+"Toward a Theory of Atuomata Based on More Realistio Primitive Elements"), 
+and he hoped ultimately to study self-reproduction and evolution in a prob- 
+abilistic cellular system (Theory of Self-Reproducing Automata, p. 99).] 
+
+=== PAGE 51 ===
+
+45 
+The remaining difference between the two automaton systems concerns 
+the number of primitive elements in each. The cellular system has a single 
+primitive, the finite automaton located in each cell, whereas the kinematic 
+system has nine kinds of primitive elements, three elements which switch 
+("and", "or", and "not"), and elements which delay, move (kinematic element), 
+cut, join (fusing element), sense, and provide structure (rigid el&ment). 
+This difference is not fundamental, however, because conceptually one could 
+combine all of these into a single element capable of all functions. 
+The various types of primitives of the kinematic system dö correspond 
+to functions to be performed in the system, and it is instructive to see 
+how these functions are performed in the cellular system. From this point 
+of view the nine primitives fall into four distinct classes. 
+First, the variable structures made possible by the rigid elements 
+(girders) of the kinematic system are replaced by the underlying fixed 
+structure of the whole cellular system. 
+Second, the switch and delay functions performed by the computing 
+elements of the kinematic system are performed by the 29-state automata 
+located in the cells of the cellular system; each of these automata could 
+itself be synthesized from these elements. The context of a cell (that is, 
+the states of its immediate neighbors) is essential in determining what 
+switching and delay functions a 29-state automaton is performing. Within 
+appropriate contexts, the following comparisons are valid. The confluent 
+states £ , C.    ,  C , C  perform the functions of conjunction, double-delay, 
+and branching. The ordinary transmission states-*-,;*■ , "^ , •',', "^ , t, + ,"^ 
+perform the functions of transmission, disjunction, and unit delay; these 
+states can recieve from and transmit to the comfluent states. The special 
+transmission states =s>, =*■, A, .A, ««=, <*=, ||, '§   also perform the functions 
+of tr. nsmission, disjunction and delay, but while they can recieve from 
+
+=== PAGE 52 ===
+
+■ ■ ■ mucsBimr. 
+46 
+confluent states they cannot transmit to them. 
+Von Neumann's kinematic and cellular computer elements have this in 
+common: they are passive in the sense that they produce no output until 
+stimulated. Consequently, negation can only be realized in the kinematic 
+system if there is a source of pulses (a "clock") available, and negation 
+is realized in the cellular system by means of the destructive ("killing") 
+process. In other words, negation is not a primitive in either system 
+and can only be synthesized by rather indirect means. Von Neumann wanted 
+his computing primitives to have this characteristic so that the constructed 
+automaton would remain quiescent during the construction process. He rec- 
+ognized that a partly constructed automaton which was active could inter- 
+fere with, and even prevent the completion of, the construction process. 
+He thought there were interesting analogies here with the semantic paradoxes 
+of mathmatical logic. 
+[See Theory of Self-Reproduaing Automata,  pp. 121-126.] 
+Third, let us consider how sensing is achieved in the cellular system. 
+The content of a tape cell is sensed during the process of reading the 
+tape (Sec. xy). What is actually sensed is whether the cell is in state 
+U or in state ■*■; this difference is, of course, sufficient for purposes 
+of storing information in the cell. The method is to send a sequence 10101 
+around the reading loop and through the cell to be read (Fig. 24), and to 
+note whether the output of the reading loop is 1 (in which case x    = U) or 
+10101 (in which case x    = +). Not every state of a cell can be detected 
+or sensed in the cellular system, but this makes no real difference to the 
+computational or constructive powers of the system. 
+Fourth and last, let us consider how the functions performed by the 
+kinematic, fusing, and cutting elements of the kinematic automaton system 
+
+=== PAGE 53 ===
+
+47 
+are achieved in the cellular automaton system.  In the kinematic system 
+these elements are used to construct automata from primitive elements, 
+modify automata (as when the contents of a tape are changed), and destroy 
+(dis-assemble) automata. These functions are simulated in the cellular 
+system by changing the states of the cells in a given area. This is 
+accomplished by sending out a constructing arm, sweeping the area with it, 
+and "writing" the desired state in each cell.  Both the constructive process 
+(changing U into a passive confluent or passive transmission state) and the 
+destructive process (changing a confluent or transmission state back to U) 
+play essential roles in this process. 
+12.  HEURISTICS OF CELLULAR SPACES 
+So far we have considered only one particular cellular automaton 
+system, which von Neumann defined for the purpose of investigating some 
+organizational and programming aspects of self-reproduction (Sees. 3-10). 
+But the concept of a cellular automaton is very broad, allowing many basic 
+variations from von Neumann's system. We can change the geometry of the 
+space and the neighborhood relation; we can consider indeterministic and 
+probabilisitc transition functions as well as deterministic ones; and we can 
+even consider non-homogeneous neighborhood relations and transition functions. 
+The concept of a cellular automaton system is thus a very rich one. 
+Its essential features are a quantized time and space, a finite number of 
+possible states for each point of space-time, and a computable local trans- 
+ition function or law (not necessarily deterministic or uniform over space) 
+governing the operation of the systen through time. Many natural systems 
+can be fruitfully approximated and simulated in a cellular framework.  The 
+chief theoretical restrictions are two in number.  First, the natural system 
+to be studied m«. 5t be governed by a local law so that it can be represented 
+
+=== PAGE 54 ===
+
+48 
+by a finite transition function.    This precludes the use of cellular 
+automata for the simulation of Newtonian gravitational systems,  for example, 
+because the law of gravitation includes action-at-a-distance where there is 
+no upper limit on the effective distance over which gravity acts.    Second, 
+the behavior of the system to be simulated cannot depend on essential dis- 
+continuities, that is, discontinuities which cannot be approximated in a 
+discrete framework.    However, there may be no such natural systems. 
+The most binding restriction on the use of cellular automata for the 
+study of natural processes  is a practical one.     In any interesting case 
+some or all of the following numerical parameters are large:    the number of 
+possible states of a neighborhood,  the number of different transition func- 
+tions to be investigated,  and the number and size of the cellular automata 
+(i.e., histories) to be considered.    The practical import of these numbers 
+depends on the extent to which sets of cases can be handled as a group,  and 
+where simulation is involved,  on one's abilities and techniques for sel- 
+ecting or generating the significant cases. 
+Cellular automata systems have been successfully used for the study 
+of natural systems.     It has   long been the practice to solve partial dif- 
+ferential  equations for a vibrating membrane, or heat flow, or diffusion 
+processes, by handling them in a discrete grid,  and since the laws in these 
+cases are local  in character this amounts to using a cellular space,  the 
+transition function being expresssd by the difference equation version 
+of the differential equations.    Non-homogeneous cellular automata have been 
+used in the simulation of neural nets and of information processing by heart 
+tissue,  and I think cellular automata systems will be very useful for 
+simulating evolutionary systems. 
+
+=== PAGE 55 ===
+
+49 
+[Rochester,  et.  al., "Tests on a Cell Assembly TTieory of the Action 
+of the Brain."] 
+[Swain and Flanigan,  "Computer Simulation of A-V Nodal Conduction."] 
+[Rosenberg,  Simulation of Genetic Populations with Bioahemioat Properties, 
+Sec.  3.3.] 
+Many questions about cellular automata systems can be answered by 
+analytical methods.    Von Neumann's results  about the computation universality 
+and construction univer ality of his  29-state cellular system were established 
+in this way,  as were the results of Moore and Myhill concerning the existence 
+of configurations which can exist only initially (Moore, Machine Models of 
+Self-Reproduction"; Myhill,  "The Converse of Moore's Garden-of-Eden Theorem")   . 
+But many interesting questions about cellular systems cannot be answered 
+analytically.    This  is especially so for cellular systems which are adequate 
+for modeling natural systems.    Here the sheer complexity of the situation 
+a-id/or the  indefinite nature of the problem demands simulation. 
+Simulation can be carried out   in different ways and for different 
+purposes.    One type of problem is this.    Given a cellular automaton system, 
+and hence a transition function,  to find particular cases   (i.e., cellular 
+automata) which have certain properties.    Examples are found in the work 
+of Ulam and his collaborators    (eg.   Ulam,   "Some Mathematical  Problems Con- 
+cerned with Patterns of Growth of Figures" ).     It is generally necessary to 
+run many cases before finding an interesting one,  and sometimes  even before 
+acquiring sufficient experience to select  initial states wisely.    Such 
+computer investigations are best carried oiK with the investigator in 
+intimate contact with the machine,   so that he can observe the effects of 
+his decisions,  and can terminate unpromising runs before they waste valuable 
+machine time. 
+
+=== PAGE 56 ===
+
+50 
+An even more difficult problem is that of searching for a transition 
+function which defines a cellular automaton system having certain properties. 
+One may seek a cellular system which simulates some given natural system; 
+for example, an evolutionary system, the fibrillation of the heart,  individual 
+behavior, or group behavior.    Von Neumann sought  a cellular automaton system 
+with "not too many states" which was computationally and constructionally 
+universal.    The problem of finding a transition function which generates 
+automata with certain properties is a very important and basic problem,  so 
+we will discuss its general nature and then consider a promising method 
+for solving it by means of a man-machine complex. 
+With respect to the number of automata under consideration, the 
+problem of finding a transition function which satisfies certain conditions 
+is one level higher than the problem of finding a cellular automaton of a given 
+system which satisfies a certain condition.    The  latter problem concerns 
+the class of cellular automata defined by a single cellular automaton system, 
+while the former problem concerns a class of cellular automata systems. 
+Suppose we choose a cellular space, that is a geometry and neighborhood 
+relation.    Each transition function defines a cellular automaton system 
+based on this space,  and consisting of a set of cellular automata.    Hence 
+when one considers all possible transition functions definable on a given 
+cellular space, he is considering not merely a set of cellular automata, 
+but a set of sets of cellular automata. 
+The problem of finding a transition function which generates certain 
+behaviors is analogous to the  inductive problem of finding a law which 
+accounts for observed phenomena, just as a cellular automaton system is 
+analogous to  (and therefore can be used to simulate) a natural system. 
+A look at this analogy will help us understand how cellular automata can 
+be used to simulate natural systems.    Consider first some natural system 
+■a^M 
+
+=== PAGE 57 ===
+
+51 
+in sapce-time,  e.g.,  the solar system.    The laws of a natural system define 
+a set of possible universes, namely, all those universes which result from 
+applying these laws to some state of the system at some arbitrary time. 
+[These universes are causally possible universes,  as distinguished, 
+for example,  from logically possible universes.    The logic of statements 
+about causally possible and causally necessary universes  is treated in 
+my "The  Logic  of Causal Propositions."] 
+Consider second a cellular automaton system.     Its underlying cellular space 
+corresponds to the space-time basis of a natural system.     Its transition 
+function corresponds to the law   (or set of laws) of a natural system.    Similarly, 
+its transition function defines  a set of possible universes, namely, all 
+the cellular automata which result from applying the transition function 
+to an initial state of the system. 
+[If the transition function  is deterministic,  each  initial state defines 
+a single cellular automaton.     If the transition function is indeterministic, 
+each initial state defines a set   (possibly infinite) of cellular automata. 
+If the transition function is probabilistic,  there is a succession of 
+poobability distributions over the succession of finite histories of 
+cellular automata resulting from an initial state.] 
+A cellular automaton is thus a possible world,  and a cellular automaton 
+system is a set of possible worlds. 
+We can now see more clearly the analogy between the automata theorists' 
+problem of starting with a given type of cellular automaton behavior  (e.g., 
+self-reproduction,  evolution)  and ending with a cellular automaton system 
+in which this behavior occurs,   and the natural scientists'  problem of 
+beginning with certain observed phenomenon and ending with a  law which 
+accounts for that phenomenon.     Both begin with some phenomenon or behavior 
+and end with a law or transition function such that a system governed by 
+
+=== PAGE 58 ===
+
+52 
+that law or transition function displays that phenomenon or behavior. The 
+scientist may proceed by considering different possible laws, inferring 
+consequences from each, and checking the consequences against the given 
+observed phenomenon. Analogously, the automaton theorist may proceed by 
+considering different transition functions and ascertaining what automaton 
+behaviors each generates. This may be done analytically (as von Neumann 
+did in his design of a self-reproducing automaton) or computationally (by 
+simulating cellular automata which have these transition functions). The 
+analogy between the natural scientists' procedure for discovering and 
+confirming laws to explain observed phenomena and the automata theorists' 
+procedure for discovering transition functions and showing that they produce 
+certain behavior becomes an identity when cellular automata are used to 
+model or simulate natural systems. 
+[In my forthcoming book, Cause,   Chanae, and Reason,  I will give an 
+analysis of inductive inference in terms of a probabilistic choice, from 
+among alternative possible laws, of a law to account for observed phenomena.] 
+This concludes our general remarks about the problem of finding a 
+transition function satisfying certain behavioral conditions. We will 
+explain next an interactive man-machine method for solving certain problems 
+of this sort which has already been used successfully and which is a 
+promising tool for this type of basic investigation. The general principle 
+is this. The investigator partly defines a transition function for his 
+cellular space. He then specifies an initial automaton state and has the 
+computer generate a finite fragment of the resultant cellular automaton 
+in an attempt to produce one of the desired phenomena. He repeats this 
+step until it succeeds or until he decides it is not promising.  In the 
+latter case he tries an alternate partial definition. If the step succeeds, 
+he augments the partial definition further in an attempt to produce other 
+
+=== PAGE 59 ===
+
+53 
+desired phenomena, and repeats the step. 
+The best way to explain this heuristic method in detail is to describe 
+a case in which it was successful. 
+The problem was that of improving on von Neumann's cellular automaton 
+results with respect to the number of states needed for computation and 
+construction universality, so let us first formulate von Neumann's problem 
+in a general way. After considering various kinds of cellular frameworks, 
+von Neumann decided on a cellular space consisting of a two-dimensional 
+infinite array of square cells (a "checkerboard") and a "neighborhood" 
+composed of a cell and the four cells with which it shares boundaries. 
+[Theory of Self-Reproducing Automata,  Part II, Ch. 1 and Sec. 2.1] 
+His problem was then to define a transition function (and thus a cellular 
+automaton system) satisfying the following four conditions. 
+(1) The system is homogeneous in the sense that the neighborhood 
+relation and the transition function are the same for every cell. This 
+restriction prevents one from building a specific automaton design into 
+the cellular space by varying the transition function from cell to cell. 
+(2) A universal computing (Turing) machine can be embedded in the 
+cellular system. This machine will occupy a finite number of cells 
+initially, but will have the capability of extending itself indefinitely 
+so as to have unlimited storage capacity, 
+(3) The system is construction-universal in the following sense. 
+Any finite number of designated cells in arbitrarily assigned states 
+constitutes an (initially) finite machine. The construction-universality 
+requirement is that thare exist a class M of finite automata which 
+contains a universal Turing machine M     and also a machine M     with this 6 u c 
+ability:  for any machine M belonging to M, when M     is supplied with a 
+
+=== PAGE 60 ===
+
+in.HUI, m mmmmmmmmm1 
+54 
+description of M and placed in an environment of blank states, M     will 
+construct M somewhere in this environment. The machine W is a universal c 
+constructing machine. In Section 10 we took M to be the class of initially 
+quiescent automata. 
+(4) The number of states in each cell is "relatively small". 
+The problem just stated is clearly not a formal one, but depends on 
+the interpretation of such concepts as "embedding" and "relatively small". 
+This is so even though a solution to the problem can be stated formally, 
+as we stated von Neumann's own solution to the problem (Sees. 9, 10). 
+The reason r3r the fourth requirement, that the number of states be relatively 
+small, is that without this requirement the problem is easily solved. 
+For we could place a general-purpose computer (or the finite part of a 
+universal Turing machine) in each cell, and arrange that each such computer 
+could communicate with its four neighbors.  It is easy to see that any 
+infinite row (or equivalent) of cells constitutes a universal computing 
+machine, with one cell serving as the finite automaton part and the cells 
+to its left and right serving as an infinite tape. Moreover, universal 
+construction and self-reproduction would not be hard to achieve in such a 
+cellular automaton system. 
+Von Neumann approached and solved this problem analytically. The 
+primitive elements he deviled were based on those he used in the logical 
+design of the EDVAC, the first stored program electronic computer. 
+[See Theory of Self-Reproduaing Automata^  pp. 9, 44, 99, 157. Essentially 
+the same primitives were used in his kinematic automata; See Sec. 1 above.] 
+We will briefly describe these primitives, and then show how von Neumann 
+very cleverly adapted them to his cellular space so as to achieve a 
+construction-universal and computation-universal cellular automaton system 
+with a relatively small number (29) of states. 
+
+=== PAGE 61 ===
+
+55 
+The fundamental units of the design of the EDVAC were switch- 
+delay elements with one to three excitatory inputs, possibly one or two 
+inhibitory inputs, and a threshold number 1, 2, or 3. An element emits 
+a stimulus (pulse) at time t + 1 if and only if two conditions are satisfied 
+at time t:    no inhibitory input is stimulated, and the number of excitatory 
+inputs stimulated is at least as great as the threshold number. No stimulus 
+is emitted at time zero, but there is in addition a "clock" element which 
+emits a pulse at every moment of time. 
+To adapt this set of primitives to the two-dimensional cellular 
+framework, it was necessary to provide for wire-branching and wire-crossing, 
+either directly or indirectly. In his cellular systen von Neumann acc- 
+omplished wire-branching directly, by making this one of the time functions 
+of the confluent element (C). In contrast, he accomplished wire-crossing 
+indirectly, by synthesizing a coded channel from the primitives he did adopt 
+(Fig. 7). Note that all of the EDVAC primitives are initially quiescent, 
+except for the clock. To synthesize a clock in the cellular system one 
+establishes a cellular path (like the repeater in Fig. 12a), and stipulates 
+that the elements of the path be active initially. 
+The adaptation of the EDVAC logical design primitives to a cellular 
+framework, described so far, is fairly straightforward. But to make a 
+cell capable of becoming each of these primitives would require a very 
+large number of states, since each primitive itself has many possible 
+input and output directions. This large number of states would then require 
+a large number of intermediate states for construction (von Neumann's 
+sensitized states S-, So, §.  ...).  Further states would be required for 
+destruction. What is really ingenious is the way von Neumann was able 
+to realize all the EDVAC functions with a transition function having only 
+
+=== PAGE 62 ===
+
+mmm I ' 
+56 
+29 states. His main method for accomplishing this reduction was to exploit 
+the context of a cell. The data needed to specify the input and output 
+directions of an element are minimized by specifying only the output direction 
+within the cell (and this only for transmission states). The input directions 
+for an element in a cell are determined by the states of the neighboring 
+cells. In the end only twelve states are required for conjunction, disjunction, 
+and wire-branching. In addition, von Neumann made good use of the duality 
+of ordinary and special transmission states to realize a destructive cap- 
+ability, as well as negation, with only eight additional states. 
+The transition function for a cell is a finite table, giving for each 
+state of the cell snd its neighbors the state of the next cell. If the 
+different local behaviors to be realized have some degree of logical 
+independence, the function may be defined piecemeal, by partially defining 
+it (i.e., defining it for certain cases) to get one behavior, further defining 
+it to get another behavior, etc., etc.  In this way a sequence of stronger 
+partial transition functions is defined, allowing more and more types of 
+behavior. Now suppose at a certain stage a number of desired behaviors 
+are possible but a further desired behavior is excluded. One then goes back 
+in the sequence and attempts to modify the partial definitions so as to 
+preserve the achieved desired behaviors and also obtain the further desired 
+behavior. 
+Note that a partially defined transition function is actually an 
+indeterministic transition function,  allowing many possible succeeding 
+states for the unspecified cases.    Hence the procedure just described is 
+one of defining stronger and stronger indeterministic transition functions, 
+until one finally obtains a transition function, either deterministic or 
+indeterministic, which achieves   the desired behavior. 
+
+=== PAGE 63 ===
+
+57 
+This is the procedure von Neumann actually followed in defining his 
+transition function (see Fig.  15). 
+[Theory of Self-Reproduaing Automata,  Part II, Ch. 2.] 
+He first defined the ordinary transmission states, out of which one can 
+build disjunctive switches and signal transmission paths which can go 
+straight or turn corners.    He next defined the confluent states;  from these 
+and the ordinary transmission states one can construct conjunctive switches 
+and wire-branching devices.    At this stage in his synthesis the confluent 
+states had a single unit of delay.    He then added the special transmission 
+states to achieve the destructive process:  active special transmission 
+states kill both ordinary transmission and confluent states back to U, and 
+active ordinary transmission states kill special transmission states back 
+to Q,    He decided to realize the constructive process by means of a sequence 
+of stimuli sent into a cell in state U from a transmission state; this 
+required "sensitized" states to store the initial segments of the sequence 
+(see Fig. 9).    Now the natural way to generate a sequence of stimuli is 
+to take a single stimulus, send it along alternative paths with different 
+delays,  and then merge these paths  (as in the pulser of Fig.  5).    But this 
+could not be done with the transition function as it was defined.     For 
+consider the delays along two different paths from one cell to another, 
+where the paths are composed of transmission and confluent states.     The 
+difference in cell  length of these paths must be a multiple of two,  and 
+since both transmission and confluent states had  (at this point of the def- 
+inition) a unit delay,  the time delays along these two paths must differ 
+by a multiple of two.    Hence one could not produce, by this natural 
+technique and in the system as defined, an arbitrary finite pulse sequence 
+ij ig  ... t„    (each i    = 0, 1.) To remedy this defect,  von Neumann went 
+back and modified his transition function by giving confluent states  a 
+
+=== PAGE 64 ===
+
+MPNWHM^M^^^ 
+58 
+double delay. 
+[Theory of Self-Eevvoduaing Automata,  pp.  146-148 and Fig. 8] 
+In this way von Neumann defined a transition function with a relatively 
+small  set of states  (29)  which was nevertheless sufficient to achieve a 
+rather powerful set of elementary operations or behaviors:    the logical 
+operations of "or" and of "and",  transmission, wire-branching,  arbitrary 
+relative delays down alternate paths,  construction,  and destruction.    Using 
+these operations, he proceeded to synthesize various organs  (pulser, 
+decoder,  coded channel, periodic pulser,  constructing arm head) and higher- 
+level  functions  (sensing,  negation).    With these he synthesized still higher 
+level organs  (control unit,  constructing arm, tape, constructing unit), and 
+finally a universal computer and a universal constructor. 
+In the last few pages we have formulated von Neumann's problem as 
+he might have viewed it at the start, and indicated his  general method 
+of solving it.    Using this method,  von Neumann found a solution with 29 
+states per cell.    The problem arises:    can this number be reduced 
+appreciably? 
+This problem was taken by Edpar Codd as his doctoral problem,  and he 
+solved it very successfully. 
+[Edgar F. Codd, Propagation,  Computation, and Construation in Two- 
+Dimensional Cellular Spaces.    Ph.D.  Thesis  in Communication Sciences, 
+University of Michigan,  1965.    This has been published as a book by 
+Academic Press  (1968) under the title Cellular Automata.] 
+He was able to devise an eight-state cellular system which is both 
+computational-universal and construction-universal.    Moreover, this system 
+is stronger than von Neumann's  in two additional respects.    The transition- 
+function has a stronger kind of rotat ion-symmetry than does von Neumann's. 
+Also,  there are two states such that any finite configuration  (area)  of 
+ L. 
+
+=== PAGE 65 ===
+
+59 
+these two states can be read and erased as well as written (constructed). 
+This is possible because that state of a cell which is in one of these two 
+states can be sensed by means of an "echo signal", which reflects (bounds 
+back) from the cell, the nature of the reflected signal depending on the 
+state of the cell. In contrast, to sense whether a cell in von Neumann's 
+system is in state U or state +, we send a signal through  the cell (see 
+Fig. 24). While it would be very hard to prove, it seems doubtful that 
+there are two states of von Neumann's system such that any finite area of 
+these two states could be read or sensed from within the system. 
+Codd's cellular automaton system is primarily of interest to us here 
+because it was generated by what we have called "the interactive man-machine 
+method." 
+[He also used this method to search, unsuccessfully, for universal 
+systems with eight neighbors per cell but only two or three states.] 
+As von Neumann did, Codd chose as sub-goals certain elementary behavioral 
+functions, which he thought he could later synthesize into organs, larger 
+units, and finally universal computers and constructors. He then proceeded 
+to define his transmission function piecemeal so as to obtain these 
+behaviors, retreating when a partial definition turned out to have undes- 
+irable consequences, and either modifying the definition as it had been 
+specified at an earlier stage or seeking alternative behavior (sub-goals) 
+to realize the final goal. But whereas von Neumann proceeded analytically, 
+using only his own reasoning and testing a few cases by hand, Codd used 
+a computing machine to assist him. 
+The procedure was as follows. The user first gives the computer the 
+neighborhood relation, the number of states per cell, and the symmetry 
+condition to be imposed on the final transition function. The user then 
+gives the computer a partial transition function by means of which he hopes 
+
+=== PAGE 66 ===
+
+60 
+to generate a certain kind of behavior; the computer extends the partial 
+transition function in accordance with the symmetry condition, or lets the 
+user know that this extension is impossible so he can modify his definition. 
+Next, the user gives the computer an initial state he hopes will lead to a 
+certain phenomenon. The computer calculates the behavior of the resultant 
+cellular automaton time-step by time-step, printing out the result at each 
+time-step, stopping at each time-step to allow the user to make a choice, 
+and stopping when it comes on a condition not covered by the partial 
+transition function. When the latter happens, the user may further specify 
+the transition function. At any time-step the user can go back to earlier 
+time-steps and change a partial definition, or go back to the beginning 
+and start with a different initial state and/or partial definition. The 
+user makes these choices on the basis of the simulated behavior he observes. 
+There are obvious advantages to such simulations. The computer can 
+make routine calculations rapidly as well as accurately, it can check 
+constraints automatically, and it can assume responsibility for storing and 
+arranging large amounts of data in a way that makes vital information 
+immediately available to the user when he needs it. These advantages lead 
+in turn to deeper advantages. For example, a human generally finds it 
+difficult to trace out the successive states of an automaton when the 
+transition function is basically different from those functions he is 
+familiar with. A machine has no such difficulties, since it calculates 
+by brute force and not in terms of certain intuitions derived from ex- 
+perience. Hence by using a machine one can quickly explore the consequences 
+of an unfamiliar rule. 
+In the process of defining his 29-state transition function, von Neumann 
+started with the usual computer primitives (switches and delays), and adapted 
+
+=== PAGE 67 ===
+
+61 
+them to the cellular context so he could realize not only the functions 
+essential to computing per se, but also the functions needed to carry out 
+computation  (and construction as well) in a cellular space.    The most basic 
+of these latter functions are:     sensing the state of a cell,  as in reading 
+a tape   (Fig.   24);  changing the state of a cell -- this  includes construction 
+and destruction processes,  as well as logical and transmission processes; 
+and operating a signal transmission path from a source  -- this includes 
+extending,  retracting,  and carrying out operations at  the terminus of the 
+path  (see the constructing arm.  Figs,  18-23).    With a machine to test each 
+possible transition function by simulation,  Codd could and did aim directly 
+at achieving the basic functions needed for computation and construction 
+in a cellular space.    Thus whereas von Neumann took disjunction and 
+conjunction as primitives and synthesized negation,  Codd was able to 
+synthesize all switching functions from operations which, in a cellular 
+framework,  are more fundamental.  After conducting his  investiagtion with the 
+assistance of a computer, he achieved an eight-state universal cellular 
+system which has a number of novel and interesting features,  and his success 
+was due in part to the assistance he recieved from the computer.    The most 
+striking case of this assistance was the discovery of the echo phenomenon. 
+The technique of reading (sensing) the state of a cell by reflecting an 
+echo signal  from that cell was not designed or planned.     Rather, the phenomenon 
+of an echo signal was accidentally generated in the course of a simulation 
+which had a different objective,  and then recognized by the experimenter 
+on the basis of a possible sensing technique. 
+A brief summary of the eight states and their chief functions will 
+bring out some of the novel features of Codd's cellular automaton system. 
+[The system he defined is  indeterministic,  since he only specified 
+the transition function up to the point where universal  computation and 
+
+=== PAGE 68 ===
+
+62 
+universal construction are possible.] 
+Four of the states (0, 1, 2, 3) mainly perform structural functions, while 
+four (4, 5, 6, 7) are used for signalling. State zero (0) is the blank 
+state. State one (1) is used to mark out a bi-directional transmission 
+path through the cellular space. Such a path is ready to conduct signals 
+when it is insulated or "sheathed" by neighbors which are in the sheathing 
+state (2J. State three (3) is used to perform gating functions. Two of the 
+signal states (4, 5) are used for information transmission and processing. 
+The direction of a signal down a transmission line is determined by means of 
+a blank state (0); for example, "04" moves to the right, "40" moves to the 
+left. The signal state six (6) is used to cause a sheath to be formed 
+on th« two sides of a transmission line of ones; compare the myelin sheath 
+surrounding a neuron. The signal state seven (7) is used to activate an 
+automaton by setting up certain gates and starting the automaton. Thus the 
+construction of an automaton takes place in three stages. First, the basic 
+structure is laid down in an area by changing certain cells from state 
+zero to state one. Second, the transmission paths are sheathed by the 
+sheathing signal. Finally, the constructed automaton is activated by the 
+activating signal. 
+We said earlier that cellular automaton systems are not only of 
+interest in their own right, but provide a framework for investigating 
+many natural systems, including the heart, nerve nets, and evolutionary 
+systems. It therefore seemed worthwhile to develop an interactive man- 
+machine system especially suited to this purpose, and some of us are now 
+doing this. 
+[This is a project of the Logic of Computers Group, Department of 
+Computer and Communication Sciences, University of Michigan. It is under 
+
+=== PAGE 69 ===
+
+63 
+the direction of John Holland,  Ronald Brender,  and myself.    The work is 
+supported by the National Institutes of Health and the Advanced Research 
+Projects Agency of the Department of Defense.] 
+We have two small computing machines,  one connected to a disc file, another 
+to an oscilloscope unit with a light pen, and both interconnected via an 
+interface.    The first machine stores the information concerning the cellular auto- 
+maton under investigation:    the cellular geometry, the neighborhood relation, 
+the transition function as so far defined, the initial state under con- 
+struction,  and the history of the automaton as so far computed.    This history 
+will be stored on the disc file.    The second machine displays either the 
+transition function or a selected portion of the history,  as requested by 
+the investigator.    This machine also receives the investigator's input 
+to the process via light pen or typewriter.    The investigator may insert 
+a new initial state or modify the transition function.    He may ask to see 
+a different part of the history or to see the present state in more detail, 
+or he may request the machine to return to an earlier point in history 
+and compute the subsequent history with a modified transition function. 
+An essential part of this interactive man-machine combine is a 
+a software system that permits the investigator to easily control and direct 
+the computation,  so he can devote most of his intellectual energies to 
+guiding the investigation:    making decisions,  looking for interesting 
+phenomena,  and thinking up suggestions and hypotheses.    This software 
+system will consist of data structures, programs, and languages especially 
+designed for convenient man-machine communication during the investigative 
+process.     When completed, the software system will allow easy and sepatate 
+specification of the cell geometry,  the neighborhood relation, the trans- 
+ition function,  and initial states,  and will provide ample options for 
+control. 
+
+=== PAGE 70 ===
+
+T~l 
+64 
+Our aim is to optimize the division of labor between man and machine 
+for this particular type of research, by arranging for each to do those 
+tasks he is best suited for.    If we have a reasonable measure of success, 
+the resultant interactive man-machine complex should be a very powerful 
+instrument for the investigation of cellular automata systems. 
+I 
+
+=== PAGE 71 ===
+
+65 
+[ i i 
+f \ 
+j "i  ! 
+h^ / ^    «   ' "H   A   C^ 1   ^ ^       -           - -*— 
+1 ^J 
+r 
+i    1 
+1 
+• 
+■•^ *■■ 
+i 
+i   _r 1 .r 1 
+* ^ L 1   * x . LZ^   A   1 
+— I 
+L L-r- i 
+L .   | 
+i   r % 
+1   . 
+1              r . 
+"   1 
+1 
+m MM 
+!   r 1 ' i i L 1          \     ' ^    . '  4 V    .   1 
+{—1 i 
+1 
+1 
+J 1 1             1 
+k 1 
+t r 
+Fig. I        CELLULAR   SPACE 
+
+=== PAGE 72 ===
+
+66 
+Unexcitable U 
+r 
+Ordinary 
+Transmission { 
+r 
+Special 
+Transmission 
+^ 
+=» 
+YS 
+'fN 
+c 
+c 
+Confluent 
+^ 
+Sensitized       < 
+'00 
+^ 
+'01 10 
+^01 10 It 
+II 
+^0 
+»000 
+Fig.2  VON NEUMANN'S  29 STATES 
+
+=== PAGE 73 ===
+
+A B 
+a 
+^ 
+1 -j 
+0C3-O 
+67 
+Fig.3 (a) SWITCH AND DELAY CIRCUITS 
+
+=== PAGE 74 ===
+
+n 
+68 
+B 
+C — 
+— C 
+Fig3(b) CORRESPONDING CONFLUENT  AND 
+ORDINARY TRANSMISSION ELEMENTS 
+SWITCH AND DELAY REALIZATION OF 
+CONFLUENT AND ORDINARY TRANS - 
+MISSION   ELEMENTS 
+
+=== PAGE 75 ===
+
+69 
+a i 
+T 1 1  
+I     C      |   ^y    I^ 
+I I 
+II 
+» i 
+/TV 
+I    K\ 
+Fig.4 OPERATION OF SPECIAL 
+TRANSMISSION STATES 
+
+=== PAGE 76 ===
+
+70 
+A 
+\ 
+t 
+INPUT   j     C 
+I L 
+Fig. 5 
+OUTPUT 
+f 
+t t 
+1 
+PULSERP(IOIOI) 
+t 
+t 
+
+=== PAGE 77 ===
+
+71 
+ABC D 
+\ 1  
+I I 
+C      I 
+)  
+i \ 
+i i 
+i i 
+k 
+f 
+i 
+INPUT    j      C     | 
+I I 
+11 
+a 
+J L 
+I 
+C     !OUTPUT 
+f 
+a 
+Fig,6 DECODER D(IOIOI) 
+
+=== PAGE 78 ===
+
+72 
+J2 
+Fig.7 A   CODED CHANNEL 
+
+=== PAGE 79 ===
+
+B     C    D     E   F    6     H 
+73 
+c,o \ - 
+1 
+• ^o \ 
+.f co, t t •t co, 
+- - c 
+"t" 
+- - c 
+t 
+- i 
+c C,0 f i 
+c \ t • t s. t 
+-~ - c 
+t 
+- - c 
+t 
+* t 
+CI0 1 So i 
+•f c 01 t c - f •t c 
+I 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+(a) CROSSING ORGAN 
+h 
+c 10 1 
+•t C0I 
+d 
+e 
+9    f 
+Output from / and j : IOIOIO 
+Output from « and / : OIOIOI 
+(b) INITIAL STATE OF CLOCK 
+Fig.8 CROSSING ORGAN 
+
+=== PAGE 80 ===
+
+n 
+74 
+t 
+A-/ 
+\ 
+\ 
+/ 
+/ 
+i 4 
+i 
+V \ 
+\ 
+\ 
+/ 
+/- 
+^    \   ^    V   ^ 
+/ 
+\" 
+/ 
+\ 
+\ 
+o\ \ 
+\ 
+\ 
+°\7 
+\ 
+\ 
+0\ 
+\ 
+\ 
+/ 
+o\-i 
+v   / (/) 
+/ 
+./ 
+V 
+"I I 
+LÜ 
+_I 
+CD 
+?D 
+x b 
+/ 
+-/ 
+/ 
+/ 
+/ 
+/ 
+y 
+/ 
+/ 
+CO 
+en ÜJ 
+ü o or Q. 
+o 
+I- 
+o 3 
+(T 
+H 
+</) 
+Z 
+o o 
+CD 
+d» 
+
+=== PAGE 81 ===
+
+75 
+r 
+i  
+ion 
+B    c —i—i 
+i     1/ 
+__L-J 
+vnn I 
+1010 
+(a) BEGINNING 
+I 
+ABC 
+f— r-T"! i 
+i  
+r 
+I       1/ 
+I I 
+LC'    7 
+ft 
+I 
+L__J_!LI»J 
+(b) END 
+Fig.10 EXAMPLE OF THE 
+CONSTRUCTION PROCESS 
+
+=== PAGE 82 ===
+
+76 
+BCD 1     1 
+,—'  c 1     1 
+i— 
+r 
+1 
+1 
+1  \y 
+1 
+1 c <^ 
+\     i 
+/ 
+2 
+3 
+Fig.II EXAMPLE OF THE 
+DESTRUCTION PROCESS 
+
+=== PAGE 83 ===
+
+r 
+77 
+SINGLE 
+SEQUENCE 
+10101  IN 
+SEQUENCE lllll FROM AN 
+ORDINARY  TRANSMISSION STATE 
+FIRST KILLS C TO ^ AND THEN 
+CONSTRUCTS S9 ,5, .5,, .5,,, i*C) j 
+ v  
+I 1 Ir I | |J REPEATED 
+"> I 
+/K 
+^ 
+SEQUENCE 
+IOIOI OUT 
+(a)REPEATER FOR PERIODIC PULSER 
+Fig.12 PERIODIC PULSERPP(IOIOI) 
+
+=== PAGE 84 ===
+
+78 
+lO 
+o 
+— 
+I 
+" 1* i 
+O '' 
+, , -«— 
+1 
+A     i 
+1     u 
+I 
+PULSER P(IOIOI) 
+i 
+A 
+i 
+A 
+^_ 1 
+u 
+, i i I 
+— 
+tl" o ^_ „ 
+t ( i 
+1 
+"     1     o 
+1 
+-^— —   1 
+1 
+o 
+i 
+3 
+START 
+PULSE 
+INPUT 
+t ' " 1 
+1 i 
+A 
+T     1 
+I 
+o 
+o 
+o 
+cc lil in -j 
+s s UJ 
+a. 
+wa.S 
+
+=== PAGE 85 ===
+
+79 
+i- 
+.2 
+äs 
+- 
+IM 1  
+1 —^ ü 
+t 
+t 
+..... 
+=> o ' ' 
+- t ^— 
+\ t v\\\ A \ 
+o 
+11 
+11 
+i 
+0 T t o 
+t t t 
+J 
+t . o 
+1 
+11 
+..... 
+t 
+"   1 
+1 
+1 
+o 
+t t t i 
+" 1 1 
+1 
+o 
+UJ 
+< O 
+o 
+a. Q 
+a. o _i 
+u. 
+ro 
+a. 
+a. 
+
+=== PAGE 86 ===
+
+T! 
+Og^^lo^OKOO^O CM 
+80 
+o g 
+o 
+cr LU   1 
+N 
+O 
+O 
+O 
+LU 
+cr 
+
+=== PAGE 87 ===
+
+"1 
+81 
+3 IS) 
+<1H 
+o 
+> ■ H 
+C 
+T3 
+C 
+<u 
+=>* 
+<ü N 
+■H 
+4-» 
+•H 
+m w 
+C u 4) ♦J 
+« n *-> I« w 
+o c IU o u • H 
+c Ul 
+<0 tn 
+3 ■H 
+o- E <u V> 
+trt c 3 o i- 
+4-> +J 
+e •H -o 
+=( c 3 
+i/l ♦J 
+IU c M a> 
+C 3 n) f-* 
+r <4-l 
+u c 0 
+t/i o 
+u o o l-l    VI 
+a e u 
+c .0 
+3 -i 
+c a o u 
+3   <U 
+^ E 
+o a 
+M 
+u S o rt 
+X  £ 
+c 
+_2  
+T3 4-1 
+n 
+O h 
+<-> a) 
+S 
+■a o 
+»J 
+U T) IU IU 
+u u ■H U 
+•n lu u 
+Irt 
+S  i/i 
+3 ex 
+3 o 
+73 IU 
+«-I 
+u IU 
+•r-t 
+•a 
+0) 
+h'S ^ >-( B v 
+c c m 
+13   h 
+o 
+C   Q   3 «      a o *J 
+E «   3 
+O O 
+^   £13   +J 
+X (U 
+a > <u 
+U   3   0) 
+IU a 
+IU 
+>     • ■H C 
+•M O 
+U 
+n *J 
+x ir c u «  01 
+(4 
+X 
+XI  in 
+IU 
+a. *-> <u « ♦J c 
+(/)   -rH 
+E u O i -a 
+C 
+Q> -H 
+C -c 
+O  -I 
+■ t-l 
+c ^ 
+o 1/1 
+U   -H 
+«-> •-<     3t*J 
+S  a 
+o   l/l 
+> *-> 
+o *-> 13 
+I* 
+CQ 13 n 
+H -H 8   IU   3 
+0) E Ui    -<   O 
+U 01 -H 
+IU c     ■-< 
+c 
+TJ O 
+m 3 -a o x c 
+i-H 
+73 0) 4J 
+0) T) -H 
+4-> 
+O IU -o 
+0> -H tl 
+fcl 00  Rl 
+•-i C 3 
+•O -H O 
+I« 4-1 
+1/1 
+<U JC 73 
+W 4-1 0) 
+rt -M 4-1 
+4-1 3 U 
+</> IU 
+C ki 
+C O -H 
+O -H T3 
+in U   4-1 
+moo ■-< t.  C 
+E •« 1/1 T3   0) 
+C 4J 
+{Q 4-1    Clj 
+(- 3   4J 
+4-i a. i/i 
+X 3 Ei o n c c ■rH •-* 
+»H t/1 
+O 4-1 
+73 <U 
+4-1 
+u IU 
+01 
+• 4-1 
+I/)    rt 
+tn 4-) 
+o> tn 
+o 
+o c ^i  o 
+CL-H 
+t/1 
+c m 
+in  4-1 
+in   o C 
+a> 3 n u u u O    4-1 4-1 
+i-i  tn 
+Q. <U — 
+73 n 
+c -i 
+o x u 
+■H XJ <u 
+♦J 0. 
+u  oi tn 
+tn  tn 
+c 
+«  o > 
+o u 
+ll 
+O   - 
+E 
+tn  tn 
+4-»   0 
+in  X m 
+X 0)   i- ü 
+i-l   4-1    B! 4-1 
+C n 
+. .    U 
+o a i o. 
+in x or tn c o IU 0) 
+X 
+C Xi in 
+« u VH   0.4-1 
+4-1    01 A 
+4-1 C 
+n tn ' 
+E 
+0) o 
+E 73 
+lu a > 4-1 'H   4-1 
+•H tn 73 tn 
+4-1 U 
+U 4-1 O   4-1 
+c c c 3 0> X D 
+•r-,   3 P    3 
+m ^ o »-4 
+.rf lH > tn 
+o c o o u 
+—.       o      r- 
+u»  U!  LU 
+c IU 
+i    3 
+C   -4 
+O >4H 
+JJ  
+E O r-< 
+►H  m 
+O t« y-' 
+0> 
+01 
+M    U 
+■H    4) 
+4->     CL 4^    bfl 
+■rt tn c 
+in OJ -H 
+C   X C -H 
+o c o « in   rt      -H 
+C ^ 
+N   r-4  .H 
+,-H  =)t 4-1 
+O 
+O   O  4-i -d 
+4-14-1 ^ 
+73 rt 
+^ ^ 01 3 
+XI    U -7   O 
+73 
+|H 
+rt 
+o  rt 4->   r-l 
+<U 
+73 73 
+01 
+4-1    V 
+O -I 
+0>   bO 
+<U 
+X 
+in .c 0>    4-1 
+rt  3  ^ 4J O 
+c o C -H 
+O 4-1 
+•H    O 
+in iu 
+in  i- 
+H c tn 0) 
+T3 in 3 
+k.    0) -H 
+(«   O «4-1 
+3  O c "   u o a. u 
+o o 
+u 01 
+IH   3 
+E   73  -H    tl   +J 
+C   4-1 
+rt  3 l-i   B. 
+4-1    4-> 
+3 
+rt O 
+rt "7    C 
+<J   -H 
+IU 
+Cu tn 
+tn 4-i 
+■H 
+E E O   0) l-l 
+14-1    •- 
+m X 0) 
+rt    4-1 
+tu   rt 
+> 4-1 
+•-4 tf) 
+4-1 
+U «J 
+§c 0> 
+■f-. 3 
+in -4 
+•H   t4-i 
+73    C 
+■- <w B 
+in tn 
+in  tn 
+-4     0) 
+E « in rt 
+c «J 
+rt in 
+IH u 
+4J 13  rt 
+4)   C 
+rt    N   .H 
+rt —i -a 
+■rt « fci 
+U  -H    O 
+0>  tn 
+P. C  X 
+in  0»  c 
+tn   rt 
+X 
+f4     ll   rt 
+V  o — > .H 
+1U ^\M 
+u o o o 
+t-. 
+T3 
+01 
++^ u 0) 
+u 
+73 
+4) 
+4-1 
+rt 
+E tn 
+c rt u 
+> E ■ H O ■ 
+41 U 
+U 14H ' 
+0) 
+a: 
+x ii rt (5 .-4 
+73 
+O 
+> •-4 C 
+4->    O 
+u rt . a x «T c u rt  u U x X>  in 
+4) 
+O. 4-1 
+0)   rt 
+4-1     C 
+tn .rt 
+E (U   O 
+E 73 
+• rt 4J     tX 
+C 
+0) •rt 
+C rt 
+O rt 
+• —4 
+tn c .* 
+tn •rt 
+4)       ■- 
+o ^1(4-1 
+O •rt 
+h o 
+n. 4-> 73 
+73 rt 
+4) 3 
+rt   o 
+A        <=       II • => 
+ll •     .     v 
+UOTSSTU1SUEJJ, 
+XjBuipao 
+X 
+i   XI 
+in 
+C 7J 
+rt  n U  3 4-1    O 
+0)   rt 
+> o • rt   I4H 
+01 
+X     8 §m 
+u • 4) 
+in 4J 
+in tn 
+D rt 
+U   11 
+o 
+U l/)l 
+2o 4-1   4-1 
+m C 4-1 
+O -4 
+o m IU   11 
+x: et 4-1    C 
+rt c £ ■rt    U 
+tn 3( 
+e 4J o 
+rt 4-1 
+4-1 
+in 73 
+4) 
+X 4J 
+li u rt iu 
+■rt ^i 
+73 .H 
+IU 73 
+U 4) 
+1) 4-1 
+4-1 rt 
+C 4-1 
+■ rt in 
+V   C 
+ii  o 
+rt  -4 
+in 
+4) in 
+tn ■rt 
+tu E 
+a t/i( 
+T " 
+o l/D/ 
+o 
+o » 
+O /—N 
+73 4) •— U 4-> 
+rt rt <SH 
+3 4-1 
+O tn i 
+(J *—N 
+i) II 
+73 •c V 
+4) *J ^—' 4-" 
+U l« o 
+4) 0 ,— li 
+• rt u WJ 
+73 B A 
+0 /—s 
+m <S 
+• rt c •rt o 
+9) o 
+4-1 tn r-t 
+rt 1) U5( 
+4-1 4-1 
+in rt A 
+B /—% c ■ rt A 
+o B 11 
+• rt U v—' 
+tn O ■-" 
+o 3 li 
+4-1 
+in 
+t) 
+73 
+4> 
+X 
+tn, 
+w* 
+w( 
+(/2f  rt ri 
+'—t     ^^     4J 
+w, 
+^( 
+Ul( 
+U5(      («( 
+4) 
+(/)( 
+pazi^isuas 
+IBtoads 
+J 
+
+=== PAGE 88 ===
+
+n 
+82 
+I 
+PRESENT | INTERNAL 
+STATE 
+INPUT  1 
+STATE  ! 
+NEXT 
+INTERNAL 
+|    STATE 
+OUTPUT STATE 
+^1 
+'l 
+^0 4) 
+*i 
+|     ^0 
+^0 
+^0 
+(Q) Transition and output table for a 
+particular finite automaton 
+Fig.16 
+SCHEMATIC DIAGRAM OF FINITE CELLULAR AUTOMATON 
+j 
+
+=== PAGE 89 ===
+
+rr 
+INPUT STATES 
+CODED AS SEQUENCES 
+83 
+/»/»(Mill) 
+REPRESENTING 
+STATE do 
+(INITIALLY ON) 
+OUTPUT 
+START 
+INPUT 
+STOP 
+INPUT 
+J*}^- 
+^(lllll) 
+REPRESENTING 
+STATE d, 
+OUTPUT 
+START 
+INPU^ 
+STOP 
+INPUT 
+J: 
+*Uo> 
+3_ 
+*(*,) 
+«e 
+«0FROM INPUT STATE   *0 
+«TO PRODUCE OUTPUT STATE   ^0 
+^FROM INPUT STATE -^ 
+«4T0 START INTERNAL STATE </, 
+ff,TO STOP INTERNAL STATE   «^ 
+«7TO PRODUCE OUTPUT STATE ^ 
+*4 
+*5 
+«gFROM INPUT STATE *Q 
+«8TO PRODUCE OUTPUT STATE ^ 
+«^ROM INPUT STATE -* , 
+«2TO START INTERNAL STATE ^0 
+«9TO STOP INTERNAL  STATE «^ 
+«6T0 PRODUCE OUTPUT STATE (TQ 
+-V- 
+CODED CHANNEL 
+Fig 16 
+INPUT(S) «y TO 
+CODED CHANNEL 
+CONNECTED  TO 
+OUTPUT t, 
+(/»01l.2./...8) 
+*O0J —n " 
+PlOy) 
+OUTPUT STATES 
+11 ' SEQUENCES 
+Pl*Z) -J l 
+(b) CORRESPONDING 
+FINITE CELLULAR 
+AUTOMATON 
+
+=== PAGE 90 ===
+
+84 
+-«— — oa. — -1 •" 
+il So        1 
+Q-K z      1 
+NCOMPLETED 
+OF CONSTRUC 
+AUTOMATO 
+a 0.Q K CO 
+f> <- 
+i t 
+* z 
+-a t 1 
+\ 
+f> t t- <- <- «- <-!<- <- <- <- <- <• 
+a: < 
+1T <= <= t C <= ^I<= <= <= <= <= t 
+~N 1> •r 
+^ f t 
+-0 t 
+£ 1> T 
+f> t o z 
+t- 
+o 
+cn 
+z o 
+ft 4- 
+ft t 
+1> t 
+1> t 
+f t 
+ft t 
+1> T 
+^-. 1T t 
+o fl -r 
+o i> f 
+li Qi 
+^o 
+uj 
+z g i in 
+1- 1- O 
+u < H 
+32 Z 
+a: o » 
+i- i- § 
+^5 3 Q 
+o ^ H 
+O 
+CJ z 
+E 
+< 
+| 
+c o o 
+a> 
+0) 
+a. O 
+
+=== PAGE 91 ===
+
+^^»■^^   II11^ I 
+85 
+D     E 
+:> 
+"t ] 
+/ 
+2 
+(a) Head of Constructing Arm       (b) Head Fed from Left 
+A B C Ö £ 
+5 ^ ~-> => :> b 
+0 - — - t 
+/ 
+2 
+D     E 
+ X 
+•—r => 
+1> t      i 
+r t 
+l '' \\ 
+fr t 
+/ 
+2 
+3 
+4 
+5 
+S'    0' 
+(c) Head Fed from Below 
+Fig. 18   CONSTRUCTING  ARM 
+
+=== PAGE 92 ===
+
+L'IJ.l .    .. >     !   «JU JUii.i.U . 
+(a)   Starting with 
+86 
+ABC 
+^ :> u 
+5'0 f u 
+d?7 
+A        B    C 
+(b) NIJ^U—•- into S or 5^000065 I> :> ^ 
+50 - <: 
+/ 
+2 
+ABC 
+(c)   Ü f ü=>into öor^'produces ^> => r> 
+s'o -* 
+A 
+/ 
+2 
+Fig. 19  HORIZONTAL ADVANCE  OF CONSTRUCTING ARM 
+
+=== PAGE 93 ===
+
+87 
+Starting with 
+U f-•—fllUinto d? or ^'produces 
+U^ U ^ into 5 or 5'produces 
+A B 
+U U 
+5 => => 
+s'o f 
+0' 
+A     B 
+\ *- 
+S /V 
+f 
+s,o t 
+/ 
+2 
+3 
+I 
+2 
+3 
+0' 
+A     B 
+r ^> 
+{\ i 
+s'o t 
+/ 
+2 
+3 
+0' 
+Fig. 20 VERTICAL ADVANCE OF CONSTRUCTING ARM 
+
+=== PAGE 94 ===
+
+88 
+Starting with 
+U  ^ Into 0 or 0' Produc es 
+U<= uTlnto 5or 5'Produ ces 
+U^Usl.US Into^ or ^'Produces 
+U=^Ux Into 5 or 5/Produces 
+5 ^> oj^ 
+s'c »-It 
+0' 
+S 5 ^i^ s'o -'' ♦ 
+O' 
+S => =>; {> 
+s'o t k ^/ 
+s ^1 - |   1 
+5' 0 4 S 
+0' 
+s => => 
+—i 
+_1 8  i ro f 
+d?' 
+Fig.2l HORIZONTAL RETREAT OF CONSTRUCTING ARM 
+WITH CONSTRUCTION OF r AND 8 
+
+=== PAGE 95 ===
+
+rr 
+89 
+Starting with 
+U*- U i U => into O or ^'produces 
+U ffU^ U y into 5 or 5' produces 
+ü tüS into O or ö'produces 
+U   ^   into 5 or 5'produces 
+=> =» 
+s 1> t 
+so t 
+i - 
+s =} t 
+sh t 0' 
+r <= 
+s => ft 
+^ t 
+0' 
+r S 
+s => f 
+^ f 
+0' 
+y s 
+s ^ => 
+s'o f 
+0' 
+Fig 22   VERTICAL RETREAT OF CONSTRUCTION OFy AND 8 
+
+=== PAGE 96 ===
+
+Starting with 
+U   f  into 0 or ^'produces 
+90 
+^ -> 
+so t 
+0' 
+=» t 1 
+so f 
+^' 
+A pulse into O or ^'exits at e 
+as the stimulus to start the 
+constructed automaton 
+=? t 
+5. t 
+^P7 
+u into 5 or 5' produces ^ =? 
+so t 
+d7# 
+Fig.23 INJECTION OF STARTING STIMULUS 
+INTO THE CONSTRUCTED AUTOMATON 
+
+=== PAGE 97 ===
+
+91 
+Tape 
+A B c D f 
+1/ C - — - - * 
+u C => =» =^ => ^ 1 
+^ ^ 4 ^./ n ^/ 
+w - *■ - " 
+/ 
+2 
+3 
+4 
+(a) Before Reading 
+Xn   is in U for "zero" 
+Xn   is in   \ for "one" 
+Tape 
+A B c D £ 
+V C — - — - — * 
+u C => => => =? ^ i 
+^ ^ ^ *„., 1 ^./ 
+w - - < -   — 
+/ 
+J 
+(b) After Reading 
+Fig. 24 TAPE, READING LOOP, AND CONSTRUCTING ARM 
+
+=== PAGE 98 ===
+
+92 
+Starting with 
+1/ C - - — -* i 
+u C => ^ ^> ^> => ; 
+Tape ^ ^ ^ ^Z * ''C»*/ 
+W 1 - - - - — _ 
+u^u^u into U produces 
+y C -* - ^ - — i 
+u C => =? => => => 41 
+Tape A' 0 A' / 2 U ^ 
+W — - — *- - ^ — 
+Then U | U  i U — into l^ produces 
+^ C ^ -* — - i ^/ C ^> => =» => => * 
+Tape Xo A' / ^ AT * 
+W — - - - — - — 
+And   U ^ IT ^ U —- into U produces 
+V C - -* - -* — £: 
+u C ^ ^> =» ^> ^ => ft 
+Tape ^ r/ ** *„., i ^ 
+W - ^ - — + - - - 
+Finally U ^ U ^    into V produces 
+V 
+U 
+Tape 
+W 
+c - - ^ - — 
+c ^> =»  V 
+^> ^ =^ 
+^0 A- / ^ X n-l A' 
+^_ - - *- — ~- ^ 
+Fig.25  WRITING "ONE"  IN CELL ^   AND LENGTHENING 
+THE READING LOOP 
+
+=== PAGE 99 ===
+
+^ 
+-» 
+^ 
+1 
+93 
+Q. 
+8 
+Q (J 
+zz 
+I- 
+11' tF t fT- 
+tTf 
+±1 ll Ü Ü 
+a o 
+i § Ui 
+< I 
+o: tu 
+er UJ 
+(- 
+a. 
+Ü (VJ 
+I' 
+_J 
+O 
+o o 
+UJ 
+a. < 
+z 
+I K Q 
+(- O 
+z 
+
+=== PAGE 100 ===
+
+94 
+^ — QQ. — — —1 ». 
+1 
+PART   1 
+TED     | 
+ l 
+ö 
+ii K 
+* 
+M 
+MPLETED 
+CONSTRUC 
+lUTOMATOM 
+A * 
+T 
+•^ 
+88 
+-fr o ^         1 zO        1 
+5            1 
+oa. m 
+1 
+a — 
+LU 
+0. 
+< 
+t ♦ <- 4- ♦ ♦t* * «■ ♦ *■ ♦ 
+f ^ <= 4= <J= t t|^ t <i= t 4= ♦ .— -fr t 
+^ ff t 2 O 
+o - •> ^ * 
+\0 fr t < *< <w 
+ff1 t 
+z 
+1- o — ^ f 
+* 
+♦ er i.0 - f 
+f V) 
+z o u 
+\0 - t 
+i ^.-^ t 
+O ^ t O 4 1» 
+il o 
+<o _l 
+o 
+1= 
+§1 
+li o o 
+_i5 
+er o 
+1— o z 
+? O 
+er i- 
+c/) 
+z 
+o 
+Ü 
+_l 
+< c/) ir üJ 
+> 
+z 3 
+OsJ 
+UND ONliOnaiSNCO iINn 3dVi 
+
+=== PAGE 101 ===
+
+95 
+M 
+¥ 
+■jmo 
+CONSTRUCTING ARM 
+UNIVERSAL 
+CONSTRUCTOR 
+¥ 
+'JD(M)oJiM)D  A  
+Zl 
+Fig.28 MODIFIED UNIVERSAL  CONSTRUCTOR 
+
+=== PAGE 102 ===
+
+r T^ 
+96 
+< 
+CD 
+o 
+H 
+CO 
+o o ^ 
+g 
+o 
+O 
+o or Q. 
+UJ 
+cr i 
+_i 
+UJ 
+C/) 
+< 
+JIÜL 
+O H 
+< 
+CM 
+L 
+xJ 
+
+=== PAGE 103 ===
+
+wmm 
+97 
+BIBLIOGRAPHY 
+Arbib,  Michael A.,  "Simple Self-Reproducing Universal Automata."    Information 
+and Control 9  (1966)  177-189. 
+Bagley, J.  D., The Behavior of Adaptive Systems which Employ Genetic and 
+Correlation Algorithms,  Ph.D. Thesis, University of Michigan,  1967. 
+Balzer,  Robert M., Studies Concerning Minimal Time Solutions to the Firing 
+Squad Synchronization Problem,  Ph.D. Thesis, Carnegie Institute of 
+Technology,  1966. 
+Burks, Arthur W., "Automata Models of Self-Reproduction." Information 
+Processing (May, 1966) 121-123. Information Processing Society of 
+Japan. 
+,    "Cellular Automata."    Pp.   100-111 of Theory of Finite and 
+Probabilistic Automata,  edited by M.  A.  Gavrilov.   MJSCOW:  Nauka,  1965. 
+(Russian). 
+-,    "Computation,  Behavior and Structure in Fixed and Growing 
+Automata."    Behavioral Science 6  (1961)  5-22.    Original version and 
+discussion in Self-Organising Systems  (edited by Marshall Yovits and 
+Scott Cameron).    New York:   Pergamon Press,  1960,  282-311,  312-314. 
+-,    "Electronic Computing Circuits."   Proceedings of the Institute 
+of Radio Engineers 35  (August,  1947)  756-767. 
+-,    "The Logic of Fixed and Growing Automata."    Proceedings of an 
+International Symposium on the Theory of Switchings  2-5 April 1957. 
+Cambridge: Harvard University Press, 1959, Part I,  147-188. 
+-,    "Programming and the Theory of Automata."    Pp.  100-117 of 
+Computer Programming and Formal Systems. Edited by P. Braffort and 
+D. Hirschberg. Amsterdam: North-Holland Publishing Company, 1963. 
+Also to appear in Essays on Cellular Automata. 
+-,    "Super Electronic Computing Machine."    Electronics Industries 
+5   (July,   1946)  62-67,  96. 
+Burks, Arthur W., "Toward a Theory of Automata Based on More Realistic 
+Primitive Elements." Pp. 379-385 of Information Processing 1962, 
+Proceedings of IFIP Congress 62.   Edited by C. M. Popplewell. 
+Amsterdam: North-Holland Publishing Company, 1963.  Also to appear 
+in Essays on Cellular Automata. 
+Burks, Arthur W. and Hao Wang,  "The Logic of Automata." Journal of the 
+Association for Computing Machinery  4 (1957) 193-218, 279-297. 
+Burks, Arthur W. and J.B. Wright, "Sequence Generators and Digital Computers." 
+Pp. 139-199 of Recursive Function Theory  (Proceedings of Symposia 
+in Pure Mathematics, Vol. V). Providence, Rhode Island: American 
+Mathematical Society, 1962. 
+
+=== PAGE 104 ===
+
+98 
+Abstract and discussion in Pvojccdings of the International 
+Conference on Information Frooessing,  UNEICO,  Parts 15-20 June  1959, 
+pp. 425.  Paris: UNESCO, 1960. 
+-, "Theory of Logical Nets." Proceedings of the Institute of 
+Radio Engineers  41 (October, 1953), 1357-1365.  Reprinted in Sequential 
+Machines  — Selected Papers  193-212. Edited by E.F. Moore.  Reading, 
+Mass.: Addison-Wesley, 1964. 
+Church, Alonzo, "Application of Recursive Arithmetic to the Problem of 
+Circuit Synthesis."  In Summer Institute for Symbolic Logic Summaries, 
+Institute for Defense Analysis (1957). 
+Church, Alonzo, "Application of Recursive Arithmetic to the Theory of 
+Computers and Automata." Notes from summer conference course in 
+Advanced Theory of the Logical Design of Digital Computers,  The 
+University of Michigan (1958). 
+Codd, Edgar F., "Propagation, Computation, and Construction in Two-Dimensional 
+Cellular Spaces." 152 pp. Ph.D. Dissertation, University of Mich- 
+igan, 1965. Also published as Cellular Automata,  1968. (Academic Press). 
+Comfort, W.T., "Highly Parallel Machines." Pp. 126-155 of Proceedings 
+of a Workshop on Computer Organization.     Edited by Barnum and Knapp. 
+New York: Spartan Books, 1963. 
+ , "A Modified Holland Machine," Proceedings of the 196S Fall 
+Joint Computer Conference,   Institute of Electrical and Electronic 
+Engineers, 1963. 
+Davis, M., Computability and Unsolvability.     McGraw-Hill, 1958. 
+Elgot, Calvin C., "Decision problems of finite automata design and related 
+arithmetics." Transactions of the American Mathematical Society 98 (1961) 21-51. 
+Fisher, R.A., The Genetical Theory of Natural Selection.     Dover, 1958. 
+Flanigan, Larry K., and Henry H. Swain, "Computer Simulation of A-V Nodal 
+Conduction." The University of Michigan Medical Center Journal  33 
+(1967) 234-241. 
+Friedberg, R.M., "A Learning Machine; Part I." IBM Journal of Research 
+and Development  2 (1958) 2-13. 
+Friedman, Joyce, "Some Results in Church's Restricted Recursive Arithmetic." 
+Journal of Symbolic Logic 22  (December, 1957) 337-342. 
+ , "A Decision Procedure for Computations of Finite Automata'.' 
+Journal of the Association for Computing Machinery  9 (1962) 315-323. 
+Garner, H.L., and J.S. Squire, "Iterative Circuit Computers." Pp. 156-181 
+of Proceedings of a Workshop on Computer Oragnization.    Edited by 
+Barnum and Knapp. New York: Spartan Books, 1963. 
+
+=== PAGE 105 ===
+
+99 
+Gerlernter, H., et. al. "Empirical Explorations of the Geometry-Theory 
+Proving Machine." Pp. 143-149 of Proceedings of the Westezm Joint 
+Computer Conference, San Francisco, May,  1960. 
+GÖdel,  Kurt,    "Über formal unentscheidbare Sätze der Principia Mathematica 
+and verwandter Systeme I."   Monatshefte fur Mathematik und Physik 
+38  (1931)   173-198.     (English translation by Elliott Mendelson in 
+The Undecidable,  edited by Martin Davis, pp.  4-38.  Hewlett, New York: 
+Raven Press,  1965.) 
+Godel,  Kurt,    "On Undecidable Propositions of Formal Mathematical Systems." 
+Mimeographed notes on lectures delivered at the Institute for Advanced 
+Study,  Princeton, New Jersey.    February-May,  1934.    31 pages.     (Reprinted 
+as pp.   39-74 of The Undecidable,  above.) 
+Goldstine, H.H.,  and Adele Goldstine,     "The Electronic Numerical Integrator 
+and Computer (ENIAC)."   Mathematical Tables and Other Aids to Computation 
+2  (July,   1946)  97-110 and frontispiece. 
+Guttman,  B.S.,  "A Resolution of Rosen's Paradox for Self-Reproducing Automata." 
+Bulletin of Mathematical Biophysics 28  (1966)   191-194. 
+Hennie,  Frederick C.,    "Analysis of bilateral  iterative networks."    Trans- 
+actions of the Institute of Radio Engineers Professional Group on 
+Circuit Theory CT-6 (1959)  35-45. 
+Herdan,  R.,    "A Logical Model for Growth and Differentiation in Multi-Celled 
+Organisms."    Bulletin of Mathematical Biophysics 27  (1965)  379-393. 
+Holladay, J.C.   and Ulam, S.M.,    "On Some Combinational Problems in Patterns 
+of Growth,  I."    Notices of the American Mathematical Society 7 (1960)  234. 
+Holland, J.H.,    "Concerning Efficient Adaptive Systems."    Pp.   215-230 of 
+Self-Organizing Systems— 1962.     Edited by M.C.  Yovits, G.T. Jacobi, 
+and G.D.  Goldstein.    Washington,D.C.:  Spartan Books,   1962. 
+'Iterative Circuit Computers."    Pp.  259-265 of Proceedings of 
+the 1960 Western Joint Computer Conference,  Institute of Radio 
+Engineers,  1960.    Also in Essays on Cellular Automata. 
+ ,    "Outline for a Logical Theory of Adaptive Systems."   Journal 
+of the Association for Computing Machinery 9  (July,   1962)   297-314. 
+Also in Essays on Cellular Automata. 
+'A Universal Computer Capable of Executing an Arbitrary Number 
+of Sub-Programs Simultaneously."    Pp.   108-113 of the Proceedings of 
+the 1959 Eastern Joint Computer Conference,  Institute of Radio Engineers, 
+1959.    Also in Essays on Cellular Automata. 
+ ,    "Information Processing in Adaptive Systems."    Pp.   330-338 of 
+Information Processing in the Nervous System, Vol.   Ill of the 
+Proceedings of the International Union of Physiological Sciences,  XXII 
+International Conference,  Leiden,   1962. 
+
+=== PAGE 106 ===
+
+100 
+"Universal Embedding Spaces for Automata." Pp. 223-243 of 
+Cybemetias of the Nervous System, Ih'ogress in Brain Research,  Vol. 17. 
+Edited by Norbert Wiener and J.P. Schade.  New York: Elsevier, 1965. 
+"Iterative Circuit Computers: Characterization and Resume 
+of Advantages and Disadvantages." Pp. 171-178 of Microeleatronias 
+and Large Systems.     Edited by Mathis, Wiley, and Spandorfer. New York: 
+Spartan Books, 1965. Also in Essays on Cellular Automata. 
+Holland, J.H., "Universal Spaces: A Basis for Studies of Adaption." 
+Pp. 218-230 of Automata Theory.     Edited by E.R. Caianiello. 
+New York: Academic Press, 1965. 
+Jacobson, Homer,  "On Models of Reproduction." American Scientist  46 (1958) 
+255-284. 
+Kemeny, John G.,  "Man Viewed as a Machine." Scientific Amerlaan  192 
+(1955) 58-67. 
+Kister, Stein, Ulam, Waiden and Wells, "Experiments in Chess." Journal 
+of the Assoaiation for Computing Machinery  4 (April, 1957). 
+Kleene, S.C., "Representation of Events in Nerve Nets and Finite Automata." 
+Pp. 3-41 of Automata Studies,  edited by C.E. Shannon and J. McCarthy. 
+Princeton: Princeton University Press, 1956.  (This appeared originally 
+as Rand Corporation Memorandum RM-704, 101 pp., dated December 15, 1951.) 
+Lee, C.Y., "A Turing Machine Which Prints Its Own Code Script." Pp. 155-164 
+of Proceedings of the Symposium on Mathematical Theory of Automata, 
+New York, April,   1962.     Brooklyn, New York: Polytechnic Press, 1963. 
+Lehmer, D.H., E. Lehmer, W.H. Mills, and J.L. Selfridge, "Machine Proof 
+of a Theorem on Cubic Residues." Mathematics of Computation  16 
+(October, 1962) 407-415. 
+Lofgren, Lars, "Automata of High Complexity and Methods of Increasing 
+Their Reliability by Redundancy." Information and Control  1   (1958) 
+127-147. 
+"Self-Repair as a Computability Concept in the Theory of 
+Automata." Pp. 205-222 of Proceedings of the Symposium on 
+Mathematical Theory of Automata,  New York,  April,   1962.  Microwave 
+Research Institute Symposium Series, Vol. XII, edited by Jerome Fox. 
+Brooklyn, New York: Polytechnic Press of the Polytechnic Institute 
+of Brooklyn, 1963. 
+Menzel, M.T., P.R. Stein, and S.M. Ulam, Quadratic Transformations, 
+Part I, Report LA-2305, Los Alamos Scientific Laboratory, 1959. 
+158 Pages. Office of Technical Services, U.S. Department of 
+Commerce, Washington, D.C. 
+Mesarovic, Mihajlo D., ed.. Views on General Systems Theory.   Proceedings 
+of the Second Systems Symposium at Case Institute of Technology. 
+New York: John Wiley, 1964. 
+
+=== PAGE 107 ===
+
+101 
+Minsky, M., "Steps Toward Artificial Intelligence." Proceedings of the 
+Institute of Radio Engineers  46 (1961) 8-30. 
+Moore, Edward F., "Artificial Living Plants." Scientific American  195 
+(1956) 118-126. 
+-, "The Firing Squad Synchronization Problem." Pp. 213-214 of 
+Sequential Machines.   Edited by E.F. Moore. Reading, Mass.: Addison- 
+Wesley Publishing Company, 1964, 
+-, "Machine Models of Self-Reproduction." Pp. 17-33 of 
+Mathematical Problems in the Biological Sciences.     Proceedings of 
+Symposia in Applied Mathematics, Vol. XIV. Providence, Rhode Island: 
+American Mathematical Society, 1962. Also in Essays on Cellular Automata. 
+-, "Machine Models of Self-Reproduction." Abstract 560-52, 
+Notices of the American Mathematical Society  6 (1959) 622-623. 
+"Gedanken-Experiments on Sequential Machines." Pp. 129-153 of 
+Automata Studies,  edited by C.E. Shannon and J. McCarthy. Princeton: 
+Princeton University Press, 1956. 
+ , "Mathematics in the Biological Sciences." Scientific American 
+211 (September, 1964) 148-164. 
+Mukhopadhyay, A., "Representation of Events in the von Neumann Cellular 
+Model." Technical Report No. 28, July, 1967. Computer Group, Tata 
+Institute of Fundamental Research, Bombay, India.  Also in Journal 
+of the Association for Computing Machinery  15 (1968) 693-705. 
+Myhill, John, "The Abstract Theory of Self-Reproduction." Pp. 106-118 of 
+Views on General Systems Theory,  Proceedings of the Second Systems 
+Symposium at Case Institute of Technology. Edited by M.D. Mesarovic. 
+New York: John Wiley, 1964. Also to appear in Essays on Cellular 
+Automata. 
+-, "The Converse of Moore's Garden-of-Eden Theorem." Proceedings 
+of the American Mathematical Society    14 (August, 1963) 685-686. 
+Also to appear in Essays in Cellular Automata. 
+McCulloch, W.S., and W. Pitts, "A Logical Calculus of the Ideas Immanent 
+in Nervous Activity." Bulletin of Mathematical Biophysics  5 (1943) 
+115-133. 
+McNaughton, R., "The Theory of Automata, a Survey." Pp. 379-421 of 
+Advances in Computers,  Vol. 2. Edited by F.L. Alt. New York: 
+Academic Press, 1961. 
+McNaughton, Robert, "On Nets Made up of Badly Timed Elements, Part I; 
+Slow But Perfectly Timed Elements." Mimeographed, 30 pages. 
+Philadelphia: Moore School of Elf :trical Engineering, University 
+of Pennsylvania, 1961. 
+
+=== PAGE 108 ===
+
+102 
+Newell, A.,    "On Programming a Highly Parallel Machine to be an Intelligent 
+Technician," Proceedings of the Weatexm Joint Computer Conference3 
+Institute of Radio Engineers,  1960,  pp.  267-282. 
+Newell,  A., J.C.   Shaw and H.A.  Simon,    "Empirical Explorations of the Logic 
+Theory Machine:  A Case Study in Heuristics."    Report P-951,  Rand Cor- 
+poration  (1957). 
+ ,    "A Variety of Intelligent  Learning in a General Problem Solver." 
+In Self-Organizing Systems.  Edited by Marshall Yovits and Scott Cameron. 
+New York:   Pergamon Press,  1950. 
+Oparin,  A.I.,     The Origin of Life on Earth,  third edition.    New York:  Academic 
+Press,  1957. 
+Pattee, Howard H.,    "On the Origin of Macromolecular Sequences."    Biophysical 
+Journal (November, 1961) 683-710. 
+Penrose,  L.S.,    "Self-Reproducing Machines."   Scientific American 200 
+(1959)  105-114. 
+Pontecorvo,  G.,     "Self-Reproduction and All That."    Pp.  1-5 of Symposium of 
+the Society for Experimental Biology   (Great Britain),  Vol.   12. 
+Cambridge,  England:    Cambridge University Press,  1958. 
+Post, E.L.,    "Formal Reductions of the General Combinatoral Decision Problem." 
+American Journal of Mathematics 65  (1943)  197-215. 
+ ,    "Finite Combinatoral Processes -- Formulation I."    Journal of 
+Symbolic Logic I   (1936)  103-104. 
+Rabin, Michael 0.,    "Probabilistic Automata," Information and Control 6 
+(September,   1963)  230-245.  Reprinted in Sequential Machines, pp.  98-114. 
+Edited by E.F. Moore.    Reading, Mass.: Addison-Wesley,   1964. 
+Rabin, M.O.  and D.  Scott,    "Finite Automata and Their Decision Problems." 
+IBM Journal of Research and Development 3  (1959)   114-125. 
+Rado, T.,    "On Non-Computable Functions."    Bell System Technical Journal 
+41   (1962)   877-884. 
+Rochester, N.,  L.H. Haibt, John Holland,  and W.L. Duda,    "Tests on a Cell 
+Assembly Theory of the Action of the Brain."   Institute of Radio 
+Engineers Transactions on Information Theory (September,  1956)  80-93. 
+Rosen, Robert,    "On a Logical Paradox Implicit in the Notion of a Self- 
+Reproducing Automaton." Bulletin of Mathematical Biophysics  28 
+(1966)   149-151. 
+Rosenberg, Richard,    Simulation of Genetic Populations with Biochemical 
+Properties.     Ph.D.  Thesis, University of Michigan,  1967. 
+Samuel, A.L.,    "Some Studies in Machine Learning Using the Game of Checkers." 
+IBM Journal of Research and Development 3 (1959)  211-229.    "Some 
+Studies in Machine Learning Using the Game of Checkers II -- Recent 
+Progress."    Ibid.    11  (1967) 601-617. 
+
+=== PAGE 109 ===
+
+I 
+103 
+Schrandt,  R.G.  and S.M.  Ulam,    "On Patterns of Growth of Figures in Two 
+Dimensions."    Notices of the Amerioan Mathematical Society 7 (1960)642. 
+ ,    "On Recursively Defined Geometrical Objects and Patterns of 
+Growth."    To appear in Essays on Cellular Automata. 
+Selfridge, O.G.,    "Pandemonium, a Paradigm for Learning."    In Mechanization 
+of Thought Processes.     National Physical Laboratory Symposium Number 10. 
+London:  Her Majesty's Stationary Office,  1959. 
+Shannon, Claude E.,    "Computers and Automata."    Proceedings of the Institute 
+of Radio Engineers 41   (1953)  10. 
+-,    "A Mathematical Theory of Communication."    The Bell System Tech- 
+nical Journal 27  (1948)   379-423,  623-656. 
+ ,    "Programming a Computer for Playing Chess."   Philosophical 
+Magazine 41   (March,  1950). 
+-, "Von Neumann's Contributions to Automata Theory." Bulletin 
+of the American Mathematical Society  64 (No. 3, Part 2, 1958) 123-129. 
+Squire, J.S. and S.M. Palais, "Programming and Design Considerations of 
+a Highly Parallel Computer." Proceedings of the Spring Joint Computer 
+Conference,   Institute of Electrical and Electronic Engineers, 1964. 
+Stahl, Walter R., "Algorithmically Unsolvable Problems for a Cell Automaton." 
+Journal of Theoretical Biology  8 (1965) 371-394. 
+-, "A Model of Self-Reproduction Based on String Processing Finite 
+Automata." Pp. 43-72 of Natural Automata and Useful Simulations; 
+Proceedings of a Symposium on Fundamental Biological Models, Stanford 
+University, 1965. Edited by H.H. Pattee, E.A. Edelsack, Louis Fein, 
+and A.B. Callahan. Washington, D.C.: Spartan Books, 1966. 
+-, "Self-Reproducing Automata." Perspectives in Biology and Medicine 
+8 (1965) 373-393. 
+Stahl, Walter, Robert W. Coffin and Harry E. Goheen,    "Simulation of Biological 
+Cells by Systems Composed of String-Processing Finite Automata."    Pp.  89-102 
+of Proceedings of the Spring Joint Computer Conference,  1964. 
+Stein,  P.R. and S.M.  Ulam,    "Non-Linear Transformation Studies on Electronic 
+Computers."   Rozprany Matematyozne XXXIX, Warsaw,  1964. Also to appear 
+in Essays on Cellular Automata. 
+Thatcher, James,    "The Construction of a Self-Describing Turing Machine." 
+Pp.   165-171 of Proceedings of the Symposium on Mathematical Theory 
+of Automata, Neu York, April,  1962.    Brooklyn, New York:    Polytechnic 
+Press, 1963. 
+Turing, A.M., "The Chemical Basis of Morphogenesis." Phil. Trans. Roy. 
+Soc. of London Mathematical Society, Series B, Biological Sciences, 
+Vol.   237,  August,  1952,  pp.   37-72. 
+
+=== PAGE 110 ===
+
+^WH- 
+104 
+"On Computable Numbers, With an Application to the Entschei- 
+dungsproblem." Vroaeedings of the London Mathematical Society, 
+Series 2, 42 (1936-37) 230-265. "A Correction", Ibid* 43 (1937) 
+544-546. (Reprinted in The Undeoidable, edited by Martin Davis, 
+pp.   115-154, Hewlett, New York:   Raven Press,  1965.) 
+Turing, A.M.,     "Computing Machinery and Intelligence."    Mind 59  (1950) 
+433-460. 
+Ulam, S.M.,    A Collection of Mathematical Problems.    New York:   Interscience 
+Publishers,  Inc.,  1960. 
+"Electronic Computers and Scientific Research."    Pp.  95-108 of 
+The Age of Electronics.    Edited by C.F.J. Overhage.  New York: McGraw- 
+Hill,   1962. 
+"Random Processes and Transformation."   Proceedings of the 
+International Congress of Mathematiciansj  1950, Vol.  II, pp.  264-275. 
+Providence, Rhode Island: American Mathematical Society,  1952. 
+"On Some Mathematical Problems Connected With Patterns of 
+Growth of Figures."    Pp.  215-224 of   Mathematical Problems in the 
+Biological Sciences.    Proceedings of Symposia in Applied MAthematics, 
+Vol.   14,  Providence, Rhode Island:    American Mathematical Society, 
+1962.    Also to appear in Essays on Cellular Automata. 
+"On Some New Possibilities in the Organization and Use of 
+Computing Machines."    IBM Research Report 68,  1957,  IBM Corporation, 
+Yorktowm Heights, New York. 
+Von Neumann, John,    Collected Works.     Six volumes.    Edited by A.H.  Taub. 
+New York:  MacMillan,  1961-1963.    Vol.  V is entitled Design of Computers, 
+Theory of Automata and Numerical Analysis.    References to these volumes 
+will be made as follows:  "Collected Works 5.288-328" refers to pp.   288- 
+328 of Vol.  V. 
+Von Neumann, John,    The Computer and the Brain.    With a preface by Klara 
+von Neumann, pp.  v-x.    New Haven:  Yale University Press,  1958. 
+Review of Norbert Wiener's Cybernetics, or Control and 
+Communication in the Animal and the Machine.  Physics Today 2 (1949) 
+33-34. 
+"The General and Logical Theory of Automata."    Pp.   1-41 of 
+Cerebral Mechanisms in Behavior - The Hixon Symposium,  edited by 
+L.A. Jeffress. New York:  John Wiley,  1951.    Collected Works 5.288-328. 
+"Probabilistic Logics and the Synthesis of Reliable Organisms 
+from Unreliable Components."    Pp.   43-98 of Automata Studies, edited 
+by C.E.  Shannon and J. McCarthy.     Princeton:  Princeton University 
+Press,  1956.    Collected Works 5.329-378. 
+Theory of Self-Reproducing Automata.  Edited and completed by 
+Arthur W.   Burks.    Urbana:  University of Illinois Press,  1966. 
+
+=== PAGE 111 ===
+
+105 
+Errata: 
+pp. 159, par.   2 - the times should be t+8, t+9, t+10; 
+pp. 171, line 21 - "IQd" should be "IQe"; 
+pp. 174, line 4 - replace "n" by "5p"; 
+pp. 179, line 18 - "pulser" should be "decoder". 
+Von Neumann, John and 0. Morgenstern,    Theory of Games and Eoonomio Behavior. 
+Princeton:  Princeton University Press,  1947. 
+Wagner,  Eric G.,    "An Approach to Modular Computers,1:    Spider Automata 
+and Embedded Automata."   IBM Research Report 1107, January 28,  1964, 
+Yorktown Heights, New York. 
+Wagner,  Eric G.,    "Modular Computers,  II:    Graph Theory and the Inter- 
+connection of Modules."    IBM Research Report RC 1414, June 4,  1965, 
+Yorktown Heights, New York. 
+Waksman,  Abraham,    "An Optimum Solution to the Firing Squad Synchronization 
+Problem."    Information and Control 9  (1966)  67-78. 
+Wang, Hao,    "Universal Turing Machines:    An Exercise in Coding."    Z.   Mzth. 
+Logik Grundlagen Math.    3  (1957)  69-80. 
+-,    "Circuit Synthesis by Solving Sequential Boolean Equations." 
+Z.  Math.  Logik Grundlagen Math.    5  (1959)  291-322. 
+ ,    "A Variant to Turing's Theory of Computing Machines."   Journal 
+of the Association of Computing Machines 4   (1957) 63-92. 
+Watanabe,  Shigeru,      "S-^-^o!  8-State ar ^ 5-Symbol 6-State Universal 
+Turing Machines."    Journal of the Association for Computing Machinery 
+8  (October,  1961)  476-483. 
+Wiener, Norbert,    Cyhemetias, or Control and Communication in the Animal 
+and the Machine.     New York:    John Wiley § Sons,  Inc.,  1948. 
+Wigner, E.P., "The Probability of the Existence of a Self-Reproducing 
+Unit."   Pp.  231-248 of The Logic of Personal Knowledge (Essays pre- 
+sented to Michael Polanyi).    Glencoe,  Illinois: The Free Press,   1961. 
+Wright, S.,    "Physiological Genetics, Ecology of Populations, and Natural 
+Selection."    Pp.   429-475 of The Evolution of Life,  Vol.  1.    Edited by 
+Sol Tax.    Chicago: University of Chicago Press, 1960. 
+Yamada, H.,    "Real-time Computation and Recursive Functions Not Real-time 
+Computable." Transactions of the Institute of Radio Engineers EC-11 
+(December,  1962)   753-760. 
+
+=== PAGE 112 ===
+
+rr 
+IINn.AS.STFTF.n 
+Security Classification 
+1                                                      DOCUMENT CONTROL DATA • R&D                                                          1 
+|             (Smeurtlr el»*»llle»tlon of lltlt, body el abtlracl and Indmumg annotation muaf »a antaratf iW)an Ma ovtmll rapert ta clfiillmd)             \ 
+1   OHIGIHATINC ACrivfy (Coiponlm author) 
+Logic of Computers Group 
+The University of Michigan 
+Ann Arbor, Michigan 
+I«    RCRORT SKCURITV   C CAItlFICATION 
+Unclassified 
+1*   OROUR 
+J   REPORT TITLI 
+VON NEUMANN'S SELF-REPRODUCING AUTOMATA 
+4   OCtCRIPTIVK NOTtt (Typo of import and Insfaalva dmloo) 
+Technical Report 
+1  »UTMORW (Ltol ntmo. lint nomo, InlUtl) 
+Arthur W.  Burks 
+•   RtPORT OATK 
+June 1969 
+Tm-   TOTAL NO. Of  RA«B« 
+110 132                               1 
+■ a    CONTRACT OR GRANT NO. 
+;,\ *i-124-ARO-D-483 
+b.   ^Mv >«-. "   NO. 
+c. 
+d. 
+• a.  ORKMNATOR't RBRORT NUMRERW 
+O8226-II-T 
+10 AVAILAaiLITV/LIMITAtlON NOTICtl 
+Distribution of This Document is Unlimited 
+II   tURRLIMINTANY NOTES l|. IPOMSORINO MILITARY ACTIVITY 
+U.  S. Army Office    (Durham) 
+Durham, North Carolina 
+IJ   ABSTRACT 
+John von Neumann's kinematic and cellular automaton systems are des- 
+cribed.    A complete informal description of the cellular system is 
+presented including an explanation of the realization of logical components, 
+the design of computer organs,  the construction, destruction and move- 
+ment of organs by sequences of internally originated pulses, universal 
+computation and construction,  and self-reproduction.    Connections between 
+von Neumann's automaton research and his work on computer design are 
+brought out,  and the significance of cellular arrays for biological 
+research discussed. 
+DD <T**.< 1473 UNCLASSIFIED 
+Security Classification 
+J 
+
+=== PAGE 113 ===
+
+!"i,i '!. 
+UNCLASSIFIED 
+Security Classification 
+14 
+KEY WORDS 
+LINK A 
+NOUS 
+LINK 0 
+MOLC 
+LINK C 
+ROLK 
+cellular automata 
+von Neumann 
+self-reproduction 
+biological models 
+universal computation and construction 
+INSTRUCTIONS 
+1.   ORIGINATING ACTIVITY.   Enter th« nam* and addrata 
+of tha contractor, aubcontractor, grantt«, Oopartmant of Da- 
+fanaa activity or othar organisation fcoiporal« author) itaulng 
+tha rapott. 
+3a.   RBPORT SECURITY CLASSIFICATION:   Entar tha ovar- 
+all aacurity claaaification of tha rapott.   Indicata whathar 
+"Raatrictad Data" ia includad   Marfctn« ia to ba in accord- 
+anca with appropriata aacurity ragulationa. 
+2b.   GROUP:   Automatic downgrading ia apecifiad in OoD Dl- 
+ractiva 5300.10 and Armad Forcaa Industrial Manual, Enter 
+tha group nuaibar.   Alto, whan applicable, ahow that optional 
+markings have been used for Group 3 end Group 4 as author- 
+ised. 
+3. REPORT TITLE:   Enter the complete report title in all 
+capital tattere.   Titles in all caaea ahould be unclassified. 
+If a meaningful title cannot be selected without classifica- 
+tion, show title classification in all capitala in parentheais 
+immediately following the Utle. 
+4. DESCRIPTIVE NOTES:   If appropriate, enter the type of 
+report, e.g., interim, prngreas, summary, annual, or final. 
+Give the inclusive dates when s specific reporting period is 
+covered. 
+5. AUTHOR(S):   Enter the name(s) of authoKa) aa ahown on 
+or In tha report.   Ent« teat name, first name, middle initial. 
+If aülitary, ahow rank and branch of service.   The name of 
+the principal author is an abaoluta minimum requirement 
+6. REPORT DATE:   Enter the date of the report aa day, 
+month, year, or month, year.   If more than one date appeara 
+on the report, uae date of publication. 
+7«.   TOTAL NUMBER OF PAGES:   The total page count 
+ahould follow normal pagination procedurea. La., enter the 
+number of pagea containing information. 
+7b.   NUMBER OP REFERENCES:   Enter the total number of 
+referencea cited la the report. 
+Sa.   CONTRACT OR OR ANT NUMBER:   If appropriata, enter 
+tha applicable number of the contract or grant under which 
+tha report waa written, 
+Sb, Se. fcM.  PROJECT NUMBER:   Enter the appropriate 
+military dapartmant identlflcetion, auch aa project number, 
+aiihpfojaet mtmber, ayatem numbare, taak number, etc. 
+9a.  ORIOINATOR'S REPORT NUMBER(S):   Enter the offi- 
+cial report mimbar by which the document will be Identified 
+and controlled by the originating activity.   Thla number must 
+ba unique to thla report. 
+96. OTHER REPORT NUMBERS): If the report haa been 
+aaalgned any other rapcrt numbers (either by the originator 
+or by the oponoor), alao enter thla numbeKa). 
+10.   AVAILABILITY/LIMITATION NOTICES:   Enter any Jim- 
+itatlona on further diaaemination of the report, other than tboae 
+impoaed by aacurity classificstion, using standard statements such as: 
+(1)    "Qualified requesters may obtain copies of this 
+report from DDC" 
+(3)    "Foreign announcement end dissemination of this 
+report by DDC ia not authorised." 
+(3)    "U. S. Government agenciea may obtain copies of 
+thla report directly from DDC   Other qualified DDC 
+uaera ahall request through 
+(4)    "U. S. military agenciea may obtain copies of this 
+report directly from DDC  Other quslified users 
+shsll request through 
+(5)    "All distribution of this report is controlled.  Qusl- 
+ified DDC users shall request through 
+If the report hea been furnished to the Office of Technical 
+Services, Department of Commerce, for aale to the public, indi- 
+cate thla fact and enter the price, if known 
+IL SUPPLEMENTARY NOTES: Use for additional explana- 
+tory notea. 
+12. SPONSORING MILITARY ACTIVITY: Enter the neme of 
+the departmental project office or laboratory sponsoring (poy 
+ing lor) the research end development   Include address. 
+13. ABSTRACT:   Enter en abstract giving a brief and factual 
+aummary of the document indicetive of the report, even though 
+it may alao appear elaewhere in the body of the technical re- 
+port.   If additional apace ia required, e continuation aheet shall 
+be attached. 
+It ia highly deairable thet the abatract of claaaified reports 
+be unelaaaifiad.   Each paragraph of tha abstract ahall end with 
+an indication of the military aacurity claaaification of the in- 
+formation in the paragraph, represented aa (TS), (S). (C). or (V) 
+There ia no limitation on the length of the abstract.   How- 
+ever, the auggeated length is from ISO to 225 words. 
+14. KEY WORDS:   Key worda are technically meeningful terms 
+or abort phraeea that characterise a report and may be used as 
+indes entries for ceteloging the report.   Key words must be 
+selected so thet no security clsssificetion is required.   Identi- 
+fiers, such aa equipment model designation, trade name, military 
+project code neme, geographic location, may be uaed ea key 
+words but will be followed by sn indicetion of technicel con- 
+test.   Ute assignment of links, rules, snd weights is optional. 
+UNCLASSIFIED 
+Security Classification 
