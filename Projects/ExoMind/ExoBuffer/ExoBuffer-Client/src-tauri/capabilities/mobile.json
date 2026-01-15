@@ -1,8 +1,0 @@
-{
-  "identifier": "mobile-default",
-  "description": "Default permissions for mobile",
-  "windows": ["main"],
-  "permissions": [
-    "core:default"
-  ]
-}

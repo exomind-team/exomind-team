@@ -1,1 +1,0 @@
-{"desktop-default":{"identifier":"desktop-default","description":"Default permissions for the desktop","local":true,"windows":["main"],"permissions":["core:default","shell:allow-open"]},"mobile-default":{"identifier":"mobile-default","description":"Default permissions for mobile","local":true,"windows":["main"],"permissions":["core:default"]}}
