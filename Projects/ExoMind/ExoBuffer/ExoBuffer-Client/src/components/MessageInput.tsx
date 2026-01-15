@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Send, Loader2, AlertCircle, User, Reply, Enter } from 'lucide-react';
+import { Send, Loader2, AlertCircle, User, Reply } from 'lucide-react';
 import { createFact } from '../api/client';
 import type { Fact } from '../api/types';
 import { useAutoSize } from '../hooks/useAutoSize';
@@ -115,7 +115,7 @@ export function MessageInput({ source, onMessageSent }: MessageInputProps) {
         <div className="flex gap-3">
           <textarea
             ref={textareaRef}
-            placeholder={isMobile ? "输入消息...（Shift+回车发送）" : "输入消息..."}
+            placeholder={isMobile ? "输入消息...（Shift+回车发送）" : "输入消息...（回车发送）"}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={(e) => {
