@@ -2,3 +2,6 @@
 	path = Projects/ExoMind/ExoBuffer/ExoBuffer-Connector
 	url = https://github.com/exomind-team/ExoBuffer-Connector
 	branch = main
+[submodule "Projects/obsidian-exomind-timer"]
+	path = Projects/obsidian-exomind-timer
+	url = https://github.com/exomind-team/obsidian-exomind-timer.git
