@@ -23,6 +23,14 @@ Desktop.ini
 *.jar
 
 # Images / binaries (optional, keep if you want full exclusion)
+# 例外： Meetings 目录下的图片需要版本控制
+!Meetings/**/*.jpg
+!Meetings/**/*.png
+!Meetings/**/*.jpeg
+!Meetings/**/*.gif
+!Meetings/**/*.webp
+!Meetings/**/*.bmp
+
 *.png
 *.jpg
 *.jpeg
