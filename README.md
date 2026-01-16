@@ -73,7 +73,6 @@ git pull origin main
 ## 相关链接
 
 - 团队主仓库: https://github.com/exomind-team/exomind-team
-- 个人库: https://github.com/Hailaylin/ExoMind-Obsidian-HailayLin
 - Obsidian 计时插件: https://github.com/exomind-team/obsidian-exomind-timer
 - ExoBuffer 连接器: https://github.com/exomind-team/ExoBuffer-Connector
 
