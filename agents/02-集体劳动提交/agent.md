@@ -73,7 +73,7 @@
 
 ## 3.1. 记忆与状态更新流程
 
-本 Agent 遵循 `life-os/core/memory-workflow.md` 中的通用流程。
+本 Agent 遵循 `agents/memory-workflow.md` 中的通用流程。
 
 ### 本 Agent 特有的文件操作
 
@@ -82,7 +82,7 @@
 | `2-个人状态与历史记录/日记/YYYY-MM-DD.md` | **读取** | 扫描劳动记录时间块 |
 | `ExoMind-Team/Logs/YYYY-MM-DD.md` | **读取+追加** | 维护集体劳动日志 |
 | `ExoMind-Team/Projects/.../*.md` | **读取** | 获取成果文档信息 |
-| `life-os/agents/02-集体劳动提交/.logs/YYYY-MM-DD_任务ID.md` | **创建** | 执行日志 |
+| `agents/02-集体劳动提交/.logs/YYYY-MM-DD_任务ID.md` | **创建** | 执行日志 |
 
 ## 4. 输出格式
 
