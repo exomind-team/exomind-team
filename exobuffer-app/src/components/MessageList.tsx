@@ -3,7 +3,11 @@ import { useMessages } from '../context/MessageContext'
 import MessageCard from './MessageCard'
 import { Message } from '../types'
 
-export default function MessageList() {
+interface MessageListProps {
+  inputRef?: React.RefObject<{ focus: () => void }>
+}
+
+export default function MessageList({ inputRef }: MessageListProps) {
   const { messages, isLoading, error, refresh, replyingTo, setReplyingTo } = useMessages()
   const scrollRef = useRef<HTMLDivElement>(null)
   const prevMessagesLength = useRef(messages.length)
@@ -24,9 +28,8 @@ export default function MessageList() {
 
   const handleReply = (message: Message) => {
     setReplyingTo(message)
-    // Focus input
-    const input = document.querySelector('textarea') as HTMLTextAreaElement
-    input?.focus()
+    // Focus input using React ref
+    inputRef?.current?.focus()
   }
 
   if (isLoading && messages.length === 0) {

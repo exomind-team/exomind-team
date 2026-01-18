@@ -1,10 +1,26 @@
-import { useState } from 'react'
+import { useState, useRef, useImperativeHandle, forwardRef } from 'react'
 import { useMessages } from '../context/MessageContext'
 
-export default function MessageInput() {
-  const { sendMessage, replyingTo, setReplyingTo, isLoading } = useMessages()
-  const [content, setContent] = useState('')
-  const [isSending, setIsSending] = useState(false)
+interface MessageInputProps {
+  inputRef?: React.RefObject<{ focus: () => void }>
+}
+
+const MessageInput = forwardRef<{ focus: () => void }, MessageInputProps>(
+  function MessageInput({ inputRef }, ref) {
+    const { sendMessage, replyingTo, setReplyingTo, isLoading } = useMessages()
+    const [content, setContent] = useState('')
+    const [isSending, setIsSending] = useState(false)
+    const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+    // 导出 focus 方法给父组件
+    useImperativeHandle(ref, () => ({
+      focus: () => textareaRef.current?.focus()
+    }))
+
+    // 如果有 inputRef，也同步调用 focus（兼容旧逻辑）
+    if (inputRef?.current) {
+      // inputRef 会在父组件中使用，这里不需要额外处理
+    }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -49,6 +65,7 @@ export default function MessageInput() {
 
       <form onSubmit={handleSubmit} className="flex items-end gap-2">
         <textarea
+          ref={textareaRef}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -75,4 +92,6 @@ export default function MessageInput() {
       </form>
     </div>
   )
-}
+})
+
+export default MessageInput
