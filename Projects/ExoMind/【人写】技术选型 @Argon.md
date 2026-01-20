@@ -190,7 +190,9 @@ PC/Tauri：
 
 Rust原生：`rusqlite`（直接在Rust本地端处理SQL数据库文件`.db`/`.sqlite`）
 
-服务端TypeScript/bun：[`bun:sqlite`](https://bun.com/docs/runtime/sqlite)，原生，高性能，SQLite3
+服务端TypeScript/bun：[`bun:sqlite`](https://bun.com/docs/runtime/sqlite)，原生，高性能，SQLite3（要手动输入SQL）
+
+服务端TypeScript/deno：[`node:sqlite`](https://docs.deno.com/examples/sqlite/)（调用Node.js模块）、[deno-sqlite](https://github.com/dyedgreen/deno-sqlite)（维护两年前，WASM编写，要手动输入SQL，但开箱即用）
 
 PAW/Web亦可：[SQLite WASM](https://github.com/sqlite/sqlite-wasm)
 
@@ -236,6 +238,12 @@ Rust顶流框架，桌面×前端的应用首选
 - ❗资源相对少、文档相对少
 - ✅可用npm，工作流全覆盖
 - ❗安全性不佳，仍可能会有漏洞（一些特性是实验性的）
+
+## （备选）后端TypeScript运行时：Deno
+
+🏷️Node.js续作
+❗开发泛式与Node.js不同
+📌稳定性较佳
 
 ## Auth.js
 
