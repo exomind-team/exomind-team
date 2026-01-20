@@ -637,7 +637,150 @@ core/storage/
 
 ---
 
-## 十一、待调研
+## 十一、简单代码样例（每项技术 ≤ 10 行）
 
-- [x] xstate 状态机调研 ✅
-- [ ] 简单代码样例：每项技术 10 行内调用示例
+### React
+
+```tsx
+// 基本函数式组件
+function Button({ onClick, children }) {
+  return <button onClick={onClick}>{children}</button>;
+}
+```
+
+### Tailwind CSS
+
+```tsx
+// 直接在 JSX 中使用工具类
+<div className="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+  <span className="text-gray-700">Hello</span>
+</div>
+```
+
+### Radix UI
+
+```tsx
+// Dialog 对话框组件
+import * as Dialog from '@radix-ui/react-dialog';
+<Dialog.Root>
+  <Dialog.Trigger>Open</Dialog.Trigger>
+  <Dialog.Content><Dialog.Title>Title</Dialog.Title></Dialog.Content>
+</Dialog.Root>
+```
+
+### shadcn/ui
+
+```tsx
+// 使用预置组件
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+<Button variant="outline">Click me</Button>
+<Input placeholder="Type..." />
+```
+
+### Lucide React
+
+```tsx
+import { Home, User, Settings } from 'lucide-react';
+<Home className="w-5 h-5 text-blue-500" />
+<User className="w-4 h-4" />
+<Settings className="w-6 h-6" />
+```
+
+### React Router v7
+
+```tsx
+import { Routes, Route, Link } from 'react-router';
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+</Routes>
+```
+
+### Zustand
+
+```tsx
+import { create } from 'zustand';
+const useStore = create((set) => ({
+  count: 0,
+  inc: () => set((s) => ({ count: s.count + 1 })),
+}));
+// 使用: const { count, inc } = useStore();
+```
+
+### Auth.js
+
+```tsx
+import { Authenticator } from '@aws-amplify/ui-react';
+<Authenticator>
+  {({ signOut, user }) => <button onClick={signOut}>Sign out</button>}
+</Authenticator>
+```
+
+### xstate
+
+```tsx
+import { createMachine, assign } from 'xstate';
+const machine = createMachine({
+  id: 'todo',
+  initial: 'idle',
+  states: {
+    idle: { on: { LOAD: 'loading' } },
+    loading: { invoke: { src: 'fetchData', onDone: 'success' } },
+  },
+});
+```
+
+### mitt（事件总线）
+
+```ts
+import mitt from 'mitt';
+const emitter = mitt();
+emitter.on('foo', (e) => console.log('foo', e));
+emitter.emit('foo', { a: 'b' });
+emitter.off('foo');
+```
+
+### Dexie.js
+
+```ts
+import Dexie from 'dexie';
+const db = new Dexie('MyDB');
+db.version(1).stores({ friends: '++id, name, age' });
+// 使用: await db.friends.where('age').above(25).toArray()
+```
+
+### bun:sqlite
+
+```ts
+import { Database } from 'bun:sqlite';
+const db = new Database('my.db');
+db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)');
+db.run('INSERT INTO users (name) VALUES (?)', ['Alice']);
+```
+
+### Tauri（Rust 命令）
+
+```rust
+#[tauri::command]
+fn greet(name: &str) -> String {
+  format!("Hello, {}!", name)
+}
+```
+
+### Bun 运行时
+
+```ts
+// 直接运行 TypeScript，无需编译
+import { echo } from 'lodash';
+console.log(echo('hello', 3)); // 打印 "hello hello hello"
+await Bun.write('file.txt', 'content');
+const file = await Bun.file('file.txt').text();
+```
+
+---
+
+## 十二、待调研
+
+- [x] xstate 状态机调研
+- [x] 简单代码样例：每项技术 10 行内调用示例
