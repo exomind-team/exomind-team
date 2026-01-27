@@ -5,3 +5,6 @@
 [submodule "Projects/obsidian-exomind-timer"]
 	path = Projects/obsidian-exomind-timer
 	url = https://github.com/exomind-team/obsidian-exomind-timer.git
+[submodule "Projects/exomind"]
+	path = Projects/exomind
+	url = https://github.com/exomind-team/exomind.git
